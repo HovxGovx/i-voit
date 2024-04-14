@@ -5,6 +5,7 @@ import Navbar from './Components/Navbar/Navbar'
 import InscriptionPage from './Components/Inscription/Inscription'
 import ComptePage from './Components/Compte/Compte';
 import TrajetPage from './Components/Trajet/Trajet';
+import PartagerPage from './Components/Partager/Partager';
 
 const App = () => {
     const [option, setOption] = useState('');
@@ -30,7 +31,7 @@ const App = () => {
             pageToDisplay = <TrajetPage />;
             break;
         case 'partager':
-            pageToDisplay = <ComptePage />;
+            pageToDisplay = <PartagerPage />;
             break;
         default:
             pageToDisplay = null;

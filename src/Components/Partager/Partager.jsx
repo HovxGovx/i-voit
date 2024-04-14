@@ -1,3 +1,4 @@
+import './PartagerStyles.css'
 const PartagerPage = () => {
     return ( 
         <>
