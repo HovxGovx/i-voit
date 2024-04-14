@@ -7,8 +7,11 @@ const Navbar = ({ onOptionChange }) => {
     const [activeButton, setActiveButton] = useState('trajet');
 
     const handleClick = (option) => {
-            
-            setActiveButton(option);
+        if (onOptionChange) {
+            onOptionChange(option);
+           
+        }
+         setActiveButton(option);
     };
     
 
