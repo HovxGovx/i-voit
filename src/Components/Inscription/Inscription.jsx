@@ -25,7 +25,6 @@ const LoginSignUp = () => {
                 body: JSON.stringify({
                     username,
                     password,
-                    email: '', // Nous n'envoyons pas l'e-mail, donc nous laissons cette valeur vide
                     phone_number: phoneNumber
                 })
             });

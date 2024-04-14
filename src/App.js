@@ -6,7 +6,6 @@ import InscriptionPage from './Components/Inscription/Inscription'
 import ComptePage from './Components/Compte/Compte';
 import TrajetPage from './Components/Trajet/Trajet';
 import PartagerPage from './Components/Partager/Partager';
-
 const App = () => {
     const [option, setOption] = useState('');
 
@@ -38,9 +37,12 @@ const App = () => {
     }
 
     return (
-        <div>
+        <div >
             <Navbar onOptionChange={handleOptionChange} />
-            {pageToDisplay}
+            <div className='Page'>
+                {pageToDisplay}
+            </div>
+                       
         </div>
     );
 }

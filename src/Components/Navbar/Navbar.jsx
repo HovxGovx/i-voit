@@ -62,7 +62,7 @@ const Navbar = ({ onOptionChange }) => {
                     <div className="dropdown">
                         <button
                             className={activeButton === 'connexion' ? "dropbtn active" : "dropbtn"}
-                            onClick={() => handleClick('connexion')}
+                            
                         >
                             <img
                                 src={ajout}
