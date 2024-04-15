@@ -21,7 +21,7 @@ const App = () => {
             pageToDisplay = <LoginSignUp />;
             break;
         case 'inscription':
-            pageToDisplay = <InscriptionPage />;
+            pageToDisplay = <InscriptionPage onOptionChange={handleOptionChange}/>;
             break;
         case 'compte':
             pageToDisplay = <ComptePage />;
