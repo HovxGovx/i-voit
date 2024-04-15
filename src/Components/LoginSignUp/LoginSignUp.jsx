@@ -1,18 +1,32 @@
 import React, { useState } from 'react';
 import './LoginSignUp.css';
 import axios from 'axios';
-const Login = () => {
+const Login = (props) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     
+    axios.defaults.withCredentials = true;
     const handleSubmit = async (e) => {
         e.preventDefault();
-
-        axios.post('http://localhost:8087/signup',username,password)
-            .then(res => console.log('succes'))
-            .catch(err => console.log(err));
+        try {
+            const response = await fetch('http://localhost:8081/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ username,  password })
+            });
+            const data = await response.json();
+            if (data.Login) {
+                console.log('Succès login');
+                props.onOptionChange('compte');
+            } else {
+                alert("Aucun donnees");
+            }
+        } catch (error) {
+            console.error(error);
+        }
     };
-
     return (
         <div className="container">
             <div className="inscription">

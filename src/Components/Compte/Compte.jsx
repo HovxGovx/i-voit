@@ -1,41 +1,26 @@
+import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 
-function UserProfile() {
-    const [userInfo, setUserInfo] = useState(null);
-
+function UserProfile(props) {
+    const [name,setUsername] = useState('');
     useEffect(() => {
-        // Fonction pour récupérer les informations de l'utilisateur
-        const fetchUserInfo = async () => {
-            try {
-                const response = await fetch('http://localhost:5000/userinfo', {
-                    method: 'GET',
-                    credentials: 'include' // Inclure les cookies dans la requête
-                });
-                if (response.ok) {
-                    const userData = await response.json();
-                    setUserInfo(userData);
-                } else {
-                    console.error('Erreur lors de la récupération des informations de l\'utilisateur');
+        axios.get('http://localhost:8081/')
+            .then(res => {
+                if(res.data.valid){
+                    setUsername(res.data.username);
+                    console.log("User",name);
+                    props.onOptionChange('compte');
                 }
-            } catch (error) {
-                console.error('Erreur réseau :', error);
-            }
-        };
-
-        fetchUserInfo();
-    }, []);
+                else{
+                    props.onOptionChange('connexion');
+                }
+            })
+            .catch(err => console.log(err));
+    }, [])
 
     return (
         <div>
-            <h2>Profil Utilisateur</h2>
-            {userInfo ? (
-                <div>
-                    <p>Nom d'utilisateur : {userInfo.username}</p>
-                    <p>Numéro de téléphone : {userInfo.phone_number}</p>
-                </div>
-            ) : (
-                <p>Chargement des informations de l'utilisateur...</p>
-            )}
+            <h2>Profil Utilisateur {name}</h2>
         </div>
     );
 }

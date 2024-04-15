@@ -18,13 +18,13 @@ const App = () => {
     let pageToDisplay;
     switch (option) {
         case 'connexion':
-            pageToDisplay = <LoginSignUp />;
+            pageToDisplay = <LoginSignUp onOptionChange={handleOptionChange}/>;
             break;
         case 'inscription':
             pageToDisplay = <InscriptionPage onOptionChange={handleOptionChange}/>;
             break;
         case 'compte':
-            pageToDisplay = <ComptePage />;
+            pageToDisplay = <ComptePage onOptionChange={handleOptionChange}/>;
             break;
         case 'trajet':
             pageToDisplay = <TrajetPage />;

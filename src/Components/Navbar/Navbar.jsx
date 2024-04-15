@@ -9,7 +9,6 @@ const Navbar = ({ onOptionChange }) => {
     const handleClick = (option) => {
         if (onOptionChange) {
             onOptionChange(option);
-           
         }
          setActiveButton(option);
     };

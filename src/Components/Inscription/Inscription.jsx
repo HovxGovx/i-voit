@@ -15,7 +15,6 @@ const LoginSignUp = (props) => {
             alert("Les mots de passe ne correspondent pas !");
             return;
         }
-
         try {
             const response = await fetch('http://localhost:8081/signup', {
                 method: 'POST',
