@@ -9,13 +9,13 @@ const LoginSignUp = (props) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        
+
         // Vérifier si les mots de passe correspondent
         if (password !== confirmPassword) {
             alert("Les mots de passe ne correspondent pas !");
             return;
         }
-    
+
         try {
             const response = await fetch('http://localhost:8081/signup', {
                 method: 'POST',
@@ -24,7 +24,7 @@ const LoginSignUp = (props) => {
                 },
                 body: JSON.stringify({ username, phoneNumber, password })
             });
-    
+
             if (response.ok) {
                 console.log('Succès');
                 props.onOptionChange('compte');
@@ -35,8 +35,8 @@ const LoginSignUp = (props) => {
             console.error(error);
         }
     };
-   
-    
+
+
 
     return (
         <div className='Container'>
