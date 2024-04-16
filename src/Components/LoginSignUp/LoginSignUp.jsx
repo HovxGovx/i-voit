@@ -17,7 +17,7 @@ const Login = (props) => {
                 body: JSON.stringify({ username,  password })
             });
             const data = await response.json();
-            if (data.Login) {
+            if (data.login) {
                 console.log('Succès login');
                 props.onOptionChange('compte');
             } else {
