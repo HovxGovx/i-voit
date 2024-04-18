@@ -17,25 +17,6 @@ const Navbar = ({ onOptionChange }) => {
         }
          setActiveButton(option);
     };
-    const handleClickLogOut = async () => {
-        try {
-             // Effectuer une requête HTTP POST au serveur pour déconnecter l'utilisateur
-             const response = await axios.post('http://localhost:8081/logout');
-
-             // Si la déconnexion réussit, appeler la fonction de déconnexion passée en tant que prop
-             if (response.status === 200) {
-                console.log('Déconnexion réussie.');
-             } else {
-                throw new Error('Erreur lors de la déconnexion');
-             }
-         
-        } catch (error) {
-            console.error('Erreur lors de la déconnexion:', error.message);
-        }
-    };
-    const [activeButton, setActiveButton] = useState('trajet');
-    const [sessionInfo, setSessionInfo] = useState(null);
-    
     useEffect(() => {
         const fetchSessionInfo = async () => {
             try {
@@ -51,6 +32,30 @@ const Navbar = ({ onOptionChange }) => {
         };
         fetchSessionInfo();
     }, []);
+    const handleClickLogOut = async () => {
+        try {
+             // Effectuer une requête HTTP POST au serveur pour déconnecter l'utilisateur
+             const response = await axios.post('http://localhost:8081/logout');
+
+             // Si la déconnexion réussit, appeler la fonction de déconnexion passée en tant que prop
+             if (response.status === 200) {
+                console.log('Déconnexion réussie.');
+                setSessionInfo(false);
+                onOptionChange('connexion');
+
+                // fetchSessionInfo();
+             } else {
+                throw new Error('Erreur lors de la déconnexion');
+             }
+         
+        } catch (error) {
+            console.error('Erreur lors de la déconnexion:', error.message);
+        }
+    };
+    const [activeButton, setActiveButton] = useState('trajet');
+    const [sessionInfo, setSessionInfo] = useState(null);
+    
+   
     
     
     
