@@ -54,8 +54,6 @@ function generateSessionId() {
     return `${randomNumber1}${randomNumber2}`; // Concatène les deux chiffres pour former l'ID de session
 }
 
-
-
 app.post('/login', async (req, res) => {
     try {
         const { username, password } = req.body; // Get username and password from request body
@@ -100,8 +98,6 @@ app.post('/login', async (req, res) => {
         return res.status(500).json({ message: 'Error during login' });
     }
 });
- 
-
 // Endpoint pour récupérer les informations de la session et de l'utilisateur
 app.get('/session-info', async (req, res) => {
     try {
@@ -149,19 +145,49 @@ app.post('/signup', async (req, res) => {
     const { username, password, phone_number } = req.body;
 
     try {
+        // Insérer l'utilisateur dans la base de données
         const insertUserQuery = `
             INSERT INTO usercocovoiturage (username, password,  phone_number, is_admin, registration_date)
-            VALUES ($1, $2,  $3, $4, CURRENT_TIMESTAMP)
-            RETURNING user_id, username,  phone_number, is_admin, registration_date
+            VALUES (?, ?,  ?, ?, CURRENT_TIMESTAMP)
         `;
-        const insertedUser = await pool.query(insertUserQuery, [username, password,  phone_number, false]);
+        db.query(insertUserQuery, [username, password,  phone_number, false], async (insertError, result) => {
+            if (insertError) {
+                console.error('Erreur lors de l\'inscription :', insertError);
+                return res.status(500).json({ message: 'Erreur lors de l\'inscription' });
+            }
 
-        res.status(201).json({ message: 'Inscription réussie', user: insertedUser.rows[0] });
+            // Récupérer l'ID de l'utilisateur nouvellement inscrit
+            const userId = result.insertId;
+
+            // Générer une session pour l'utilisateur
+            const sessionId = generateSessionId();
+            const data = JSON.stringify({ username: username });
+            const expires = new Date(Date.now() + 24 * 60 * 60 * 1000);
+
+            // Insérer la session dans la base de données
+            db.query(
+                'INSERT INTO sessions (session_id, user_id, data, expires) VALUES (?, ?, ?, ?)',
+                [sessionId, userId, data, expires],
+                (sessionInsertError, sessionResult) => {
+                    if (sessionInsertError) {
+                        console.error('Erreur lors de la création de la session :', sessionInsertError);
+                        return res.status(500).json({ message: 'Erreur lors de la création de la session' });
+                    }
+
+                    // Définir la session actuelle
+                    currentSessionId = sessionId;
+
+                    // Répondre avec succès et renvoyer l'ID de session
+                    return res.status(201).json({ message: 'Inscription réussie', session_id: sessionId });
+                }
+            );
+        });
     } catch (error) {
         console.error('Erreur lors de l\'inscription :', error);
-        res.status(500).json({ message: 'Erreur lors de l\'inscription' });
+        return res.status(500).json({ message: 'Erreur lors de l\'inscription' });
     }
 });
+
 
 app.listen(8081, () => {
     console.log('Connected to the server');

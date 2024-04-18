@@ -49,6 +49,7 @@ const Navbar = ({ onOptionChange,isLoggedIn, onLogout }) => {
                 setSessionInfo(false);
                 onLogout();
                 onOptionChange('connexion');
+                setActiveButton('connexion');
 
                 // fetchSessionInfo();
              } else {

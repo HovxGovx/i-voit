@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './InscriptionStyles.css';
 
-const LoginSignUp = (props) => {
+const LoginSignUp = ({onOptionChange,isLoggedIn, onLogin}) => {
     const [username, setUsername] = useState('');
     const [phoneNumber, setPhoneNumber] = useState('');
     const [password, setPassword] = useState('');
@@ -26,7 +26,9 @@ const LoginSignUp = (props) => {
 
             if (response.ok) {
                 console.log('Succès');
-                props.onOptionChange('compte');
+                onLogin();
+                onOptionChange('trajet');
+
             } else {
                 throw new Error('Erreur lors de la requête.');
             }
@@ -34,8 +36,6 @@ const LoginSignUp = (props) => {
             console.error(error);
         }
     };
-
-
 
     return (
         <div className='Container'>
