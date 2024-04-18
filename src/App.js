@@ -7,7 +7,7 @@ import ComptePage from './Components/Compte/Compte';
 import TrajetPage from './Components/Trajet/Trajet';
 import PartagerPage from './Components/Partager/Partager';
 const App = () => {
-    const [option, setOption] = useState('');
+    const [option, setOption] = useState('trajet');
 
     const handleOptionChange = (newOption) => {
         // Faire quelque chose avec la nouvelle option, par exemple :

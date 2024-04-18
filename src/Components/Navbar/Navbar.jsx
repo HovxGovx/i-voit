@@ -1,19 +1,59 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import "./NavbarStyles.css";
 import logo from '../Assets/Icons/covoiturage.png';
 import ajout from '../Assets/Icons/utilisateur-du-cercle.png';
+import axios from 'axios';
 
 const Navbar = ({ onOptionChange }) => {
-    const [activeButton, setActiveButton] = useState('trajet');
-
+    const handleClick1 = (option) => {
+        if (onOptionChange) {
+            onOptionChange(option);
+        }
+         setActiveButton(option);
+    };
     const handleClick = (option) => {
         if (onOptionChange) {
             onOptionChange(option);
         }
          setActiveButton(option);
     };
-    
+    const handleClickLogOut = async () => {
+        try {
+             // Effectuer une requête HTTP POST au serveur pour déconnecter l'utilisateur
+             const response = await axios.post('http://localhost:8081/logout');
 
+             // Si la déconnexion réussit, appeler la fonction de déconnexion passée en tant que prop
+             if (response.status === 200) {
+                console.log('Déconnexion réussie.');
+             } else {
+                throw new Error('Erreur lors de la déconnexion');
+             }
+         
+        } catch (error) {
+            console.error('Erreur lors de la déconnexion:', error.message);
+        }
+    };
+    const [activeButton, setActiveButton] = useState('trajet');
+    const [sessionInfo, setSessionInfo] = useState(null);
+    
+    useEffect(() => {
+        const fetchSessionInfo = async () => {
+            try {
+                const response = await axios.get('http://localhost:8081/session-info', { withCredentials: true });
+                if (response.data && response.data.session) {
+                    setSessionInfo(true); // Il y a des informations de session en cours
+                } else {
+                    setSessionInfo(false); // Aucune information de session en cours
+                }
+            } catch (error) {
+                console.error('Error fetching session info:', error);
+            }
+        };
+        fetchSessionInfo();
+    }, []);
+    
+    
+    
     return (
         <div>
             <nav id='navbar'>
@@ -33,7 +73,7 @@ const Navbar = ({ onOptionChange }) => {
                         <li>
                             <button
                                 className={activeButton === 'trajet' ? "active" : ""}
-                                onClick={() => handleClick('trajet')}
+                                onClick={() => handleClick1('trajet')}
                             >
                                 Trajet
                             </button>
@@ -41,7 +81,7 @@ const Navbar = ({ onOptionChange }) => {
                         <li>
                             <button
                                 className={activeButton === 'partager' ? "active" : ""}
-                                onClick={() => handleClick('partager')}
+                                onClick={() => handleClick1('partager')}
                             >
                                 Partager
                             </button>
@@ -49,7 +89,7 @@ const Navbar = ({ onOptionChange }) => {
                         <li>
                             <button
                                 className={activeButton === 'compte' ? "active" : ""}
-                                onClick={() => handleClick('compte')}
+                                onClick={() => handleClick1('compte')}
                             >
                                 Compte
                             </button>
@@ -75,12 +115,22 @@ const Navbar = ({ onOptionChange }) => {
                             <i className="fa fa-caret-down test" />
                         </button>
                         <div className="dropdown-content">
-                            <button onClick={() => handleClick('connexion')}>
-                                Connexion <i className="fa fa-caret-right test2" />
-                            </button>
-                            <button onClick={() => handleClick('inscription')}>
-                                Inscription <i className="fa fa-caret-right test2" />
-                            </button>
+                                    {sessionInfo? ( 
+                                        <button onClick={() => handleClickLogOut('connexion')}>
+                                            Se déconnecter <i className="fa fa-caret-right test2" />
+                                        </button>
+                                        
+                                    ) : (
+                                        <>
+                                            <button onClick={() => handleClick('connexion')}   >
+                                                Connexion <i className="fa fa-caret-right test2" />
+                                            </button>
+                                            <button onClick={() => handleClick('inscription')}>
+                                                Inscription <i className="fa fa-caret-right test2" />
+                                            </button>
+                                        </>
+                                       
+                                    )}
                             <div className="esthe">
                                 <button
                                     className={activeButton === 'trajet' ? "active" : ""}

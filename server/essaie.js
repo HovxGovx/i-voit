@@ -18,10 +18,39 @@ const db = mysql.createConnection({
     database: "covoiturage"
 });
 let currentSessionId = null;
+app.post('/logout', async (req, res) => {
+    try {
+        const  session_id  = currentSessionId; 
+
+        if (!currentSessionId) {
+            return res.status(401).json({ message: 'No session found' });
+        }
+
+        const expires = new Date(); // Set expiration date to current date (effectively closing the session)
+
+        db.query(
+            'UPDATE sessions SET expires = ? WHERE session_id = ?',
+            [expires, session_id],
+            (updateError, result) => {
+                if (updateError) {
+                    console.error('Error updating session:', updateError);
+                    console.log(currentSessionId);
+                    return res.status(500).json({ message: 'Error during logout' });
+                }
+
+                currentSessionId = null;
+                return res.json({ logout: true });
+            }
+        );
+    } catch (error) {
+        console.error('Error during logout:', error);
+        return res.status(500).json({ message: 'Error during logout' });
+    }
+});
 
 function generateSessionId() {
-    const randomNumber1 = Math.floor(Math.random() * 10); // Génère un chiffre aléatoire de 0 à 9
-    const randomNumber2 = Math.floor(Math.random() * 10); // Génère un autre chiffre aléatoire de 0 à 9
+    const randomNumber1 = Math.floor(Math.random() * 100); // Génère un chiffre aléatoire de 0 à 99
+    const randomNumber2 = Math.floor(Math.random() * 100); // Génère un autre chiffre aléatoire de 0 à 99
     return `${randomNumber1}${randomNumber2}`; // Concatène les deux chiffres pour former l'ID de session
 }
 
@@ -49,13 +78,13 @@ app.post('/login', async (req, res) => {
                 const data = JSON.stringify({ username: rows[0].username });
                 const expires = new Date(Date.now() + 24 * 60 * 60 * 1000);
 
-                await db.query(
+                db.query(
                     'INSERT INTO sessions (session_id, user_id, data, expires) VALUES (?, ?, ?, ?)',
                     [sessionId, user_id, data, expires],
                     (insertError, result) => {
                         if (insertError) {
                             console.error('Error inserting session:', insertError);
-                            return res.status(500).json({ message: 'Error during login' });
+                            return res.status(500).json({ message: 'Error during session\'s creation' });
                         }
 
                         currentSessionId = sessionId;
@@ -77,7 +106,7 @@ app.post('/login', async (req, res) => {
 app.get('/session-info', async (req, res) => {
     try {
         if (!currentSessionId) {
-            return res.status(401).json({ message: 'No session found' });
+            return currentSessionId;
         }
 
         const sessionQuery = "SELECT * FROM sessions WHERE session_id = ? AND expires > NOW()";
@@ -104,14 +133,33 @@ app.get('/session-info', async (req, res) => {
                 if (userRows.length === 0) {
                     return res.status(404).json({ message: 'User not found' });
                 }
-
                 const userData = userRows[0];
-                return res.json({ session: sessionData, user: userData });
+                return res.json({ session: sessionData, user: userData});
             });
         });
     } catch (error) {
         console.error('Error fetching session info:', error);
         return res.status(500).json({ message: 'Error fetching session info' });
+    }
+});
+
+
+// Route d'Inscription
+app.post('/signup', async (req, res) => {
+    const { username, password, phone_number } = req.body;
+
+    try {
+        const insertUserQuery = `
+            INSERT INTO usercocovoiturage (username, password,  phone_number, is_admin, registration_date)
+            VALUES ($1, $2,  $3, $4, CURRENT_TIMESTAMP)
+            RETURNING user_id, username,  phone_number, is_admin, registration_date
+        `;
+        const insertedUser = await pool.query(insertUserQuery, [username, password,  phone_number, false]);
+
+        res.status(201).json({ message: 'Inscription réussie', user: insertedUser.rows[0] });
+    } catch (error) {
+        console.error('Erreur lors de l\'inscription :', error);
+        res.status(500).json({ message: 'Erreur lors de l\'inscription' });
     }
 });
 

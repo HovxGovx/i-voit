@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const SessionInfoComponent = () => {
+const ComptePage = () => {
     const [sessionInfo, setSessionInfo] = useState(null);
     const [loading, setLoading] = useState(true);
 
@@ -40,4 +40,4 @@ const SessionInfoComponent = () => {
     );
 };
 
-export default SessionInfoComponent;
+export default ComptePage;
