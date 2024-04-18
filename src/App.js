@@ -8,20 +8,25 @@ import TrajetPage from './Components/Trajet/Trajet';
 import PartagerPage from './Components/Partager/Partager';
 const App = () => {
     const [option, setOption] = useState('trajet');
-
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const handleLogin = () => {
+        setIsLoggedIn(true);
+      };
+      const handleLogout = () => {
+        setIsLoggedIn(false);
+      };
     const handleOptionChange = (newOption) => {
         // Faire quelque chose avec la nouvelle option, par exemple :
         console.log("Nouvelle option sélectionnée :", newOption);
         setOption(newOption);
     };
-
     let pageToDisplay;
     switch (option) {
         case 'connexion':
-            pageToDisplay = <LoginSignUp onOptionChange={handleOptionChange}/>;
+            pageToDisplay = <LoginSignUp onOptionChange={handleOptionChange} isLoggedIn={isLoggedIn} onLogin={handleLogin} />;
             break;
         case 'inscription':
-            pageToDisplay = <InscriptionPage onOptionChange={handleOptionChange}/>;
+            pageToDisplay = <InscriptionPage onOptionChange={handleOptionChange} isLoggedIn={isLoggedIn} onLogin={handleLogin} />;
             break;
         case 'compte':
             pageToDisplay = <ComptePage onOptionChange={handleOptionChange}/>;
@@ -38,7 +43,7 @@ const App = () => {
 
     return (
         <div >
-            <Navbar onOptionChange={handleOptionChange} />
+            <Navbar onOptionChange={handleOptionChange} isLoggedIn={isLoggedIn} onLogout={handleLogout} />
             <div className='Page'>
                 {pageToDisplay}
             </div>

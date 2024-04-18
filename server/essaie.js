@@ -100,7 +100,7 @@ app.post('/login', async (req, res) => {
         return res.status(500).json({ message: 'Error during login' });
     }
 });
-
+ 
 
 // Endpoint pour récupérer les informations de la session et de l'utilisateur
 app.get('/session-info', async (req, res) => {

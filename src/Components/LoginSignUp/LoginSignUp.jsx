@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './LoginSignUp.css';
 import axios from 'axios';
-const Login = (props) => {
+const Login = ({onOptionChange,isLoggedIn, onLogin}) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     
@@ -19,7 +19,8 @@ const Login = (props) => {
             const data = await response.json();
             if (data.login) {
                 console.log('Succès login');
-                props.onOptionChange('compte');
+                onOptionChange('trajet');
+                onLogin();
             } else {
                 alert("Aucun donnees");
             }

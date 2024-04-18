@@ -4,7 +4,9 @@ import logo from '../Assets/Icons/covoiturage.png';
 import ajout from '../Assets/Icons/utilisateur-du-cercle.png';
 import axios from 'axios';
 
-const Navbar = ({ onOptionChange }) => {
+const Navbar = ({ onOptionChange,isLoggedIn, onLogout }) => {
+    const [activeButton, setActiveButton] = useState('trajet');
+    const [sessionInfo, setSessionInfo] = useState(null);
     const handleClick1 = (option) => {
         if (onOptionChange) {
             onOptionChange(option);
@@ -16,15 +18,19 @@ const Navbar = ({ onOptionChange }) => {
             onOptionChange(option);
         }
          setActiveButton(option);
+         setSessionInfo(false);
+         console.log(sessionInfo);
     };
     useEffect(() => {
         const fetchSessionInfo = async () => {
             try {
                 const response = await axios.get('http://localhost:8081/session-info', { withCredentials: true });
                 if (response.data && response.data.session) {
-                    setSessionInfo(true); // Il y a des informations de session en cours
+                    setSessionInfo(true); 
+                    console.log("connected")// Il y a des informations de session en cours
                 } else {
-                    setSessionInfo(false); // Aucune information de session en cours
+                    setSessionInfo(false);
+                    console.log("not connected") // Aucune information de session en cours
                 }
             } catch (error) {
                 console.error('Error fetching session info:', error);
@@ -41,6 +47,7 @@ const Navbar = ({ onOptionChange }) => {
              if (response.status === 200) {
                 console.log('Déconnexion réussie.');
                 setSessionInfo(false);
+                onLogout();
                 onOptionChange('connexion');
 
                 // fetchSessionInfo();
@@ -52,8 +59,7 @@ const Navbar = ({ onOptionChange }) => {
             console.error('Erreur lors de la déconnexion:', error.message);
         }
     };
-    const [activeButton, setActiveButton] = useState('trajet');
-    const [sessionInfo, setSessionInfo] = useState(null);
+    
     
    
     
@@ -120,7 +126,7 @@ const Navbar = ({ onOptionChange }) => {
                             <i className="fa fa-caret-down test" />
                         </button>
                         <div className="dropdown-content">
-                                    {sessionInfo? ( 
+                                    {isLoggedIn? ( 
                                         <button onClick={() => handleClickLogOut('connexion')}>
                                             Se déconnecter <i className="fa fa-caret-right test2" />
                                         </button>
