@@ -14,13 +14,15 @@ const PartagerPage = () => {
     useEffect(() => {
         const fetchSessionInfo = async () => {
             try {
-                const response = await axios.get('http://localhost:8081/session-info');
-                if (response.data) {
-                    alert(response.data)
-                    setSessionId(response.data);
+                const response = await fetch('http://localhost:8081/session-info');
+                if (!response.ok) {
+                    throw new Error('Failed to fetch session info');
                 }
+                const data = await response.json();
+                console.log(data.userData);
+                setSessionId(data.userData.user_id);
             } catch (error) {
-                console.error('Error fetching session info:', error.response.data.message);
+                console.error('Error fetching session info:', error);
                 setErrorMessage('Error fetching session info');
             }
         };
@@ -28,7 +30,7 @@ const PartagerPage = () => {
         fetchSessionInfo();
     }, []);
 
-    const handleSubmit = async (e) => { 
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
         try {
@@ -56,18 +58,18 @@ const PartagerPage = () => {
             setPreferences('');
             setErrorMessage('');
         } catch (error) {
-            console.error('Error adding ride:', error.response.data.message);
-            setErrorMessage(error.response.data.message);
+            console.error('Error adding ride:', error);
+            setErrorMessage(error);
         }
     };
 
     return (
         <section className='home'>
             <h2>Ajouter un nouveau trajet</h2>
-            {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
             {!sessionId && <p style={{ color: 'red' }}>Veuillez vous connecter pour ajouter un trajet</p>}
             {sessionId && (
                 <form onSubmit={handleSubmit}>
+                    <p>{sessionId}</p>
                     <label>Origine:</label>
                     <input type="text" value={origin} onChange={(e) => setOrigin(e.target.value)} required />
 
@@ -92,5 +94,5 @@ const PartagerPage = () => {
         </section>
     );
 };
- 
+
 export default PartagerPage;

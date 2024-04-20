@@ -194,27 +194,12 @@ app.get('/session-info', async (req, res) => {
 app.post('/add-ride', async (req, res) => {
     try {
         const { origin, destination, departure_datetime, available_seats, car_details, preferences } = req.body;
-        const sessionId = req.headers.session_id;
+        const userId = req.headers.session_id;
 
         // Vérifier si l'utilisateur est connecté
-        if (!sessionId) {
+        if (!userId) {
             return res.status(401).json({ message: 'Unauthorized - Please login to add a ride' });
         }
-
-        // Récupérer l'ID de l'utilisateur à partir de la session
-        const userQuery = "SELECT * FROM sessions WHERE session_id = ? AND expires > NOW()";
-        db.query(userQuery, [sessionId], async (error, sessionRows, sessionFields) => {
-            if (error) {
-                console.error('Error fetching session info:', error);
-                return res.status(500).json({ message: 'Error fetching session info' });
-            }
-
-            if (sessionRows.length === 0) {
-                return res.status(401).json({ message: 'Unauthorized - Please login to add a ride' });
-            }
-
-            const userId = sessionRows[0].user_id;
-
             // Insérer le nouveau trajet dans la base de données
             const insertRideQuery = `
                 INSERT INTO rideoffer (user_id, origin, destination, departure_datetime, available_seats, car_details, preferences, creation_date)
@@ -228,7 +213,7 @@ app.post('/add-ride', async (req, res) => {
 
                 return res.status(201).json({ message: 'Ride added successfully', ride_id: result.insertId });
             });
-        });
+      
     } catch (error) {
         console.error('Error adding ride:', error);
         return res.status(500).json({ message: 'Error adding ride' });
