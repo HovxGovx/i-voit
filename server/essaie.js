@@ -221,11 +221,6 @@ app.post('/add-ride', async (req, res) => {
 });
 
 
-
-
-
-
-
 //! Port 
 app.listen(8081, () => {
     console.log('Connected to the server');
