@@ -18,7 +18,53 @@ const db = mysql.createConnection({
     database: "covoiturage"
 });
 let currentSessionId = null;
+//  ! Endpoint d'Inscription
+app.post('/signup', async (req, res) => {
+    const { username, password, phone_number } = req.body;
 
+    try {
+        // Insérer l'utilisateur dans la base de données
+        const insertUserQuery = `
+            INSERT INTO usercocovoiturage (username, password,  phone_number, is_admin, registration_date)
+            VALUES (?, ?,  ?, ?, CURRENT_TIMESTAMP)
+        `;
+        db.query(insertUserQuery, [username, password,  phone_number, false], async (insertError, result) => {
+            if (insertError) {
+                console.error('Erreur lors de l\'inscription :', insertError);
+                return res.status(500).json({ message: 'Erreur lors de l\'inscription' });
+            }
+
+            // Récupérer l'ID de l'utilisateur nouvellement inscrit
+            const userId = result.insertId;
+
+            // Générer une session pour l'utilisateur
+            const sessionId = generateSessionId();
+            const data = JSON.stringify({ username: username });
+            const expires = new Date(Date.now() + 24 * 60 * 60 * 1000);
+
+            // Insérer la session dans la base de données
+            db.query(
+                'INSERT INTO sessions (session_id, user_id, data, expires) VALUES (?, ?, ?, ?)',
+                [sessionId, userId, data, expires],
+                (sessionInsertError, sessionResult) => {
+                    if (sessionInsertError) {
+                        console.error('Erreur lors de la création de la session :', sessionInsertError);
+                        return res.status(500).json({ message: 'Erreur lors de la création de la session' });
+                    }
+
+                    // Définir la session actuelle
+                    currentSessionId = sessionId;
+
+                    // Répondre avec succès et renvoyer l'ID de session
+                    return res.status(201).json({ message: 'Inscription réussie', session_id: sessionId });
+                }
+            );
+        });
+    } catch (error) {
+        console.error('Erreur lors de l\'inscription :', error);
+        return res.status(500).json({ message: 'Erreur lors de l\'inscription' });
+    }
+});
 // ! deconnexion
 app.post('/logout', async (req, res) => {
     try {
@@ -135,7 +181,7 @@ app.get('/session-info', async (req, res) => {
                     return res.status(404).json({ message: 'User not found' });
                 }
                 const userData = userRows[0];
-                return res.json({ session: sessionData, user: userData});
+                return res.json({  sessionData,userData});
             });
         });
     } catch (error) {
@@ -144,54 +190,52 @@ app.get('/session-info', async (req, res) => {
     }
 });
 
-
-//  ! Endpoint d'Inscription
-app.post('/signup', async (req, res) => {
-    const { username, password, phone_number } = req.body;
-
+// ! Endpoint pour l'ajout d'un nouveau trajet
+app.post('/add-ride', async (req, res) => {
     try {
-        // Insérer l'utilisateur dans la base de données
-        const insertUserQuery = `
-            INSERT INTO usercocovoiturage (username, password,  phone_number, is_admin, registration_date)
-            VALUES (?, ?,  ?, ?, CURRENT_TIMESTAMP)
-        `;
-        db.query(insertUserQuery, [username, password,  phone_number, false], async (insertError, result) => {
-            if (insertError) {
-                console.error('Erreur lors de l\'inscription :', insertError);
-                return res.status(500).json({ message: 'Erreur lors de l\'inscription' });
+        const { origin, destination, departure_datetime, available_seats, car_details, preferences } = req.body;
+        const sessionId = req.headers.session_id;
+
+        // Vérifier si l'utilisateur est connecté
+        if (!sessionId) {
+            return res.status(401).json({ message: 'Unauthorized - Please login to add a ride' });
+        }
+
+        // Récupérer l'ID de l'utilisateur à partir de la session
+        const userQuery = "SELECT * FROM sessions WHERE session_id = ? AND expires > NOW()";
+        db.query(userQuery, [sessionId], async (error, sessionRows, sessionFields) => {
+            if (error) {
+                console.error('Error fetching session info:', error);
+                return res.status(500).json({ message: 'Error fetching session info' });
             }
 
-            // Récupérer l'ID de l'utilisateur nouvellement inscrit
-            const userId = result.insertId;
+            if (sessionRows.length === 0) {
+                return res.status(401).json({ message: 'Unauthorized - Please login to add a ride' });
+            }
 
-            // Générer une session pour l'utilisateur
-            const sessionId = generateSessionId();
-            const data = JSON.stringify({ username: username });
-            const expires = new Date(Date.now() + 24 * 60 * 60 * 1000);
+            const userId = sessionRows[0].user_id;
 
-            // Insérer la session dans la base de données
-            db.query(
-                'INSERT INTO sessions (session_id, user_id, data, expires) VALUES (?, ?, ?, ?)',
-                [sessionId, userId, data, expires],
-                (sessionInsertError, sessionResult) => {
-                    if (sessionInsertError) {
-                        console.error('Erreur lors de la création de la session :', sessionInsertError);
-                        return res.status(500).json({ message: 'Erreur lors de la création de la session' });
-                    }
-
-                    // Définir la session actuelle
-                    currentSessionId = sessionId;
-
-                    // Répondre avec succès et renvoyer l'ID de session
-                    return res.status(201).json({ message: 'Inscription réussie', session_id: sessionId });
+            // Insérer le nouveau trajet dans la base de données
+            const insertRideQuery = `
+                INSERT INTO rideoffer (user_id, origin, destination, departure_datetime, available_seats, car_details, preferences, creation_date)
+                VALUES (?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP)
+            `;
+            db.query(insertRideQuery, [userId, origin, destination, departure_datetime, available_seats, car_details, preferences], async (insertError, result) => {
+                if (insertError) {
+                    console.error('Error adding ride:', insertError);
+                    return res.status(500).json({ message: 'Error adding ride' });
                 }
-            );
+
+                return res.status(201).json({ message: 'Ride added successfully', ride_id: result.insertId });
+            });
         });
     } catch (error) {
-        console.error('Erreur lors de l\'inscription :', error);
-        return res.status(500).json({ message: 'Erreur lors de l\'inscription' });
+        console.error('Error adding ride:', error);
+        return res.status(500).json({ message: 'Error adding ride' });
     }
 });
+
+
 
 
 

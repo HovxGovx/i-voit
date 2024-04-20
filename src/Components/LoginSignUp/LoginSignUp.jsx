@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import './LoginSignUp.css';
 import axios from 'axios';
-const Login = ({onOptionChange,isLoggedIn, onLogin}) => {
+const Login = ({ onOptionChange, isLoggedIn, onLogin }) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    
+
     axios.defaults.withCredentials = true;
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -14,7 +14,7 @@ const Login = ({onOptionChange,isLoggedIn, onLogin}) => {
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ username,  password })
+                body: JSON.stringify({ username, password })
             });
             const data = await response.json();
             if (data.login) {
@@ -28,14 +28,10 @@ const Login = ({onOptionChange,isLoggedIn, onLogin}) => {
             console.error(error);
         }
     };
-    
+
     return (
-        <div className="container">
-            <div className="inscription">
-                <div className="left">
-                    <h1>Bon retour !</h1>
-                    <p>Connectez-vous avec votre compte<br />pour nous rejoindre !</p>
-                </div>
+      
+            <section className="inscription">
                 <div className="right">
                     <form className="form" onSubmit={handleSubmit}>
                         <p className="title">Connexion</p>
@@ -57,8 +53,13 @@ const Login = ({onOptionChange,isLoggedIn, onLogin}) => {
                         <p></p>
                     </form>
                 </div>
-            </div>
-        </div>
+                <div className="left">
+                    <h1>Bon retour !</h1>
+                    <p>Connectez-vous avec votre compte<br />pour nous rejoindre !</p>
+                </div>
+
+            </section>
+       
     );
 };
 

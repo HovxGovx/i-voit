@@ -1,43 +1,56 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 
 const ComptePage = () => {
+    const [userInfo, setUserInfo] = useState(null);
     const [sessionInfo, setSessionInfo] = useState(null);
     const [loading, setLoading] = useState(true);
-
+    const [error, setError] = useState(null);
+  
     useEffect(() => {
-        const fetchSessionInfo = async () => {
-            try {
-                const response = await axios.get('http://localhost:8081/session-info', { withCredentials: true });
-                setSessionInfo(response.data);
-                setLoading(false);
-            } catch (error) {
-                console.error('Error fetching session info:', error);
-            }
-        };
+      const fetchSessionInfo = async () => {
+        try {
+          const response = await fetch('http://localhost:8081/session-info');
+          if (!response.ok) {
+            throw new Error('Failed to fetch session info');
+          }
+          const data = await response.json();
+          console.log(data.sessionData);
+          setUserInfo(data.userData);
+          setSessionInfo(data.sessionData);
 
-        fetchSessionInfo();
+          setLoading(false);
+        } catch (error) {
+          setError(error.message);
+          setLoading(false);
+        }
+      };
+  
+      fetchSessionInfo();
     }, []);
-
+  
     if (loading) {
-        return <>Loading...</>;
+      return <div>Loading...</div>;
     }
-
-    if (!sessionInfo) {
-        return <>No session found</>;
+  
+    if (error) {
+      return <div>Error: {error}</div>;
     }
-
-    const { session, user } = sessionInfo;
-
+  
+    if (!userInfo) {
+      return <div>No user info available</div>;
+    }
+  
     return (
+      <div className='home'>
+        <h2>User Information</h2>
         <div>
-            <h2>Session Info</h2>
-            <p>Session Data:</p>
-            <pre>{JSON.stringify(session, null, 2)}</pre>
-            <p>User Data:</p>
-            <pre>{JSON.stringify(user, null, 2)}</pre>
+          <strong>Name:</strong> {userInfo.username}
         </div>
+        <div>
+          <strong>Session:</strong> {sessionInfo.username}
+        </div>
+      </div>
     );
-};
+  }
 
 export default ComptePage;

@@ -1,35 +1,35 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import "./NavbarStyles.css";
 import logo from '../Assets/Icons/covoiturage.png';
 import ajout from '../Assets/Icons/utilisateur-du-cercle.png';
 import axios from 'axios';
 
-const Navbar = ({ onOptionChange,isLoggedIn, onLogout }) => {
+const Navbar = ({ onOptionChange, isLoggedIn, onLogout }) => {
     const [activeButton, setActiveButton] = useState('trajet');
     const [sessionInfo, setSessionInfo] = useState(null);
     const handleClick1 = (option) => {
         if (onOptionChange) {
             onOptionChange(option);
         }
-         setActiveButton(option);
+        setActiveButton(option);
     };
     const handleClick = (option) => {
         if (onOptionChange) {
             onOptionChange(option);
         }
-         if (option === 'connexion' || option === 'inscription'){
+        if (option === 'connexion' || option === 'inscription') {
             setActiveButton('compte');
-         }
-         setActiveButton(option);
-         setSessionInfo(false);
-         console.log(sessionInfo);
+        }
+        setActiveButton(option);
+        setSessionInfo(false);
+        console.log(sessionInfo);
     };
     useEffect(() => {
         const fetchSessionInfo = async () => {
             try {
                 const response = await axios.get('http://localhost:8081/session-info', { withCredentials: true });
                 if (response.data && response.data.session) {
-                    setSessionInfo(true); 
+                    setSessionInfo(true);
                     console.log("connected")// Il y a des informations de session en cours
                 } else {
                     setSessionInfo(false);
@@ -43,11 +43,11 @@ const Navbar = ({ onOptionChange,isLoggedIn, onLogout }) => {
     }, []);
     const handleClickLogOut = async () => {
         try {
-             // Effectuer une requête HTTP POST au serveur pour déconnecter l'utilisateur
-             const response = await axios.post('http://localhost:8081/logout');
+            // Effectuer une requête HTTP POST au serveur pour déconnecter l'utilisateur
+            const response = await axios.post('http://localhost:8081/logout');
 
-             // Si la déconnexion réussit, appeler la fonction de déconnexion passée en tant que prop
-             if (response.status === 200) {
+            // Si la déconnexion réussit, appeler la fonction de déconnexion passée en tant que prop
+            if (response.status === 200) {
                 console.log('Déconnexion réussie.');
                 setSessionInfo(false);
                 onLogout();
@@ -55,20 +55,20 @@ const Navbar = ({ onOptionChange,isLoggedIn, onLogout }) => {
                 setActiveButton('connexion');
 
                 // fetchSessionInfo();
-             } else {
+            } else {
                 throw new Error('Erreur lors de la déconnexion');
-             }
-         
+            }
+
         } catch (error) {
             console.error('Erreur lors de la déconnexion:', error.message);
         }
     };
-    
-    
-   
-    
-    
-    
+
+
+
+
+
+
     return (
         <div>
             <nav id='navbar'>
@@ -85,6 +85,14 @@ const Navbar = ({ onOptionChange,isLoggedIn, onLogout }) => {
 
                 <div id="milieu">
                     <ul id='central'>
+                        <li>
+                            <button
+                                className={activeButton === 'home' ? "active" : ""}
+                                onClick={() => handleClick1('home')}
+                            >
+                                Home
+                            </button>
+                        </li>
                         <li>
                             <button
                                 className={activeButton === 'trajet' ? "active" : ""}
@@ -109,6 +117,7 @@ const Navbar = ({ onOptionChange,isLoggedIn, onLogout }) => {
                                 Compte
                             </button>
                         </li>
+
                     </ul>
                 </div>
 
@@ -116,7 +125,7 @@ const Navbar = ({ onOptionChange,isLoggedIn, onLogout }) => {
                     <div className="dropdown">
                         <button
                             className={activeButton === 'connexion' ? "dropbtn active" : "dropbtn"}
-                            
+
                         >
                             <img
                                 src={ajout}
@@ -130,28 +139,28 @@ const Navbar = ({ onOptionChange,isLoggedIn, onLogout }) => {
                             <i className="fa fa-caret-down test" />
                         </button>
                         <div className="dropdown-content">
-                                    {isLoggedIn? ( 
-                                        <button onClick={() => handleClickLogOut('connexion')}>
-                                            Se déconnecter <i className="fa fa-caret-right test2" />
-                                        </button>
-                                        
-                                    ) : (
-                                        <>
-                                            <button onClick={() => handleClick('connexion')}   >
-                                                Connexion <i className="fa fa-caret-right test2" />
-                                            </button>
-                                            <button onClick={() => handleClick('inscription')}>
-                                                Inscription <i className="fa fa-caret-right test2" />
-                                            </button>
-                                        </>
-                                       
-                                    )}
+                            {isLoggedIn ? (
+                                <button onClick={() => handleClickLogOut('connexion')}>
+                                    Se déconnecter <i className="fa fa-caret-right test2" />
+                                </button>
+
+                            ) : (
+                                <>
+                                    <button onClick={() => handleClick('connexion')}   >
+                                        Connexion <i className="fa fa-caret-right test2" />
+                                    </button>
+                                    <button onClick={() => handleClick('inscription')}>
+                                        Inscription <i className="fa fa-caret-right test2" />
+                                    </button>
+                                </>
+
+                            )}
                             <div className="esthe">
                                 <button
                                     className={activeButton === 'trajet' ? "active" : ""}
                                     onClick={() => handleClick('trajet')}
                                 >
-                                        Trajet <i className="fa fa-caret-right test3" />
+                                    Trajet <i className="fa fa-caret-right test3" />
                                 </button>
                                 <button
                                     className={activeButton === 'compte' ? "active" : ""}
