@@ -9,7 +9,7 @@ app.use(cors({
     methods: ["POST", "GET"],
     credentials: true
 }));
-
+// ! Connexion a la BD
 app.use(bodyParser.json());
 const db = mysql.createConnection({
     host: 'localhost',
@@ -18,6 +18,8 @@ const db = mysql.createConnection({
     database: "covoiturage"
 });
 let currentSessionId = null;
+
+// ! deconnexion
 app.post('/logout', async (req, res) => {
     try {
         const  session_id  = currentSessionId; 
@@ -26,7 +28,7 @@ app.post('/logout', async (req, res) => {
             return res.status(401).json({ message: 'No session found' });
         }
 
-        const expires = new Date(); // Set expiration date to current date (effectively closing the session)
+        const expires = new Date(); 
 
         db.query(
             'UPDATE sessions SET expires = ? WHERE session_id = ?',
@@ -48,17 +50,18 @@ app.post('/logout', async (req, res) => {
     }
 });
 
+// ! Genere le numero de la session aleatoirement
 function generateSessionId() {
-    const randomNumber1 = Math.floor(Math.random() * 100); // Génère un chiffre aléatoire de 0 à 99
-    const randomNumber2 = Math.floor(Math.random() * 100); // Génère un autre chiffre aléatoire de 0 à 99
-    return `${randomNumber1}${randomNumber2}`; // Concatène les deux chiffres pour former l'ID de session
+    const randomNumber1 = Math.floor(Math.random() * 100);
+    const randomNumber2 = Math.floor(Math.random() * 100); 
+    return `${randomNumber1}${randomNumber2}`; 
 }
-
+// ! Connexion
 app.post('/login', async (req, res) => {
     try {
-        const { username, password } = req.body; // Get username and password from request body
+        const { username, password } = req.body; 
 
-        // Check if both username and password are provided
+        
         if (!username || !password) {
             return res.status(400).json({ message: 'Username and password are required' });
         }
@@ -98,7 +101,9 @@ app.post('/login', async (req, res) => {
         return res.status(500).json({ message: 'Error during login' });
     }
 });
-// Endpoint pour récupérer les informations de la session et de l'utilisateur
+
+
+//  ! Session Inormation
 app.get('/session-info', async (req, res) => {
     try {
         if (!currentSessionId) {
@@ -140,7 +145,7 @@ app.get('/session-info', async (req, res) => {
 });
 
 
-// Route d'Inscription
+//  ! Endpoint d'Inscription
 app.post('/signup', async (req, res) => {
     const { username, password, phone_number } = req.body;
 
@@ -189,6 +194,10 @@ app.post('/signup', async (req, res) => {
 });
 
 
+
+
+
+//! Port 
 app.listen(8081, () => {
     console.log('Connected to the server');
 });

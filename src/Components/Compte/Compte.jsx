@@ -20,12 +20,11 @@ const ComptePage = () => {
     }, []);
 
     if (loading) {
-        
-        return <div>Loading...</div>;
+        return <>Loading...</>;
     }
 
     if (!sessionInfo) {
-        return <div>No session found</div>;
+        return <>No session found</>;
     }
 
     const { session, user } = sessionInfo;

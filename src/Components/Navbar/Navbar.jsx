@@ -17,6 +17,9 @@ const Navbar = ({ onOptionChange,isLoggedIn, onLogout }) => {
         if (onOptionChange) {
             onOptionChange(option);
         }
+         if (option === 'connexion' || option === 'inscription'){
+            setActiveButton('compte');
+         }
          setActiveButton(option);
          setSessionInfo(false);
          console.log(sessionInfo);
