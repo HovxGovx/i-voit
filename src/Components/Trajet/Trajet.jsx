@@ -62,13 +62,12 @@ const RideOfferDetails = ({onOptionChange}) => {
             offer.departure_datetime.includes(dateFilter) &&
             offer.heure.includes(heureFilter) &&
             offer.departure_datetime >= currentDate && // Ne pas afficher les trajets passés
-            offer.user_id !== userInfo.user_id // Ne pas afficher les trajets de l'utilisateur connecté
+            offer.rideoffer_user_id !== userInfo.user_id // Ne pas afficher les trajets de l'utilisateur connecté
         );
     };
-    // if(!userInfo){
-    //     onOptionChange('connexion');
-    //     return <div>Loading .....</div>
-    // }
+    if(!userInfo){
+        onOptionChange('connexion');
+    }
     return (
         <div className='home'>
             <h1>Ride Offer Details</h1>
@@ -107,10 +106,10 @@ const RideOfferDetails = ({onOptionChange}) => {
                     <p>Car Details: {offer.car_details}</p>
                     <p>Preferences: {offer.preferences}</p>
                     <p>Creation Date: {offer.creation_date}</p>
-                    <p>Heure: {offer.heure}, </p>
+                    <p>Heure: {offer.heure},{offer.rideoffer_user_id }  </p>
 
                     <h2>User Info</h2>
-                    {offer.user_id } 
+                    
                     <p>Username: {offer.user_username}</p>
                     <p>Phone Number: {offer.user_phone_number}</p>
                     {userInfo && <button onClick={() => handleAddBooking(offer.offer_id, userInfo.user_id)}>Add to Bookings</button>}
