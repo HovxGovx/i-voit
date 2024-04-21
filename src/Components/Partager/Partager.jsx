@@ -135,6 +135,8 @@ const PartagerPage = () => {
                     </select>
                     <label>Date de départ:</label>
                     <input type="date" value={departureDate} min={minDepartureDatetime} onChange={(e) => setDepartureDate(e.target.value)} required />
+                    
+                    <label>Heure de départ:</label>
                     <input type="time" value={departureTime} onChange={(e) => setDepartureTime(e.target.value)} required />
 
                     <label>Places disponibles:</label>
