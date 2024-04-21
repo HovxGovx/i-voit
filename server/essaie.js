@@ -244,20 +244,22 @@ app.get('/ride-offers', async (req, res) => {
     try {
         // Sélectionner toutes les offres de trajets avec les informations sur l'utilisateur
         const rideOffersQuery = `
-            SELECT 
-                offer_id, 
-                origin, 
-                destination, 
-                departure_datetime, 
-                available_seats, 
-                car_details, 
-                preferences, 
-                creation_date,
-                heure,
-                usercocovoiturage.username AS user_username,
-                usercocovoiturage.phone_number AS user_phone_number
-            FROM rideoffer
-            INNER JOIN usercocovoiturage ON rideoffer.user_id = usercocovoiturage.user_id
+        SELECT 
+            rideoffer.offer_id, 
+            rideoffer.origin,
+            rideoffer.user_id AS rideoffer_user_id,
+            rideoffer.destination, 
+            rideoffer.departure_datetime, 
+            rideoffer.available_seats, 
+            rideoffer.car_details, 
+            rideoffer.preferences, 
+            rideoffer.creation_date,
+            rideoffer.heure,
+            usercocovoiturage.username AS user_username,
+            usercocovoiturage.phone_number AS user_phone_number
+        FROM rideoffer
+        INNER JOIN usercocovoiturage ON rideoffer.user_id = usercocovoiturage.user_id
+    
         `;
 
         db.query(rideOffersQuery, (error, results) => {

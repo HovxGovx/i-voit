@@ -37,7 +37,7 @@ const App = () => {
             pageToDisplay = <ComptePage onOptionChange={handleOptionChange}/>;
             break;
         case 'trajet':
-            pageToDisplay = <TrajetPage />;
+            pageToDisplay = <TrajetPage onOptionChange={handleOptionChange} isLoggedIn={isLoggedIn} onLogin={handleLogin}/>;
             break;
         case 'partager':
             pageToDisplay = <PartagerPage />;

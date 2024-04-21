@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const RideOfferDetails = () => {
+const RideOfferDetails = ({onOptionChange}) => {
     const [userInfo, setUserInfo] = useState(null);
     const [sessionInfo, setSessionInfo] = useState(null);
     const [rideOffer, setRideOffer] = useState(null);
@@ -62,9 +62,13 @@ const RideOfferDetails = () => {
             offer.departure_datetime.includes(dateFilter) &&
             offer.heure.includes(heureFilter) &&
             offer.departure_datetime >= currentDate && // Ne pas afficher les trajets passés
-            userInfo && offer.user_id !== userInfo.user_id // Ne pas afficher les trajets de l'utilisateur connecté
+            offer.user_id !== userInfo.user_id // Ne pas afficher les trajets de l'utilisateur connecté
         );
     };
+    // if(!userInfo){
+    //     onOptionChange('connexion');
+    //     return <div>Loading .....</div>
+    // }
     return (
         <div className='home'>
             <h1>Ride Offer Details</h1>
@@ -103,9 +107,10 @@ const RideOfferDetails = () => {
                     <p>Car Details: {offer.car_details}</p>
                     <p>Preferences: {offer.preferences}</p>
                     <p>Creation Date: {offer.creation_date}</p>
-                    <p>Heure: {offer.heure}</p>
+                    <p>Heure: {offer.heure}, </p>
 
                     <h2>User Info</h2>
+                    {offer.user_id } 
                     <p>Username: {offer.user_username}</p>
                     <p>Phone Number: {offer.user_phone_number}</p>
                     {userInfo && <button onClick={() => handleAddBooking(offer.offer_id, userInfo.user_id)}>Add to Bookings</button>}
