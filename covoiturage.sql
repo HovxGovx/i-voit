@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Apr 21, 2024 at 07:36 AM
+-- Generation Time: Apr 21, 2024 at 12:18 PM
 -- Server version: 8.0.36-0ubuntu0.23.10.1
 -- PHP Version: 8.2.10-2ubuntu1
 
@@ -46,6 +46,18 @@ CREATE TABLE `city_locations` (
   `location_name` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+--
+-- Dumping data for table `city_locations`
+--
+
+INSERT INTO `city_locations` (`location_id`, `location_name`) VALUES
+(1, 'Point de départ 1'),
+(2, 'Point de départ 2'),
+(3, 'Point de départ 3'),
+(4, 'Point d\'arrivée 1'),
+(5, 'Point d\'arrivée 2'),
+(6, 'Point d\'arrivée 3');
+
 -- --------------------------------------------------------
 
 --
@@ -72,20 +84,26 @@ CREATE TABLE `rideoffer` (
   `user_id` int NOT NULL,
   `origin` varchar(100) NOT NULL,
   `destination` varchar(100) NOT NULL,
-  `departure_datetime` timestamp NOT NULL,
+  `departure_datetime` date NOT NULL,
   `available_seats` int NOT NULL,
   `car_details` text,
   `preferences` text,
-  `creation_date` timestamp NULL DEFAULT CURRENT_TIMESTAMP
+  `creation_date` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `heure` time NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `rideoffer`
 --
 
-INSERT INTO `rideoffer` (`offer_id`, `user_id`, `origin`, `destination`, `departure_datetime`, `available_seats`, `car_details`, `preferences`, `creation_date`) VALUES
-(1, 2, 'A', 'B', '2024-04-22 05:30:00', 3, 'QDFQ', 'QSFQ', '2024-04-20 21:08:05'),
-(2, 2, 'B', 'A', '2024-04-22 05:35:00', 4, 'sqdfs', 'qsdgqsg', '2024-04-21 07:05:58');
+INSERT INTO `rideoffer` (`offer_id`, `user_id`, `origin`, `destination`, `departure_datetime`, `available_seats`, `car_details`, `preferences`, `creation_date`, `heure`) VALUES
+(1, 2, 'A', 'B', '2024-04-22', 3, 'QDFQ', 'QSFQ', '2024-04-20 21:08:05', '00:00:00'),
+(2, 2, 'B', 'A', '2024-04-22', 4, 'sqdfs', 'qsdgqsg', '2024-04-21 07:05:58', '00:00:00'),
+(3, 2, 'Point de départ 2', 'Point d\'arrivée 2', '2024-04-22', 4, 'azerty', 'aucun', '2024-04-21 08:35:47', '00:00:00'),
+(4, 2, 'Point d\'arrivée 2', 'Point de départ 2', '2024-04-23', 2, 'peugeot', 'aucun', '2024-04-21 08:37:07', '00:00:00'),
+(5, 2, 'Point d\'arrivée 2', 'Point de départ 3', '2024-04-21', 2, 'aucun', 'aucun', '2024-04-21 12:13:16', '03:06:00'),
+(6, 2, 'Point de départ 3', 'Point de départ 2', '2024-04-21', 2, 'aucun', 'aucun', '2024-04-21 12:15:37', '04:56:00'),
+(7, 8, 'Point de départ 2', 'Point de départ 3', '2024-04-22', 3, 'aucun', 'aucun', '2024-04-21 12:17:43', '16:55:00');
 
 -- --------------------------------------------------------
 
@@ -127,7 +145,9 @@ INSERT INTO `sessions` (`session_id`, `user_id`, `data`, `expires`) VALUES
 (6141, 2, '{\"username\":\"qw\"}', '2024-04-21 19:45:05'),
 (6531, 2, '{\"username\":\"qw\"}', '2024-04-18 17:41:13'),
 (6577, 2, '{\"username\":\"qw\"}', '2024-04-20 17:13:44'),
+(6614, 8, '{\"username\":\"as\"}', '2024-04-22 12:16:34'),
 (6663, 2, '{\"username\":\"qw\"}', '2024-04-18 17:01:58'),
+(7912, 2, '{\"username\":\"qw\"}', '2024-04-22 08:00:54'),
 (9280, 2, '{\"username\":\"qw\"}', '2024-04-21 12:33:36'),
 (9374, 2, '{\"username\":\"qw\"}', '2024-04-20 17:56:12');
 
@@ -224,7 +244,7 @@ ALTER TABLE `booking`
 -- AUTO_INCREMENT for table `city_locations`
 --
 ALTER TABLE `city_locations`
-  MODIFY `location_id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `location_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `ridefeedback`
@@ -236,7 +256,7 @@ ALTER TABLE `ridefeedback`
 -- AUTO_INCREMENT for table `rideoffer`
 --
 ALTER TABLE `rideoffer`
-  MODIFY `offer_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `offer_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `riderequest`
