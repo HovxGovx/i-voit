@@ -44,7 +44,7 @@ const ComptePage = () => {
       <div className='home'>
         <h2>User Information</h2>
         <div>
-          <strong>Name:</strong> {userInfo.username}
+          <strong>Name:</strong> {userInfo.user_id}
         </div>
         <div>
           <strong>Session:</strong> {sessionInfo.username}

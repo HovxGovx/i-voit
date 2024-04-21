@@ -28,7 +28,7 @@ app.post('/signup', async (req, res) => {
             INSERT INTO usercocovoiturage (username, password,  phone_number, is_admin, registration_date)
             VALUES (?, ?,  ?, ?, CURRENT_TIMESTAMP)
         `;
-        db.query(insertUserQuery, [username, password,  phone_number, false], async (insertError, result) => {
+        db.query(insertUserQuery, [username, password, phone_number, false], async (insertError, result) => {
             if (insertError) {
                 console.error('Erreur lors de l\'inscription :', insertError);
                 return res.status(500).json({ message: 'Erreur lors de l\'inscription' });
@@ -68,13 +68,13 @@ app.post('/signup', async (req, res) => {
 // ! deconnexion
 app.post('/logout', async (req, res) => {
     try {
-        const  session_id  = currentSessionId; 
+        const session_id = currentSessionId;
 
         if (!currentSessionId) {
             return res.status(401).json({ message: 'No session found' });
         }
 
-        const expires = new Date(); 
+        const expires = new Date();
 
         db.query(
             'UPDATE sessions SET expires = ? WHERE session_id = ?',
@@ -99,15 +99,15 @@ app.post('/logout', async (req, res) => {
 // ! Genere le numero de la session aleatoirement
 function generateSessionId() {
     const randomNumber1 = Math.floor(Math.random() * 100);
-    const randomNumber2 = Math.floor(Math.random() * 100); 
-    return `${randomNumber1}${randomNumber2}`; 
+    const randomNumber2 = Math.floor(Math.random() * 100);
+    return `${randomNumber1}${randomNumber2}`;
 }
 // ! Connexion
 app.post('/login', async (req, res) => {
     try {
-        const { username, password } = req.body; 
+        const { username, password } = req.body;
 
-        
+
         if (!username || !password) {
             return res.status(400).json({ message: 'Username and password are required' });
         }
@@ -181,7 +181,7 @@ app.get('/session-info', async (req, res) => {
                     return res.status(404).json({ message: 'User not found' });
                 }
                 const userData = userRows[0];
-                return res.json({  sessionData,userData});
+                return res.json({ sessionData, userData });
             });
         });
     } catch (error) {
@@ -193,27 +193,27 @@ app.get('/session-info', async (req, res) => {
 // ! Endpoint pour l'ajout d'un nouveau trajet
 app.post('/add-ride', async (req, res) => {
     try {
-        const { origin, destination, departureDate, available_seats, car_details, preferences,departureTime } = req.body;
+        const { origin, destination, departureDate, available_seats, car_details, preferences, departureTime } = req.body;
         const userId = req.headers.session_id;
 
         // Vérifier si l'utilisateur est connecté
         if (!userId) {
             return res.status(401).json({ message: 'Unauthorized - Please login to add a ride' });
         }
-            // Insérer le nouveau trajet dans la base de données
-            const insertRideQuery = `
+        // Insérer le nouveau trajet dans la base de données
+        const insertRideQuery = `
                 INSERT INTO rideoffer (user_id, origin, destination, departure_datetime, available_seats, car_details, preferences,heure, creation_date)
                 VALUES (?, ?, ?, ?, ?, ?, ?,?, CURRENT_TIMESTAMP)
             `;
-            db.query(insertRideQuery, [userId, origin, destination, departureDate, available_seats, car_details, preferences,departureTime], async (insertError, result) => {
-                if (insertError) {
-                    console.error('Error adding ride:', insertError);
-                    return res.status(500).json({ message: 'Error adding ride' });
-                }
+        db.query(insertRideQuery, [userId, origin, destination, departureDate, available_seats, car_details, preferences, departureTime], async (insertError, result) => {
+            if (insertError) {
+                console.error('Error adding ride:', insertError);
+                return res.status(500).json({ message: 'Error adding ride' });
+            }
 
-                return res.status(201).json({ message: 'Ride added successfully', ride_id: result.insertId });
-            });
-      
+            return res.status(201).json({ message: 'Ride added successfully', ride_id: result.insertId });
+        });
+
     } catch (error) {
         console.error('Error adding ride:', error);
         return res.status(500).json({ message: 'Error adding ride' });
@@ -236,6 +236,63 @@ app.get('/origins', async (req, res) => {
     } catch (error) {
         console.error('Error fetching origins:', error);
         return res.status(500).json({ message: 'Error fetching origins' });
+    }
+});
+
+// ! Endpoint pour récupérer les offres de trajets avec les informations sur l'utilisateur
+app.get('/ride-offers', async (req, res) => {
+    try {
+        // Sélectionner toutes les offres de trajets avec les informations sur l'utilisateur
+        const rideOffersQuery = `
+            SELECT 
+                offer_id, 
+                origin, 
+                destination, 
+                departure_datetime, 
+                available_seats, 
+                car_details, 
+                preferences, 
+                creation_date,
+                heure,
+                usercocovoiturage.username AS user_username,
+                usercocovoiturage.phone_number AS user_phone_number
+            FROM rideoffer
+            INNER JOIN usercocovoiturage ON rideoffer.user_id = usercocovoiturage.user_id
+        `;
+
+        db.query(rideOffersQuery, (error, results) => {
+            if (error) {
+                console.error('Error fetching ride offers:', error);
+                return res.status(500).json({ message: 'Error fetching ride offers' });
+            }
+            // Retourner les offres de trajets avec les informations sur l'utilisateur
+            return res.status(200).json({ rideOffers: results });
+        });
+    } catch (error) {
+        console.error('Error fetching ride offers:', error);
+        return res.status(500).json({ message: 'Error fetching ride offers' });
+    }
+});
+// ! Endpoint pour ajouter un ride offer parmi les bookings
+app.post('/add-booking', async (req, res) => {
+    try {
+        const { ride_id, passenger_id } = req.body;
+
+        // Insérer le ride offer parmi les bookings dans la base de données
+        const insertBookingQuery = `
+            INSERT INTO booking (ride_id, passenger_id, booking_status, booking_date)
+            VALUES (?, ?, 'pending', CURRENT_TIMESTAMP)
+        `;
+        db.query(insertBookingQuery, [ride_id, passenger_id], (error, result) => {
+            if (error) {
+                console.error('Error adding ride offer to bookings:', error);
+                return res.status(500).json({ message: 'Error adding ride offer to bookings' });
+            }
+            return res.status(201).json({ message: 'Ride offer added to bookings successfully' });
+        });
+    } catch (error) {
+        console.error('Error adding ride offer to bookings:', error);
+        return res.status(500).json({ message: 'Error adding ride offer to bookings' });
     }
 });
 

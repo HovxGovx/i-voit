@@ -9,7 +9,6 @@ const PartagerPage = () => {
     const [availableSeats, setAvailableSeats] = useState('');
     const [carDetails, setCarDetails] = useState('');
     const [preferences, setPreferences] = useState('');
-    const [errorMessage, setErrorMessage] = useState('');
     const [sessionId, setSessionId] = useState('');
     const [origins, setOrigins] = useState([]);
     const [filteredOrigins, setFilteredOrigins] = useState([]);
@@ -27,7 +26,6 @@ const PartagerPage = () => {
                 setSessionId(data.userData.user_id);
             } catch (error) {
                 console.error('Error fetching session info:', error);
-                setErrorMessage('Error fetching session info');
             }
         };
 
@@ -42,7 +40,6 @@ const PartagerPage = () => {
                 setFilteredOrigins(response.data.origins);
             } catch (error) {
                 console.error('Error fetching origins:', error);
-                setErrorMessage('Error fetching origins');
             }
         };
 
@@ -54,7 +51,7 @@ const PartagerPage = () => {
         const year = currentDate.getFullYear();
         const month = `${currentDate.getMonth() + 1}`.padStart(2, '0');
         const day = `${currentDate.getDate()}`.padStart(2, '0');
-        const formattedDate = `${year}-${month}-${day}T00:00`;
+        const formattedDate = `${year}-${month}-${day}`;
         setMinDepartureDatetime(formattedDate);
     }, []);
 
@@ -105,10 +102,8 @@ const PartagerPage = () => {
             setAvailableSeats('');
             setCarDetails('');
             setPreferences('');
-            setErrorMessage('');
         } catch (error) {
             console.error('Error adding ride:', error);
-            setErrorMessage(error);
         }
     };
 
@@ -134,7 +129,7 @@ const PartagerPage = () => {
                         ))}
                     </select>
                     <label>Date de départ:</label>
-                    <input type="date" value={departureDate} min={minDepartureDatetime} onChange={(e) => setDepartureDate(e.target.value)} required />
+                    <input type="date" value={departureDate} min={setMinDepartureDatetime} onChange={(e) => setDepartureDate(e.target.value)} required />
                     
                     <label>Heure de départ:</label>
                     <input type="time" value={departureTime} onChange={(e) => setDepartureTime(e.target.value)} required />
