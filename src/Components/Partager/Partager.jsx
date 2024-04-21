@@ -4,13 +4,17 @@ import axios from 'axios';
 const PartagerPage = () => {
     const [origin, setOrigin] = useState('');
     const [destination, setDestination] = useState('');
-    const [departureDatetime, setDepartureDatetime] = useState('');
+    const [departureDate, setDepartureDate] = useState('');
+    const [departureTime, setDepartureTime] = useState('');
     const [availableSeats, setAvailableSeats] = useState('');
     const [carDetails, setCarDetails] = useState('');
     const [preferences, setPreferences] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
     const [sessionId, setSessionId] = useState('');
-
+    const [origins, setOrigins] = useState([]);
+    const [filteredOrigins, setFilteredOrigins] = useState([]);
+    const [filteredDestinations, setFilteredDestinations] = useState([]);
+    const [minDepartureDatetime, setMinDepartureDatetime] = useState('');
     useEffect(() => {
         const fetchSessionInfo = async () => {
             try {
@@ -29,7 +33,50 @@ const PartagerPage = () => {
 
         fetchSessionInfo();
     }, []);
+    useEffect(() => {
+        const fetchOrigins = async () => {
+            try {
+                const response = await axios.get('http://localhost:8081/origins');
+                console.log(response.data)
+                setOrigins(response.data.origins);
+                setFilteredOrigins(response.data.origins);
+            } catch (error) {
+                console.error('Error fetching origins:', error);
+                setErrorMessage('Error fetching origins');
+            }
+        };
 
+        fetchOrigins();
+    }, []);
+
+    useEffect(() => {
+        const currentDate = new Date();
+        const year = currentDate.getFullYear();
+        const month = `${currentDate.getMonth() + 1}`.padStart(2, '0');
+        const day = `${currentDate.getDate()}`.padStart(2, '0');
+        const formattedDate = `${year}-${month}-${day}T00:00`;
+        setMinDepartureDatetime(formattedDate);
+    }, []);
+
+    const handleOriginChange = (e) => {
+        const value = e.target.value;
+        setOrigin(value);
+        const filtered = origins.filter(origin => origin.toLowerCase().includes(value.toLowerCase()));
+        setFilteredOrigins(filtered);
+        // Supprimer l'option sélectionnée des destinations filtrées
+        const remainingDestinations = filteredDestinations.filter(dest => dest !== value);
+        setFilteredDestinations(remainingDestinations);
+    };
+
+    const handleDestinationChange = (e) => {
+        const value = e.target.value;
+        setDestination(value);
+        const filtered = origins.filter(dest => dest.toLowerCase().includes(value.toLowerCase()));
+        setFilteredDestinations(filtered);
+        // Supprimer l'option sélectionnée des origines filtrées
+        const remainingOrigins = filteredOrigins.filter(origin => origin !== value);
+        setFilteredOrigins(remainingOrigins);
+    };
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -37,7 +84,8 @@ const PartagerPage = () => {
             const response = await axios.post('http://localhost:8081/add-ride', {
                 origin,
                 destination,
-                departure_datetime: departureDatetime,
+                departureDate,
+                departureTime,
                 available_seats: availableSeats,
                 car_details: carDetails,
                 preferences
@@ -52,7 +100,8 @@ const PartagerPage = () => {
             // Réinitialiser le formulaire après la soumission réussie
             setOrigin('');
             setDestination('');
-            setDepartureDatetime('');
+            setDepartureDate('');
+            setDepartureTime('');
             setAvailableSeats('');
             setCarDetails('');
             setPreferences('');
@@ -71,13 +120,22 @@ const PartagerPage = () => {
                 <form onSubmit={handleSubmit}>
                     <p>{sessionId}</p>
                     <label>Origine:</label>
-                    <input type="text" value={origin} onChange={(e) => setOrigin(e.target.value)} required />
-
+                    <input type="text" id='filterOrigins' value={origin} onChange={handleOriginChange} />
+                    <select value={origin} onChange={handleOriginChange}>
+                        {filteredOrigins.map((origin, index) => (
+                            <option key={index} value={origin}>{origin}</option>
+                        ))}
+                    </select>
                     <label>Destination:</label>
-                    <input type="text" value={destination} onChange={(e) => setDestination(e.target.value)} required />
-
+                    <input type="text" id='filterDestinations' value={destination} onChange={handleDestinationChange} />
+                    <select value={destination} onChange={handleDestinationChange}>
+                        {filteredDestinations.map((destination, index) => (
+                            <option key={index} value={destination}>{destination}</option>
+                        ))}
+                    </select>
                     <label>Date de départ:</label>
-                    <input type="datetime-local" value={departureDatetime} onChange={(e) => setDepartureDatetime(e.target.value)} required />
+                    <input type="date" value={departureDate} min={minDepartureDatetime} onChange={(e) => setDepartureDate(e.target.value)} required />
+                    <input type="time" value={departureTime} onChange={(e) => setDepartureTime(e.target.value)} required />
 
                     <label>Places disponibles:</label>
                     <input type="number" value={availableSeats} onChange={(e) => setAvailableSeats(e.target.value)} required />

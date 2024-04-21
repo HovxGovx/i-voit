@@ -219,6 +219,25 @@ app.post('/add-ride', async (req, res) => {
         return res.status(500).json({ message: 'Error adding ride' });
     }
 });
+// ! Endpoint pour récupérer toutes les origines
+app.get('/origins', async (req, res) => {
+    try {
+        const selectOriginsQuery = `
+            SELECT location_name FROM city_locations
+        `;
+        db.query(selectOriginsQuery, (error, results) => {
+            if (error) {
+                console.error('Error fetching origins:', error);
+                return res.status(500).json({ message: 'Error fetching origins' });
+            }
+            const origins = results.map(result => result.location_name);
+            return res.status(200).json({ origins });
+        });
+    } catch (error) {
+        console.error('Error fetching origins:', error);
+        return res.status(500).json({ message: 'Error fetching origins' });
+    }
+});
 
 
 //! Port 
