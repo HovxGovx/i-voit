@@ -17,6 +17,12 @@ const db = mysql.createConnection({
     password: "mirahona.1",
     database: "covoiturage"
 });
+// ! Genere le numero de la session aleatoirement
+function generateSessionId() {
+    const randomNumber1 = Math.floor(Math.random() * 100);
+    const randomNumber2 = Math.floor(Math.random() * 100);
+    return `${randomNumber1}${randomNumber2}`;
+}
 let currentSessionId = null;
 //  ! Endpoint d'Inscription
 app.post('/signup', async (req, res) => {
@@ -96,12 +102,7 @@ app.post('/logout', async (req, res) => {
     }
 });
 
-// ! Genere le numero de la session aleatoirement
-function generateSessionId() {
-    const randomNumber1 = Math.floor(Math.random() * 100);
-    const randomNumber2 = Math.floor(Math.random() * 100);
-    return `${randomNumber1}${randomNumber2}`;
-}
+
 // ! Connexion
 app.post('/login', async (req, res) => {
     try {

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 const RideOfferDetails = ({onOptionChange}) => {
-    const [userInfo, setUserInfo] = useState(null);
+    const [userInfo, setUserInfo] = useState('');
     const [sessionInfo, setSessionInfo] = useState(null);
     const [rideOffer, setRideOffer] = useState(null);
     // États pour les valeurs des filtres
@@ -21,7 +21,6 @@ const RideOfferDetails = ({onOptionChange}) => {
                 console.log(data.sessionData);
                 setUserInfo(data.userData);
                 setSessionInfo(data.sessionData);
-                console.log(userInfo.user_id);
 
             } catch (error) {
                 console.log(error.message);
@@ -65,11 +64,9 @@ const RideOfferDetails = ({onOptionChange}) => {
             offer.rideoffer_user_id !== userInfo.user_id // Ne pas afficher les trajets de l'utilisateur connecté
         );
     };
-    if(!userInfo){
-        onOptionChange('connexion');
-    }
     return (
         <div className='home'>
+            
             <h1>Ride Offer Details</h1>
             {/* Champs d'entrée pour les filtres */}
             <input
