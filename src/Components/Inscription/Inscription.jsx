@@ -38,7 +38,7 @@ const LoginSignUp = ({onOptionChange,isLoggedIn, onLogin}) => {
     };
 
     return (
-        <div className='Container'>
+        <div className='home'>
             <form className="form" onSubmit={handleSubmit}>
                 <p className="title">Inscriptions </p>
                 <p className="message">S'inscrire pour profiter des offres. </p>

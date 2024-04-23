@@ -60,7 +60,7 @@ const RideOfferDetails = ({onOptionChange}) => {
             offer.destination.toLowerCase().includes(destinationFilter.toLowerCase()) &&
             offer.departure_datetime.includes(dateFilter) &&
             offer.heure.includes(heureFilter) &&
-            offer.departure_datetime >= currentDate && // Ne pas afficher les trajets passés
+            // offer.departure_datetime >= currentDate &&  Ne pas afficher les trajets passés
             offer.rideoffer_user_id !== userInfo.user_id // Ne pas afficher les trajets de l'utilisateur connecté
         );
     };
