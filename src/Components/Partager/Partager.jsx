@@ -7,8 +7,8 @@ const PartagerPage = () => {
     const [departureDate, setDepartureDate] = useState('');
     const [departureTime, setDepartureTime] = useState('');
     const [availableSeats, setAvailableSeats] = useState('');
-    const [carDetails, setCarDetails] = useState('');
-    const [preferences, setPreferences] = useState('');
+    const [carDetails, setCarDetails] = useState('Aucun');
+    const [preferences, setPreferences] = useState('Aucun');
     const [sessionId, setSessionId] = useState('');
     const [origins, setOrigins] = useState([]);
     const [filteredOrigins, setFilteredOrigins] = useState([]);
@@ -129,7 +129,7 @@ const PartagerPage = () => {
                         ))}
                     </select>
                     <label>Date de départ:</label>
-                    <input type="date" value={departureDate} min={setMinDepartureDatetime} onChange={(e) => setDepartureDate(e.target.value)} required />
+                    <input type="date" value={departureDate} min={minDepartureDatetime} onChange={(e) => setDepartureDate(e.target.value)} required />
                     
                     <label>Heure de départ:</label>
                     <input type="time" value={departureTime} onChange={(e) => setDepartureTime(e.target.value)} required />

@@ -8,6 +8,7 @@ const Login = ({ onOptionChange, isLoggedIn, onLogin }) => {
     axios.defaults.withCredentials = true;
     const handleSubmit = async (e) => {
         e.preventDefault();
+        alert("votsindry");
         try {
             const response = await fetch('http://localhost:8081/login', {
                 method: 'POST',

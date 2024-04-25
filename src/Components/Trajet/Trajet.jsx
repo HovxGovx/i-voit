@@ -97,7 +97,7 @@ const RideOfferDetails = ({onOptionChange}) => {
                <div key={offer.offer_id}>
                     <h2>Ride Offer Info</h2>
                     <p>Origin: {offer.origin}</p>
-                    <p>Destination: {offer.destination}</p>
+                    <p>Destination: {offer.destination}</p> 
                     <p>Departure Date and Time: {offer.departure_datetime}</p>
                     <p>Available Seats: {offer.available_seats}</p>
                     <p>Car Details: {offer.car_details}</p>
