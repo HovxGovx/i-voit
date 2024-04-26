@@ -276,6 +276,7 @@ app.get('/ride-offers', async (req, res) => {
         return res.status(500).json({ message: 'Error fetching ride offers' });
     }
 });
+
 // ! Endpoint pour ajouter un ride offer parmi les bookings
 app.post('/add-booking', async (req, res) => {
     try {
