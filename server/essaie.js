@@ -297,6 +297,7 @@ app.post('/add-booking', async (req, res) => {
     } catch (error) {
         console.error('Error adding ride offer to bookings:', error);
         return res.status(500).json({ message: 'Error adding ride offer to bookings' });
+
     }
 });
 
