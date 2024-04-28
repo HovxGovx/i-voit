@@ -189,3 +189,40 @@ section{
     background: var(--secondary-color);
     transition: 0.5s all linear;
 }
+.custom-num{
+    margin: 1em;
+    color: #1b1b1b;
+    display: flex;
+    width: 3rem;
+    height: 7rem;
+    border: 1px solid #1b1b1b ;
+    border-radius: 3em;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    transition: 0.3s;
+}
+/* CSS pour masquer les boutons de contrôle */
+.num-input::-webkit-outer-spin-button,
+.num-input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0; /* Optionnel : supprime les marges par défaut */
+}
+/* CSS pour masquer les boutons de contrôle */
+.num-input {
+    -moz-appearance: textfield; /* Pour Firefox */
+    font-size: 1.5rem;
+    text-align: center;
+    background: none;
+    border: none;
+    color: #21d99b;
+    font-weight: bold;
+    width: 100%;
+}
+.num-input:focus{
+    outline: none;
+}
+.custom-num i{
+    font-size: 2em;
+    cursor: pointer;
+}
