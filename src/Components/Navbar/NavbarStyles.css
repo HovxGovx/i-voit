@@ -8,7 +8,8 @@ nav{
    justify-content: space-around;
    background-color: #fffffe;
    padding: 10px 50px;
-}
+  z-index: 1;
+  }
 #central{
   display: flex;
   align-items: center;

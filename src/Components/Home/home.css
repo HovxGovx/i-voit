@@ -8,6 +8,7 @@
 }
 section{
     padding: 50px 100px;
+    width: 100%;
 }
 .home{
     width: 100%;
@@ -91,13 +92,18 @@ section{
     font-size: 1.8rem;
     text-transform: uppercase;
 }
-.products-container{
+
+.products{
     display: grid;
+}
+.products-container{
+    display: grid !important;
     grid-template-columns: repeat(auto-fit,minmax(280px,auto));
     gap: 1.5rem;
     margin-top: 2rem;
-}
-.products-container .box{
+    
+  }
+  .products-container .box{
     position: relative;
     padding: 10px;
     display: flex;
@@ -105,8 +111,8 @@ section{
     justify-content: center;
     border-radius: 0.5rem;
     box-shadow: var(--box-shadow);
-}
-.products-container img{
+  }
+  .products-container img{
     width: 100%;
     height: 250px;
     object-fit: contain;
@@ -114,28 +120,32 @@ section{
     padding: 20px;
     background: #F1F1F1;
     border-radius: 0.5rem;
-}
-.products-container .box h3{
-    font-size: 1rem;
+  }
+  .products-container .box h3{
+    font-size: 0.75rem;
     font-weight: 600;
     text-transform: uppercase;
     margin: 0.5rem 0 0.5rem;
-}
-
-.products-container .box .content {
+  }
+  .products-container .box h3 span{
+    font-size: 0.70rem;
+    font-weight: 500;
+    margin: 0.5rem 0 0.5rem;
+  }
+  .products-container .box .content {
     display: flex;
     align-items: center;
     justify-content: space-around;
-
-}
-.products-container .box .content span{
+  
+  }
+  .products-container .box .content span{
     padding: 0 1rem;
     color: var(--bg-color);
     background: var(--main-color);
     border-radius: 4px;
     font-weight: 500;
-}
-.products-container .box .content button{
+  }
+  .products-container .box .content button{
    border: 2px solid var(--main-color);
    transition:0.5s all linear;
-}
+  }
