@@ -14,13 +14,13 @@ const Home = () => {
 
                 </div>
                 <div className="home-img">
-                    <img src={logo} alt="Logo i-voit" />
+                    <img a src={logo} alt="Logo i-voit" />
                 </div>
             </section>
 
             <section className="about" id="about">
                 <div className="about">
-                    <img src={logo} alt="Logo i-voit" />
+                    <img  src={logo} alt="Logo i-voit" />
                 </div>
                 <div className="about-text">
                     <h2>Le covoiturage , c'est quoi ?</h2>
@@ -41,55 +41,109 @@ const Home = () => {
                 </div>
                 {/* container */}
                 <div className="products-container">
-                    <div className="box">
-                        <h3>Origin : <span> Point de depart</span></h3>
+                    <div className="box ">
+                        <img alt=' decoratif' src={special} />
+                        <h3>Origin : <span> Point de depart à 12:34</span></h3>
                         <h3>Destination:<span>Point d'arrive</span></h3>
-                        <h3>Heure:<span>12:34</span></h3>
                         <h3>Place disponible:<span>4</span></h3>
                         <div className="content">
                             <span>$25</span>
                             <button className="btn">Reserver</button>
                         </div>
                     </div>
-                    <div className="box">
-                        <img src={special}/>
-                        <h3>Aericano Pure</h3>
+                    <div className="box ">
+                        <img alt=' decoratif' src={special2} />
+                        <h3>Origin : <span> Point de depart à 12:34</span></h3>
+                        <h3>Destination:<span>Point d'arrive</span></h3>
+                        <h3>Place disponible:<span>4</span></h3>
                         <div className="content">
                             <span>$25</span>
-                            <button className="btn">Add to cart</button>
+                            <button className="btn">Reserver</button>
                         </div>
                     </div>
-                    <div className="box">
-                        <img src={special2} />
-                        <h3>Aericano Pure</h3>
+                    <div className="box ">
+                        <img alt=' decoratif' src={special} />
+                        <h3>Origin : <span> Point de depart à 12:34</span></h3>
+                        <h3>Destination:<span>Point d'arrive</span></h3>
+                        <h3>Place disponible:<span>4</span></h3>
                         <div className="content">
                             <span>$25</span>
-                            <button className="btn">Add to cart</button>
+                            <button className="btn">Reserver</button>
                         </div>
                     </div>
-                    <div className="box">
-                        <img src={special} />
-                        <h3>Aericano Pure</h3>
+                    <div className="box ">
+                        <img alt=' decoratif' src={special2} />
+                        <h3>Origin : <span> Point de depart à 12:34</span></h3>
+                        <h3>Destination:<span>Point d'arrive</span></h3>
+                        <h3>Place disponible:<span>4</span></h3>
                         <div className="content">
                             <span>$25</span>
-                            <button className="btn">Add to cart</button>
+                            <button className="btn">Reserver</button>
                         </div>
                     </div>
-                    <div className="box">
-                        <img src={special2} />
-                        <h3>Aericano Pure</h3>
+                    <div className="box ">
+                        <img alt=' decoratif' src={special} />
+                        <h3>Origin : <span> Point de depart à 12:34</span></h3>
+                        <h3>Destination:<span>Point d'arrive</span></h3>
+                        <h3>Place disponible:<span>4</span></h3>
                         <div className="content">
                             <span>$25</span>
-                            <button className="btn">Add to cart</button>
+                            <button className="btn">Reserver</button>
                         </div>
                     </div>
+                </div>
+            </section>
+            {/* Customers */}
+            <section className="customers" id="customers">
+                <div className="heading">
+                    <h2>Our Customer's</h2>
+                </div>
+                <div className="customers-container">
                     <div className="box">
-                        <img src={special}/>
-                        <h3>Aericano Pure</h3>
-                        <div className="content">
-                            <span>$25</span>
-                            <button className="btn">Add to cart</button>
+                        <div className="stars">
+                            <i className="bx bxs-star" />
+                            <i className="bx bxs-star" />
+                            <i className="bx bxs-star" />
+                            <i className="bx bxs-star" />
+                            <i className="bx bxs-star" />
+                            <i className="bx bxs-star-half" />
                         </div>
+                        <h3>Origin : <span> Point de depart</span></h3>
+                        <h3>Destination:<span>Point d'arrive</span></h3>
+                        <h3>Heure:<span>12:34</span></h3>
+                        <h3>Place disponible:<span>4</span></h3>
+                        <h2>Yasin Arafat</h2>
+                        <img  src="img/taxi-car-smartphone-with-reminder-popup-bell-notification-alert-bubble-chat-online-transportation-service-concept-web-banner-cartoon-icon-symbol-background-3d-illustration.jpg" alt="Alternative" />
+                    </div>
+                    <div className="box">
+                        <div className="stars">
+                            <i className="bx bxs-star" />
+                            <i className="bx bxs-star" />
+                            <i className="bx bxs-star" />
+                            <i className="bx bxs-star" />
+                            <i className="bx bxs-star" />
+                            <i className="bx bxs-star-half" />
+                        </div>
+                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Itaque, ratione? Illum aliquid, ab, non
+                            recusandae labore quaerat exercitationem fugit, autem deleniti quod fugiat natus debitis quasi saepe
+                            laudantium expedita iste.</p>
+                        <h2>Yasin Arafat</h2>
+                        <img  src="img/taxi-car-smartphone-with-reminder-popup-bell-notification-alert-bubble-chat-online-transportation-service-concept-web-banner-cartoon-icon-symbol-background-3d-illustration.jpg" alt="Alternative" />
+                    </div>
+                    <div className="box">
+                        <div className="stars">
+                            <i className="bx bxs-star" />
+                            <i className="bx bxs-star" />
+                            <i className="bx bxs-star" />
+                            <i className="bx bxs-star" />
+                            <i className="bx bxs-star" />
+                            <i className="bx bxs-star-half" />
+                        </div>
+                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Itaque, ratione? Illum aliquid, ab, non
+                            recusandae labore quaerat exercitationem fugit, autem deleniti quod fugiat natus debitis quasi saepe
+                            laudantium expedita iste.</p>
+                        <h2>Yasin Arafat</h2>
+                        <img  src="img/taxi-car-smartphone-with-reminder-popup-bell-notification-alert-bubble-chat-online-transportation-service-concept-web-banner-cartoon-icon-symbol-background-3d-illustration.jpg" alt="Alternative" />
                     </div>
                 </div>
             </section>
