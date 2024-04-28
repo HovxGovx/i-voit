@@ -113,8 +113,25 @@ const Home = () => {
                         <h3>Heure:<span>12:34</span></h3>
                         <h3>Place disponible:<span>4</span></h3>
                         <h2>Yasin Arafat</h2>
-                        <img  src="img/taxi-car-smartphone-with-reminder-popup-bell-notification-alert-bubble-chat-online-transportation-service-concept-web-banner-cartoon-icon-symbol-background-3d-illustration.jpg" alt="Alternative" />
-                    </div>
+                        <div className="content">
+                            <button className="btn">Reserver</button>
+                        </div></div>
+                    <div className="box">
+                        <div className="stars">
+                            <i className="bx bxs-star" />
+                            <i className="bx bxs-star" />
+                            <i className="bx bxs-star" />
+                            <i className="bx bxs-star" />
+                            <i className="bx bxs-star" />
+                            <i className="bx bxs-star-half" />
+                        </div>
+                        <h3>Origin : <span> Point de depart à 12:34</span></h3>
+                        <h3>Destination:<span>Point d'arrive</span></h3>
+                        <h3>Place disponible:<span>4</span></h3>
+                        <h2>Yasin Arafat</h2>
+                        <div className="content">
+                            <button className="btn">Reserver</button>
+                        </div> </div>
                     <div className="box">
                         <div className="stars">
                             <i className="bx bxs-star" />
@@ -128,23 +145,9 @@ const Home = () => {
                             recusandae labore quaerat exercitationem fugit, autem deleniti quod fugiat natus debitis quasi saepe
                             laudantium expedita iste.</p>
                         <h2>Yasin Arafat</h2>
-                        <img  src="img/taxi-car-smartphone-with-reminder-popup-bell-notification-alert-bubble-chat-online-transportation-service-concept-web-banner-cartoon-icon-symbol-background-3d-illustration.jpg" alt="Alternative" />
-                    </div>
-                    <div className="box">
-                        <div className="stars">
-                            <i className="bx bxs-star" />
-                            <i className="bx bxs-star" />
-                            <i className="bx bxs-star" />
-                            <i className="bx bxs-star" />
-                            <i className="bx bxs-star" />
-                            <i className="bx bxs-star-half" />
-                        </div>
-                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Itaque, ratione? Illum aliquid, ab, non
-                            recusandae labore quaerat exercitationem fugit, autem deleniti quod fugiat natus debitis quasi saepe
-                            laudantium expedita iste.</p>
-                        <h2>Yasin Arafat</h2>
-                        <img  src="img/taxi-car-smartphone-with-reminder-popup-bell-notification-alert-bubble-chat-online-transportation-service-concept-web-banner-cartoon-icon-symbol-background-3d-illustration.jpg" alt="Alternative" />
-                    </div>
+                        <div className="content">
+                            <button className="btn">Reserver</button>
+                        </div></div>
                 </div>
             </section>
 
