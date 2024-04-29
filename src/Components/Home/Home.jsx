@@ -2,46 +2,8 @@ import './home.css'
 import logo from '../Assets/Icons/covoiturage.png';
 import special from '../Assets/Icons/partage-de-voiture.png'
 import special2 from '../Assets/Icons/partage-de-voiture(1).png'
-import { useState } from 'react';
+import CustomNum from './nombre';
 const Home = () => {
-    const [value, setValue] = useState(1);
-
-    const handleIncrement = () => {
-        setValue(prevValue => Math.min(prevValue + 1, 10));
-    };
-
-    const handleDecrement = () => {
-        setValue(prevValue => Math.max(prevValue - 1, 0));
-    };
-
-    const checkMaxMin = () => {
-        if (value === 10) {
-            return {
-                paddingTop: '0.8rem',
-                height: '5em',
-                arrUpDisplay: 'none',
-                paddingBottom: '0',
-                arrDownDisplay: 'block'
-            };
-        } else if (value === 0) {
-            return {
-                paddingTop: '0.8rem',
-                height: '5em',
-                arrDownDisplay: 'none',
-                paddingBottom: '0',
-                arrUpDisplay: 'block'
-            };
-        } else {
-            return {
-                padding: '0rem',
-                height: '5em',
-                arrUpDisplay: 'block',
-                arrDownDisplay: 'block'
-            };
-        }
-    };
-
-    const { paddingTop, height, arrUpDisplay, paddingBottom, arrDownDisplay } = checkMaxMin();
 
     return (
         <>
@@ -152,19 +114,7 @@ const Home = () => {
                         <h3>Destination:<span>Point d'arrive</span></h3>
                         <h3>Heure:<span>12:34</span></h3>
                         <h3>Place disponible:<span>4</span></h3>
-                        <div className="custom-num" style={{ paddingTop, height, paddingBottom }}>
-                            <i class="fas fa-angle-up arr-up" style={{ display: arrUpDisplay }} onClick={handleIncrement}></i>
-                            <input
-                                type="number"
-                                className="num-input"
-                                min={0}
-                                max={10}
-                                value={value}
-                                onChange={e => setValue(e.target.value)}
-                                data-color="#21d99b"
-                            />
-                            <i class="fas fa-angle-down arr-down" style={{ display: arrDownDisplay }} onClick={handleDecrement}></i>
-                        </div>
+                        <CustomNum/>
                         <h2>Yasin Arafat</h2>
                         <div className="content">
                             <button className="btn">Reserver</button>
@@ -197,6 +147,7 @@ const Home = () => {
                         <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Itaque, ratione? Illum aliquid, ab, non
                             recusandae labore quaerat exercitationem fugit, autem deleniti quod fugiat natus debitis quasi saepe
                             laudantium expedita iste.</p>
+                           <CustomNum/>
                         <h2>Yasin Arafat</h2>
                         <div className="content">
                             <button className="btn">Reserver</button>
