@@ -3,8 +3,18 @@ import logo from '../Assets/Icons/covoiturage.png';
 import special from '../Assets/Icons/partage-de-voiture.png'
 import special2 from '../Assets/Icons/partage-de-voiture(1).png'
 import CustomNum from './nombre';
+import { useState } from 'react';
 const Home = () => {
-
+    const [value1, setValue1] = useState(1);
+    const [value2, setValue2] = useState(1);
+  
+    const handleValueChange1 = (newValue) => {
+      setValue1(newValue);
+    };
+  
+    const handleValueChange2 = (newValue) => {
+      setValue2(newValue);
+    };
     return (
         <>
             <section className="home" id="home">
@@ -114,7 +124,7 @@ const Home = () => {
                         <h3>Destination:<span>Point d'arrive</span></h3>
                         <h3>Heure:<span>12:34</span></h3>
                         <h3>Place disponible:<span>4</span></h3>
-                        <CustomNum/>
+                        <CustomNum value={value1} onValueChange={handleValueChange1}/>
                         <h2>Yasin Arafat</h2>
                         <div className="content">
                             <button className="btn">Reserver</button>
@@ -147,14 +157,18 @@ const Home = () => {
                         <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Itaque, ratione? Illum aliquid, ab, non
                             recusandae labore quaerat exercitationem fugit, autem deleniti quod fugiat natus debitis quasi saepe
                             laudantium expedita iste.</p>
-                           <CustomNum/>
+                           <CustomNum value={value2} onValueChange={handleValueChange2}/>
+
                         <h2>Yasin Arafat</h2>
                         <div className="content">
                             <button className="btn">Reserver</button>
                         </div></div>
                 </div>
             </section>
-
+ <div>
+        <p>Valeur de l'input 1: {value1}</p>
+        <p>Valeur de l'input 2: {value2}</p>
+      </div>
         </>
     );
 }
