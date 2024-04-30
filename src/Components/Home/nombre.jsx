@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
 
-const CustomNum = () => {
-  const [value, setValue] = useState(1);
+const CustomNum = ({ value, onValueChange }) => {
 
   const handleIncrement = () => {
-    setValue(prevValue => Math.min(prevValue + 1, 10));
+    const newValue = Math.min(value + 1, 10);
+    onValueChange(newValue);
   };
 
   const handleDecrement = () => {
-    setValue(prevValue => Math.max(prevValue - 1, 0));
+    const newValue = Math.max(value - 1, 0);
+    onValueChange(newValue);
   };
 
   const checkMaxMin = () => {
@@ -49,7 +50,7 @@ const CustomNum = () => {
         min={0}
         max={10}
         value={value}
-        onChange={e => setValue(e.target.value)}
+        onChange={e => onValueChange(parseInt(e.target.value))}
         data-color="#21d99b"
       />
       <i  className="fas fa-angle-down arr-down" style={{ display: arrDownDisplay }} onClick={handleDecrement} ></i>

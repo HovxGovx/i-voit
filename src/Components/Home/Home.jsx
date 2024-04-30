@@ -10,10 +10,12 @@ const Home = () => {
   
     const handleValueChange1 = (newValue) => {
       setValue1(newValue);
+      console.log(value1);
     };
   
     const handleValueChange2 = (newValue) => {
       setValue2(newValue);
+      alert(value2);
     };
     return (
         <>
