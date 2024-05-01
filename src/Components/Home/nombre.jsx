@@ -21,7 +21,7 @@ const CustomNum = ({ value, onValueChange }) => {
         paddingBottom: '0',
         arrDownDisplay: 'block'
       };
-    } else if (value === 0) {
+    } else if (value === 1) {
       return {
         paddingTop: '0.8rem',
         height: '5em',
@@ -43,17 +43,17 @@ const CustomNum = ({ value, onValueChange }) => {
 
   return (
     <div className="custom-num" style={{ paddingTop, height, paddingBottom }}>
-      <i className="fas fa-angle-up arr-up" style={{ display: arrUpDisplay }} onClick={handleIncrement}></i>
+      <i className="fas fa-plus-circle" style={{ display: arrUpDisplay }} onClick={handleIncrement}></i>
       <input
         type="number"
         className="num-input"
-        min={0}
+        min={1}
         max={10}
         value={value}
         onChange={e => onValueChange(parseInt(e.target.value))}
         data-color="#21d99b"
       />
-      <i  className="fas fa-angle-down arr-down" style={{ display: arrDownDisplay }} onClick={handleDecrement} ></i>
+      <i  className="fas fa-minus-circle" style={{ display: arrDownDisplay }} onClick={handleDecrement} ></i>
     </div>
   );
 };

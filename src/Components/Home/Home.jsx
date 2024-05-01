@@ -6,16 +6,9 @@ import CustomNum from './nombre';
 import { useState } from 'react';
 const Home = () => {
     const [value1, setValue1] = useState(1);
-    const [value2, setValue2] = useState(1);
-  
+
     const handleValueChange1 = (newValue) => {
-      setValue1(newValue);
-      console.log(value1);
-    };
-  
-    const handleValueChange2 = (newValue) => {
-      setValue2(newValue);
-      alert(value2);
+        setValue1(newValue);
     };
     return (
         <>
@@ -56,9 +49,25 @@ const Home = () => {
                 {/* container */}
                 <div className="products-container">
                     <div className="box ">
+                        <img alt=' decoratif' src={special2} />
+                        <h3><i className="fas fa-calendar-alt"></i> <span> 24 Mars </span></h3>
+                        <h3><i className="fas fa-map-marker-alt"></i><span> Point de depart à 12:34</span></h3>
+                        <h3><i className="fas fa-flag-checkered"></i><span> Point d'arrive</span> </h3>
+                        <h3><i className="fas fa-user-alt"></i><span> </span>
+                            <i className="fas fa-user-alt"></i><span> </span>
+                            <i className="fas fa-user-alt"></i><span> </span>
+                            <i className="fas fa-user-alt"></i><span> </span>
+                        </h3>
+                        <div className="content">
+                            <span>$25</span>
+                            <button className="btn">Reserver</button>
+                        </div>
+                    </div>
+                    <div className="box ">
                         <img alt=' decoratif' src={special} />
-                        <h3>Origin : <span> Point de depart à 12:34</span></h3>
-                        <h3>Destination:<span>Point d'arrive</span></h3>
+                        <h3>24 Mars 2024</h3>
+                        <h3>De <span> Point de depart à 12:34</span></h3>
+                        <h3>Vers <span>Point d'arrive</span></h3>
                         <h3>Place disponible:<span>4</span></h3>
                         <div className="content">
                             <span>$25</span>
@@ -67,8 +76,9 @@ const Home = () => {
                     </div>
                     <div className="box ">
                         <img alt=' decoratif' src={special2} />
-                        <h3>Origin : <span> Point de depart à 12:34</span></h3>
-                        <h3>Destination:<span>Point d'arrive</span></h3>
+                        <h3>24 Mars 2024</h3>
+                        <h3>De <span> Point de depart à 12:34</span></h3>
+                        <h3>Vers <span>Point d'arrive</span></h3>
                         <h3>Place disponible:<span>4</span></h3>
                         <div className="content">
                             <span>$25</span>
@@ -77,8 +87,9 @@ const Home = () => {
                     </div>
                     <div className="box ">
                         <img alt=' decoratif' src={special} />
-                        <h3>Origin : <span> Point de depart à 12:34</span></h3>
-                        <h3>Destination:<span>Point d'arrive</span></h3>
+                        <h3>24 Mars 2024</h3>
+                        <h3>De <span> Point de depart à 12:34</span></h3>
+                        <h3>Vers <span>Point d'arrive</span></h3>
                         <h3>Place disponible:<span>4</span></h3>
                         <div className="content">
                             <span>$25</span>
@@ -87,18 +98,9 @@ const Home = () => {
                     </div>
                     <div className="box ">
                         <img alt=' decoratif' src={special2} />
-                        <h3>Origin : <span> Point de depart à 12:34</span></h3>
-                        <h3>Destination:<span>Point d'arrive</span></h3>
-                        <h3>Place disponible:<span>4</span></h3>
-                        <div className="content">
-                            <span>$25</span>
-                            <button className="btn">Reserver</button>
-                        </div>
-                    </div>
-                    <div className="box ">
-                        <img alt=' decoratif' src={special} />
-                        <h3>Origin : <span> Point de depart à 12:34</span></h3>
-                        <h3>Destination:<span>Point d'arrive</span></h3>
+                        <h3>24 Mars 2024</h3>
+                        <h3>De <span> Point de depart à 12:34</span></h3>
+                        <h3>Vers <span>Point d'arrive</span></h3>
                         <h3>Place disponible:<span>4</span></h3>
                         <div className="content">
                             <span>$25</span>
@@ -126,7 +128,7 @@ const Home = () => {
                         <h3>Destination:<span>Point d'arrive</span></h3>
                         <h3>Heure:<span>12:34</span></h3>
                         <h3>Place disponible:<span>4</span></h3>
-                        <CustomNum value={value1} onValueChange={handleValueChange1}/>
+                        <CustomNum value={value1} onValueChange={handleValueChange1} />
                         <h2>Yasin Arafat</h2>
                         <div className="content">
                             <button className="btn">Reserver</button>
@@ -159,7 +161,7 @@ const Home = () => {
                         <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Itaque, ratione? Illum aliquid, ab, non
                             recusandae labore quaerat exercitationem fugit, autem deleniti quod fugiat natus debitis quasi saepe
                             laudantium expedita iste.</p>
-                           <CustomNum value={value2} onValueChange={handleValueChange2}/>
+                        <CustomNum value={value1} onValueChange={handleValueChange1} />
 
                         <h2>Yasin Arafat</h2>
                         <div className="content">
@@ -167,10 +169,8 @@ const Home = () => {
                         </div></div>
                 </div>
             </section>
- <div>
-        <p>Valeur de l'input 1: {value1}</p>
-        <p>Valeur de l'input 2: {value2}</p>
-      </div>
+            <div>
+            </div>
         </>
     );
 }
