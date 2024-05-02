@@ -105,22 +105,21 @@ const RideOfferDetails = ({onOptionChange}) => {
                             <i className="fas fa-user-alt"></i><span> </span>
                             <i className="fas fa-user-alt"></i><span> </span>
                         </h3>
+                    <h3>Username: {offer.user_username}</h3>
+                    <h3>Phone Number: {offer.user_phone_number}</h3>
                         <div className="content">
                             <span>$25</span>
                             <button className="btn" onClick={() => handleAddBooking(offer.offer_id, userInfo.user_id)}>Reserver</button>
                         </div>
                     </div>
-                    <p>Departure Date and Time: </p>
+                    {/* <p>Departure Date and Time: </p>
                     <p>Available Seats: {offer.available_seats}</p>
                     <p>Car Details: {offer.car_details}</p>
                     <p>Preferences: {offer.preferences}</p>
                     <p>Creation Date: {offer.creation_date}</p>
-                    <p>Heure: ,{offer.rideoffer_user_id }  </p>
+                    <p>Heure: ,{offer.rideoffer_user_id }  </p> */}
 
-                    <h2>User Info</h2>
                     
-                    <p>Username: {offer.user_username}</p>
-                    <p>Phone Number: {offer.user_phone_number}</p>
                     {userInfo && <button onClick={() => handleAddBooking(offer.offer_id, userInfo.user_id)}>Add to Bookings</button>}
                     <hr />
                 </div>
