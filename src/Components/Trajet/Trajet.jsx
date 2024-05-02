@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-
+import special2 from '../Assets/Icons/partage-de-voiture(1).png'
 const RideOfferDetails = ({onOptionChange}) => {
     const [userInfo, setUserInfo] = useState('');
     const [sessionInfo, setSessionInfo] = useState(null);
