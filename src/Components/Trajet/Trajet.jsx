@@ -93,8 +93,9 @@ const RideOfferDetails = ({onOptionChange}) => {
                 value={heureFilter}
                 onChange={(e) => setHeureFilter(e.target.value)}
             />
-            {rideOffer && rideOffer.filter(filterRides).map((offer) => (
-               <div key={offer.offer_id} className=''>
+            <div className="products-containers">
+                {rideOffer && rideOffer.filter(filterRides).map((offer) => (
+               <div key={offer.offer_id} className='box'>
                 <div className="box ">
                         <img alt=' decoratif' src={special2} />
                         <h3><i className="fas fa-calendar-alt"></i> <span> {offer.departure_datetime} </span></h3>
@@ -124,6 +125,8 @@ const RideOfferDetails = ({onOptionChange}) => {
                     <hr />
                 </div>
             ))}
+            </div>
+            
         </div>
     );
 };

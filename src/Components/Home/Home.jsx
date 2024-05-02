@@ -75,6 +75,8 @@ const Home = () => {
                             <i className="fas fa-user-alt"></i><span> </span>
                             <i className="fas fa-user-alt"></i><span> </span>
                         </h3>
+                        <h3>Username: Angelot</h3>
+                        <h3>Phone Number: 0348958354</h3>
                         <div className="content">
                             <span>$25</span>
                             <button className="btn">Reserver</button>
@@ -90,6 +92,8 @@ const Home = () => {
                             <i className="fas fa-user-alt"></i><span> </span>
                             <i className="fas fa-user-alt"></i><span> </span>
                         </h3>
+                        <h3>Username: Angelot</h3>
+                        <h3>Phone Number: 0348958354</h3>
                         <div className="content">
                             <span>$25</span>
                             <button className="btn">Reserver</button>
@@ -105,6 +109,8 @@ const Home = () => {
                             <i className="fas fa-user-alt"></i><span> </span>
                             <i className="fas fa-user-alt"></i><span> </span>
                         </h3>
+                        <h3>Username: Angelot</h3>
+                        <h3>Phone Number: 0348958354</h3>
                         <div className="content">
                             <span>$25</span>
                             <button className="btn">Reserver</button>
@@ -120,6 +126,8 @@ const Home = () => {
                             <i className="fas fa-user-alt"></i><span> </span>
                             <i className="fas fa-user-alt"></i><span> </span>
                         </h3>
+                        <h3>Username: Angelot</h3>
+                        <h3>Phone Number: 0348958354</h3>
                         <div className="content">
                             <span>$25</span>
                             <button className="btn">Reserver</button>
