@@ -180,8 +180,8 @@ section{
     margin: 0.5rem 0 0.5rem;
 }
 .customers-container .box img{
-    width: 70px;
-    height: 70px;
+    width: 35px;
+    height: 35px;
     border-radius: 50%;
     object-fit: cover;
 }
