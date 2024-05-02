@@ -64,11 +64,15 @@ const Home = () => {
                         </div>
                     </div>
                     <div className="box ">
-                        <img alt=' decoratif' src={special} />
-                        <h3>24 Mars 2024</h3>
-                        <h3>De <span> Point de depart à 12:34</span></h3>
-                        <h3>Vers <span>Point d'arrive</span></h3>
-                        <h3>Place disponible:<span>4</span></h3>
+                        <img alt=' decoratif' src={special2} />
+                        <h3><i className="fas fa-calendar-alt"></i> <span> 24 Mars </span></h3>
+                        <h3><i className="fas fa-map-marker-alt"></i><span> Point de depart à 12:34</span></h3>
+                        <h3><i className="fas fa-flag-checkered"></i><span> Point d'arrive</span> </h3>
+                        <h3><i className="fas fa-user-alt"></i><span> </span>
+                            <i className="fas fa-user-alt"></i><span> </span>
+                            <i className="fas fa-user-alt"></i><span> </span>
+                            <i className="fas fa-user-alt"></i><span> </span>
+                        </h3>
                         <div className="content">
                             <span>$25</span>
                             <button className="btn">Reserver</button>
@@ -76,21 +80,14 @@ const Home = () => {
                     </div>
                     <div className="box ">
                         <img alt=' decoratif' src={special2} />
-                        <h3>24 Mars 2024</h3>
-                        <h3>De <span> Point de depart à 12:34</span></h3>
-                        <h3>Vers <span>Point d'arrive</span></h3>
-                        <h3>Place disponible:<span>4</span></h3>
-                        <div className="content">
-                            <span>$25</span>
-                            <button className="btn">Reserver</button>
-                        </div>
-                    </div>
-                    <div className="box ">
-                        <img alt=' decoratif' src={special} />
-                        <h3>24 Mars 2024</h3>
-                        <h3>De <span> Point de depart à 12:34</span></h3>
-                        <h3>Vers <span>Point d'arrive</span></h3>
-                        <h3>Place disponible:<span>4</span></h3>
+                        <h3><i className="fas fa-calendar-alt"></i> <span> 24 Mars </span></h3>
+                        <h3><i className="fas fa-map-marker-alt"></i><span> Point de depart à 12:34</span></h3>
+                        <h3><i className="fas fa-flag-checkered"></i><span> Point d'arrive</span> </h3>
+                        <h3><i className="fas fa-user-alt"></i><span> </span>
+                            <i className="fas fa-user-alt"></i><span> </span>
+                            <i className="fas fa-user-alt"></i><span> </span>
+                            <i className="fas fa-user-alt"></i><span> </span>
+                        </h3>
                         <div className="content">
                             <span>$25</span>
                             <button className="btn">Reserver</button>
@@ -98,10 +95,29 @@ const Home = () => {
                     </div>
                     <div className="box ">
                         <img alt=' decoratif' src={special2} />
-                        <h3>24 Mars 2024</h3>
-                        <h3>De <span> Point de depart à 12:34</span></h3>
-                        <h3>Vers <span>Point d'arrive</span></h3>
-                        <h3>Place disponible:<span>4</span></h3>
+                        <h3><i className="fas fa-calendar-alt"></i> <span> 24 Mars </span></h3>
+                        <h3><i className="fas fa-map-marker-alt"></i><span> Point de depart à 12:34</span></h3>
+                        <h3><i className="fas fa-flag-checkered"></i><span> Point d'arrive</span> </h3>
+                        <h3><i className="fas fa-user-alt"></i><span> </span>
+                            <i className="fas fa-user-alt"></i><span> </span>
+                            <i className="fas fa-user-alt"></i><span> </span>
+                            <i className="fas fa-user-alt"></i><span> </span>
+                        </h3>
+                        <div className="content">
+                            <span>$25</span>
+                            <button className="btn">Reserver</button>
+                        </div>
+                    </div>
+                    <div className="box ">
+                        <img alt=' decoratif' src={special2} />
+                        <h3><i className="fas fa-calendar-alt"></i> <span> 24 Mars </span></h3>
+                        <h3><i className="fas fa-map-marker-alt"></i><span> Point de depart à 12:34</span></h3>
+                        <h3><i className="fas fa-flag-checkered"></i><span> Point d'arrive</span> </h3>
+                        <h3><i className="fas fa-user-alt"></i><span> </span>
+                            <i className="fas fa-user-alt"></i><span> </span>
+                            <i className="fas fa-user-alt"></i><span> </span>
+                            <i className="fas fa-user-alt"></i><span> </span>
+                        </h3>
                         <div className="content">
                             <span>$25</span>
                             <button className="btn">Reserver</button>
