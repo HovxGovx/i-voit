@@ -1,5 +1,6 @@
 .products{
     display: grid;
+    width: 100%;
 }
 .products-container{
     display: grid !important;

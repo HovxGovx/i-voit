@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import special from '../Assets/Icons/utilisateur-du-cercle.png'
 import special2 from '../Assets/Icons/partage-de-voiture(1).png'
 import './TrajetStyles.css'
 const RideOfferDetails = ({ onOptionChange }) => {
@@ -67,7 +68,7 @@ const RideOfferDetails = ({ onOptionChange }) => {
     };
     return (
         <section >
-            <div className="home">
+            <div className="">
                 <h1>Ride Offer Details</h1>
                 {/* Champs d'entrée pour les filtres */}
                 <input
@@ -95,42 +96,56 @@ const RideOfferDetails = ({ onOptionChange }) => {
                     onChange={(e) => setHeureFilter(e.target.value)}
                 />
             </div>
-            <section>
-                <div className="products-containers">
+            <section className='products' id='products'>
+                <div className="heading">
+                    <h2>Trajets</h2>
+                </div>
+                <div className="products-container">
                     {rideOffer && rideOffer.filter(filterRides).map((offer) => (
                         <div key={offer.offer_id} className='box'>
-                            <div className="box ">
                                 <img alt=' decoratif' src={special2} />
-                                <h3><i className="fas fa-calendar-alt"></i> <span> {offer.departure_datetime} </span></h3>
-                                <h3><i className="fas fa-map-marker-alt"></i><span> {offer.origin} à {offer.heure}</span></h3>
-                                <h3><i className="fas fa-flag-checkered"></i><span> {offer.destination}</span> </h3>
-                                <h3><i className="fas fa-user-alt"></i><span> </span>
+                                <h3>
+                                    <i className="fas fa-calendar-alt"></i>
+                                    <span> {offer.departure_datetime} </span>
+                                    <span id='prices'>{offer.prix} Ar</span>
+                                </h3>
+                                <h3>
+                                    <i className="fas fa-map-marker-alt"></i>
+                                    <span> {offer.origin} à {offer.heure}</span>
+                                </h3>
+                                <h3>
+                                    <i className="fas fa-flag-checkered"></i>
+                                    <span> {offer.destination} </span>
+                                </h3>
+                                <h3>
+                                    <i className="fas fa-user-alt"></i><span> </span>
                                     <i className="fas fa-user-alt"></i><span> </span>
                                     <i className="fas fa-user-alt"></i><span> </span>
                                     <i className="fas fa-user-alt"></i><span> </span>
                                 </h3>
-                                <h3>Username: {offer.user_username}</h3>
-                                <h3>Phone Number: {offer.user_phone_number}</h3>
+                                <div className="usersss" >
+                                    <img src={special} alt="" id="images" />
+                                    <div>
+                                        <h3> {offer.user_username}</h3>
+                                        <h3> {offer.user_phone_number}</h3>
+                                    </div>
+                                </div>
                                 <div className="content">
-                                    <span>$25</span>
-                                    <button className="btn" onClick={() => handleAddBooking(offer.offer_id, userInfo.user_id)}>Reserver</button>
+                                    <span>{offer.prix} Ar</span>
+                                    {userInfo && <button className="btn" onClick={() => handleAddBooking(offer.offer_id, userInfo.user_id)}>Reserver</button>}
+                                    
                                 </div>
                             </div>
-                            {/* <p>Departure Date and Time: </p>
+                           
+                    ))}
+                </div>
+            </section>
+ {/* 
                     <p>Available Seats: {offer.available_seats}</p>
                     <p>Car Details: {offer.car_details}</p>
                     <p>Preferences: {offer.preferences}</p>
                     <p>Creation Date: {offer.creation_date}</p>
                     <p>Heure: ,{offer.rideoffer_user_id }  </p> */}
-
-
-                            {userInfo && <button onClick={() => handleAddBooking(offer.offer_id, userInfo.user_id)}>Add to Bookings</button>}
-                            <hr />
-                        </div>
-                    ))}
-                </div>
-            </section>
-
 
         </section>
     );

@@ -256,6 +256,7 @@ app.get('/ride-offers', async (req, res) => {
             rideoffer.preferences, 
             rideoffer.creation_date,
             rideoffer.heure,
+            rideoffer.prix, 
             usercocovoiturage.username AS user_username,
             usercocovoiturage.phone_number AS user_phone_number
         FROM rideoffer

@@ -53,7 +53,8 @@ const Home = () => {
                         <h3><i className="fas fa-calendar-alt"></i> <span> 24 Mars </span> <span id='prices'>Ar 50000</span></h3>
                         <h3><i className="fas fa-map-marker-alt"></i><span> Point de depart à 12:34</span></h3>
                         <h3><i className="fas fa-flag-checkered"></i><span> Point d'arrive</span> </h3>
-                        <h3><i className="fas fa-user-alt"></i><span> </span>
+                        <h3>
+                            <i className="fas fa-user-alt"></i><span> </span>
                             <i className="fas fa-user-alt"></i><span> </span>
                             <i className="fas fa-user-alt"></i><span> </span>
                             <i className="fas fa-user-alt"></i><span> </span>

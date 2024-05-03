@@ -120,6 +120,9 @@ section{
     /* transform: translateY(-20px); */
     transform: scale(1.04) ;
   }
+  .products-container .box:hover .usersss{
+    opacity: 1;
+  }
   .products-container img{
     width: 100%;
     height: 150px;
@@ -239,6 +242,8 @@ section{
     display: flex;
     flex-direction: row;
     column-gap: 0.5rem;
+    opacity: 0;
+    transition: 0.5s;
 }
 
 #prices{
