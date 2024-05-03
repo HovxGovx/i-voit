@@ -105,7 +105,6 @@ section{
     grid-template-columns: repeat(auto-fit,minmax(280px,auto));
     gap: 1.5rem;
     margin-top: 2rem;
-    
   }
   .products-container .box{
     max-width: 350px;
@@ -116,6 +115,9 @@ section{
     justify-content: center;
     border-radius: 0.5rem;
     box-shadow: var(--box-shadow);
+  }
+  .products-container .box:hover{
+    transform: translateY(-20px);
   }
   .products-container img{
     width: 100%;
@@ -232,15 +234,16 @@ section{
     border-radius: 50%;
     object-fit: cover;
 }
-#user{
+.usersss{
     display: flex;
     flex-direction: row;
     column-gap: 0.5rem;
 }
+
 #prices{
     margin-left: 25%;
     padding: 0 1rem;
-    color: var(--bg-color);
+    color: black;
     background: var(--main-color);
     border-radius: 4px;
     font-weight: 500;
