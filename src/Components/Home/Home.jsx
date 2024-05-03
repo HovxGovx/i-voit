@@ -61,7 +61,7 @@ const Home = () => {
                         <h3>Username: Angelot</h3>
                         <h3>Phone Number: 0348958354</h3>
                         <div className="content">
-                            <span>$25</span>
+                            <span>5000ar</span>
                             <button className="btn">Reserver</button>
                         </div>
                     </div>
