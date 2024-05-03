@@ -226,3 +226,22 @@ section{
     font-size: 2em;
     cursor: pointer;
 }
+#images{
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+#user{
+    display: flex;
+    flex-direction: row;
+    column-gap: 0.5rem;
+}
+#prices{
+    margin-left: 25%;
+    padding: 0 1rem;
+    color: var(--bg-color);
+    background: var(--main-color);
+    border-radius: 4px;
+    font-weight: 500;
+}

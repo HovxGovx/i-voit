@@ -67,7 +67,7 @@ const Home = () => {
                     </div>
                     <div className="box ">
                         <img alt=' decoratif' src={special2} />
-                        <h3><i className="fas fa-calendar-alt"></i> <span> 24 Mars </span></h3>
+                        <h3><i className="fas fa-calendar-alt"></i> <span> 24 Mars </span><span id='prices'>Ar 50000</span></h3>
                         <h3><i className="fas fa-map-marker-alt"></i><span> Point de depart à 12:34</span></h3>
                         <h3><i className="fas fa-flag-checkered"></i><span> Point d'arrive</span> </h3>
                         <h3><i className="fas fa-user-alt"></i><span> </span>
@@ -126,16 +126,22 @@ const Home = () => {
                             <i className="fas fa-user-alt"></i><span> </span>
                             <i className="fas fa-user-alt"></i><span> </span>
                         </h3>
-                        <h3>Username: Angelot</h3>
-                        <h3>Phone Number: 0348958354</h3>
+                        <div className="user" id='user'>
+                            <img src={special} alt="" id="images"/> 
+                            <div>
+                                <h3>Angelot</h3>
+                                <h3>0348958354</h3>
+                            </div>
+                        </div>
+                        
                         <div className="content">
-                            <span>$25</span>
+                            <span >$25</span>
                             <button className="btn">Reserver</button>
                         </div>
                     </div>
                 </div>
             </section>
-            {/* Customers */}
+            {/* Customers 
             <section className="customers" id="customers">
                 <div className="heading">
                     <h2>Our Customer's</h2>
@@ -195,6 +201,7 @@ const Home = () => {
                         </div></div>
                 </div>
             </section>
+            */}
             <div>
             </div>
         </>
