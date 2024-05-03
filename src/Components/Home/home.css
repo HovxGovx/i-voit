@@ -117,7 +117,8 @@ section{
     box-shadow: var(--box-shadow);
   }
   .products-container .box:hover{
-    transform: translateY(-20px);
+    /* transform: translateY(-20px); */
+    transform: scale(1.04) ;
   }
   .products-container img{
     width: 100%;
