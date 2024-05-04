@@ -2,7 +2,6 @@ import './home.css'
 import logo from '../Assets/Icons/covoiturage.png';
 import special from '../Assets/Icons/utilisateur-du-cercle.png'
 import special2 from '../Assets/Icons/partage-de-voiture(1).png'
-import CustomNum from './nombre';
 import { useState } from 'react';
 const Home = () => {
     const [value1, setValue1] = useState(1);
@@ -35,7 +34,7 @@ const Home = () => {
                         est une pratique où plusieurs personnes se partagent un même véhicule pour se rendre à un endroit commun.
                         Cette méthode de transport permet aux individus de diviser les frais liés au voyage, tels que l'essence,
                         ce qui rend le déplacement plus économique pour tous les participants.</p>
-                    <p>Les plateformes de covoiturage en ligne facilitent la mise en relation entre conducteurs et passagers en leur permettant de publier et de rechercher des trajets correspondant à leurs besoins et à leurs préférences.
+                    <p>I-voit, un plateforme de covoiturage qui facilite la mise en relation entre conducteurs et passagers en leur permettant de publier et de rechercher des trajets correspondant à leurs besoins et à leurs préférences.
                         Ces plateformes offrent souvent des fonctionnalités telles que la réservation en ligne,
                         le partage des frais de manière équitable et la vérification des profils des utilisateurs pour garantir la sécurité et la confiance.</p>
                     <button className="btn">Learn more</button>
