@@ -13,13 +13,13 @@
 .container-trajet{
   min-height: 1000px;
 }
-.products-container{
+/* .products-container{
     display: grid !important;
     grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
     gap: 1.5rem;
     margin-top: 2rem;
     width: 100%;
-  }
+  } */
   .products-container .box{
     max-width: 350px;
     position: relative;
@@ -28,7 +28,6 @@
     flex-direction: column;
     justify-content: center;
     border-radius: 0.5rem;
-    box-shadow: var(--box-shadow);
   }
   .products-container img{
     width: 100%;

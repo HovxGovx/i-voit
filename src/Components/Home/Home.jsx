@@ -2,8 +2,31 @@ import './home.css'
 import logo from '../Assets/Icons/covoiturage.png';
 import special from '../Assets/Icons/utilisateur-du-cercle.png'
 import special2 from '../Assets/Icons/partage-de-voiture(1).png'
+import special3 from '../Assets/Icons/partage-de-voiture.png'
 import { useState } from 'react';
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
 const Home = () => {
+
+    const responsive = {
+        superLargeDesktop: {
+            // the naming can be any, depends on you.
+            breakpoint: { max: 2048, min: 1024 },
+            items: 4
+        },
+        desktop: {
+            breakpoint: { max: 1024, min: 800 },
+            items: 3
+        },
+        tablet: {
+            breakpoint: { max: 800, min: 464 },
+            items: 2
+        },
+        mobile: {
+            breakpoint: { max: 464, min: 0 },
+            items: 1
+        }
+    };
     const [value1, setValue1] = useState(1);
 
     const handleValueChange1 = (newValue) => {
@@ -40,12 +63,11 @@ const Home = () => {
                     <button className="btn">Learn more</button>
                 </div>
             </section>
-            {/* Products */}
+            {/* Products 
             <section className="products" id="products">
                 <div className="heading">
                     <h2>Les trajets disponibles</h2>
                 </div>
-                {/* container */}
                 <div className="products-container">
                     <div className="box ">
                         <img alt=' decoratif' src={special2} />
@@ -114,9 +136,9 @@ const Home = () => {
                             <button className="btn">Reserver</button>
                         </div>
                     </div>
-                    
+
                     <div className="box ">
-                        <img alt=' decoratif' src={special2} />
+                        <img alt=' decoratif' src={special} />
                         <h3><i className="fas fa-calendar-alt"></i> <span> 24 Mars </span><span id='prices'>Ar 50000</span></h3>
                         <h3><i className="fas fa-map-marker-alt"></i><span> Point de depart à 12:34</span></h3>
                         <h3><i className="fas fa-flag-checkered"></i><span> Point d'arrive</span> </h3>
@@ -161,8 +183,220 @@ const Home = () => {
                         </div>
                     </div>
                 </div>
+                <div className="box ">
+                    <img alt=' decoratif' src={special} />
+                    <h3><i className="fas fa-calendar-alt"></i> <span> 24 Mars </span><span id='prices'>Ar 50000</span></h3>
+                    <h3><i className="fas fa-map-marker-alt"></i><span> Point de depart à 12:34</span></h3>
+                    <h3><i className="fas fa-flag-checkered"></i><span> Point d'arrive</span> </h3>
+                    <h3><i className="fas fa-user-alt"></i><span> </span>
+                        <i className="fas fa-user-alt"></i><span> </span>
+                        <i className="fas fa-user-alt"></i><span> </span>
+                        <i className="fas fa-user-alt"></i><span> </span>
+                    </h3>
+                    <div className="usersss" >
+                        <img src={special} alt="" id="images" />
+                        <div>
+                            <h3>Angelot</h3>
+                            <h3>0348958354</h3>
+                        </div>
+                    </div>
+
+                    <div className="content">
+                        <button className="btn">Reserver</button>
+                    </div>
+                </div>
             </section>
-            {/* Customers 
+            */}
+
+
+            <section className="products" id="products">
+                <div className="heading">
+                    <h2>Les trajets disponibles</h2>
+                </div>
+                <Carousel
+                    swipeable={false}
+                    draggable={false}
+                    showDots={false}
+                    responsive={responsive}
+                    ssr={true} // means to render carousel on server-side.
+                    autoPlay={false}
+                    infinite={true}
+                    autoPlaySpeed={3000}
+                    keyBoardControl={true}
+                    customTransition="all .5"
+                    transitionDuration={500}
+                    containerClass="products-container"
+                >
+                    <div className="box">
+                        <img alt=' decoratif' src={special3} />
+                        <h3><i className="fas fa-calendar-alt"></i> <span> 24 Mars </span> <span id='prices'>Ar 50000</span></h3>
+                        <h3><i className="fas fa-map-marker-alt"></i><span> Point de depart à 12:34</span></h3>
+                        <h3><i className="fas fa-flag-checkered"></i><span> Point d'arrive</span> </h3>
+                        <h3>
+                            <i className="fas fa-user-alt"></i><span> </span>
+                            <i className="fas fa-user-alt"></i><span> </span>
+                            <i className="fas fa-user-alt"></i><span> </span>
+                            <i className="fas fa-user-alt"></i><span> </span>
+                        </h3>
+                        <div className="usersss" >
+                            <img src={special} alt="" id="images" />
+                            <div>
+                                <h3>Angelot</h3>
+                                <h3>0348958354</h3>
+                            </div>
+                        </div>
+
+                        <div className="content">
+                            <button className="btn">Reserver</button>
+                        </div>
+                    </div>
+
+                    <div className="box">
+                        <img alt=' decoratif' src={special2} />
+                        <h3><i className="fas fa-calendar-alt"></i> <span> 25 Mars </span> <span id='prices'>Ar 50000</span></h3>
+                        <h3><i className="fas fa-map-marker-alt"></i><span> Point de depart à 12:34</span></h3>
+                        <h3><i className="fas fa-flag-checkered"></i><span> Point d'arrive</span> </h3>
+                        <h3>
+                            <i className="fas fa-user-alt"></i><span> </span>
+                            <i className="fas fa-user-alt"></i><span> </span>
+                            <i className="fas fa-user-alt"></i><span> </span>
+                            <i className="fas fa-user-alt"></i><span> </span>
+                        </h3>
+                        <div className="usersss" >
+                            <img src={special} alt="" id="images" />
+                            <div>
+                                <h3>Angelot</h3>
+                                <h3>0348958354</h3>
+                            </div>
+                        </div>
+
+                        <div className="content">
+                            <button className="btn">Reserver</button>
+                        </div>
+                    </div>
+
+                    <div className="box">
+                        <img alt=' decoratif' src={special3} />
+                        <h3><i className="fas fa-calendar-alt"></i> <span> 26 Mars </span> <span id='prices'>Ar 50000</span></h3>
+                        <h3><i className="fas fa-map-marker-alt"></i><span> Point de depart à 12:34</span></h3>
+                        <h3><i className="fas fa-flag-checkered"></i><span> Point d'arrive</span> </h3>
+                        <h3>
+                            <i className="fas fa-user-alt"></i><span> </span>
+                            <i className="fas fa-user-alt"></i><span> </span>
+                            <i className="fas fa-user-alt"></i><span> </span>
+                            <i className="fas fa-user-alt"></i><span> </span>
+                        </h3>
+                        <div className="usersss" >
+                            <img src={special} alt="" id="images" />
+                            <div>
+                                <h3>Angelot</h3>
+                                <h3>0348958354</h3>
+                            </div>
+                        </div>
+
+                        <div className="content">
+                            <button className="btn">Reserver</button>
+                        </div>
+                    </div>
+
+                    <div className="box">
+                        <img alt=' decoratif' src={special2} />
+                        <h3><i className="fas fa-calendar-alt"></i> <span> 27 Mars </span> <span id='prices'>Ar 50000</span></h3>
+                        <h3><i className="fas fa-map-marker-alt"></i><span> Point de depart à 12:34</span></h3>
+                        <h3><i className="fas fa-flag-checkered"></i><span> Point d'arrive</span> </h3>
+                        <h3>
+                            <i className="fas fa-user-alt"></i><span> </span>
+                            <i className="fas fa-user-alt"></i><span> </span>
+                            <i className="fas fa-user-alt"></i><span> </span>
+                            <i className="fas fa-user-alt"></i><span> </span>
+                        </h3>
+                        <div className="usersss" >
+                            <img src={special} alt="" id="images" />
+                            <div>
+                                <h3>Angelot</h3>
+                                <h3>0348958354</h3>
+                            </div>
+                        </div>
+
+                        <div className="content">
+                            <button className="btn">Reserver</button>
+                        </div>
+                    </div>
+
+                    <div className="box">
+                        <img alt=' decoratif' src={special3} />
+                        <h3><i className="fas fa-calendar-alt"></i> <span> 28 Mars </span> <span id='prices'>Ar 50000</span></h3>
+                        <h3><i className="fas fa-map-marker-alt"></i><span> Point de depart à 12:34</span></h3>
+                        <h3><i className="fas fa-flag-checkered"></i><span> Point d'arrive</span> </h3>
+                        <h3>
+                            <i className="fas fa-user-alt"></i><span> </span>
+                            <i className="fas fa-user-alt"></i><span> </span>
+                            <i className="fas fa-user-alt"></i><span> </span>
+                            <i className="fas fa-user-alt"></i><span> </span>
+                        </h3>
+                        <div className="usersss" >
+                            <img src={special} alt="" id="images" />
+                            <div>
+                                <h3>Angelot</h3>
+                                <h3>0348958354</h3>
+                            </div>
+                        </div>
+
+                        <div className="content">
+                            <button className="btn">Reserver</button>
+                        </div>
+                    </div>
+
+                    <div className="box">
+                        <img alt=' decoratif' src={special2} />
+                        <h3><i className="fas fa-calendar-alt"></i> <span> 29 Mars </span> <span id='prices'>Ar 50000</span></h3>
+                        <h3><i className="fas fa-map-marker-alt"></i><span> Point de depart à 12:34</span></h3>
+                        <h3><i className="fas fa-flag-checkered"></i><span> Point d'arrive</span> </h3>
+                        <h3>
+                            <i className="fas fa-user-alt"></i><span> </span>
+                            <i className="fas fa-user-alt"></i><span> </span>
+                            <i className="fas fa-user-alt"></i><span> </span>
+                            <i className="fas fa-user-alt"></i><span> </span>
+                        </h3>
+                        <div className="usersss" >
+                            <img src={special} alt="" id="images" />
+                            <div>
+                                <h3>Angelot</h3>
+                                <h3>0348958354</h3>
+                            </div>
+                        </div>
+
+                        <div className="content">
+                            <button className="btn">Reserver</button>
+                        </div>
+                    </div>
+
+                    <div className="box">
+                        <img alt=' decoratif' src={special3} />
+                        <h3><i className="fas fa-calendar-alt"></i> <span> 30 Mars </span> <span id='prices'>Ar 50000</span></h3>
+                        <h3><i className="fas fa-map-marker-alt"></i><span> Point de depart à 12:34</span></h3>
+                        <h3><i className="fas fa-flag-checkered"></i><span> Point d'arrive</span> </h3>
+                        <h3>
+                            <i className="fas fa-user-alt"></i><span> </span>
+                            <i className="fas fa-user-alt"></i><span> </span>
+                            <i className="fas fa-user-alt"></i><span> </span>
+                            <i className="fas fa-user-alt"></i><span> </span>
+                        </h3>
+                        <div className="usersss" >
+                            <img src={special} alt="" id="images" />
+                            <div>
+                                <h3>Angelot</h3>
+                                <h3>0348958354</h3>
+                            </div>
+                        </div>
+
+                        <div className="content">
+                            <button className="btn">Reserver</button>
+                        </div>
+                    </div>
+                </Carousel>
+            </section>
+            {/* Customers  
             <section className="customers" id="customers">
                 <div className="heading">
                     <h2>Our Customer's</h2>
