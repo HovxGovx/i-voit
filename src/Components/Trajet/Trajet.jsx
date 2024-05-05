@@ -72,6 +72,11 @@ const RideOfferDetails = ({ onOptionChange }) => {
             offer.rideoffer_user_id !== userInfo.user_id // Ne pas afficher les trajets de l'utilisateur connecté
         );
     };
+    function formatDate(dateString) {
+        const date = new Date(dateString);
+        const options = { day: 'numeric', month: 'long' };
+        return date.toLocaleDateString('fr-FR', options);
+    }
     return (
         <section className="container-trajet">
             <div className="filtrage">
@@ -114,7 +119,7 @@ const RideOfferDetails = ({ onOptionChange }) => {
                             <img alt=' decoratif' src={special2} />
                             <h3>
                                 <i className="fas fa-calendar-alt"></i>
-                                <span> {offer.departure_datetime} </span>
+                                <span> {formatDate(offer.departure_datetime)}  </span>
                                 <span id='prices'>{offer.prix} Ar</span>
                             </h3>
                             <h3>
