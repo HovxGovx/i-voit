@@ -11,19 +11,19 @@ const Home = () => {
     const responsive = {
         superLargeDesktop: {
             // the naming can be any, depends on you.
-            breakpoint: { max: 2048, min: 1024 },
+            breakpoint: { max: 2048, min: 1848 },
             items: 4
         },
         desktop: {
-            breakpoint: { max: 1024, min: 800 },
+            breakpoint: { max: 1848, min: 1321 },
             items: 3
         },
         tablet: {
-            breakpoint: { max: 800, min: 464 },
+            breakpoint: { max: 1321, min: 800},
             items: 2
         },
         mobile: {
-            breakpoint: { max: 464, min: 0 },
+            breakpoint: { max: 800, min: 0 },
             items: 1
         }
     };
@@ -207,8 +207,6 @@ const Home = () => {
                 </div>
             </section>
             */}
-
-
             <section className="products" id="products">
                 <div className="heading">
                     <h2>Les trajets disponibles</h2>
