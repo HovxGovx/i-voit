@@ -194,7 +194,7 @@ app.get('/session-info', async (req, res) => {
 // ! Endpoint pour l'ajout d'un nouveau trajet
 app.post('/add-ride', async (req, res) => {
     try {
-        const { origin, destination, departureDate, available_seats, car_details, preferences, departureTime } = req.body;
+        const { origin, destination, departureDate, available_seats, car_details, preferences, departureTime, prix} = req.body;
         const userId = req.headers.session_id;
 
         // Vérifier si l'utilisateur est connecté
@@ -203,10 +203,10 @@ app.post('/add-ride', async (req, res) => {
         }
         // Insérer le nouveau trajet dans la base de données
         const insertRideQuery = `
-                INSERT INTO rideoffer (user_id, origin, destination, departure_datetime, available_seats, car_details, preferences,heure, creation_date)
-                VALUES (?, ?, ?, ?, ?, ?, ?,?, CURRENT_TIMESTAMP)
+                INSERT INTO rideoffer (user_id, origin, destination, departure_datetime, available_seats, car_details, preferences,heure, creation_date,prix)
+                VALUES (?, ?, ?, ?, ?, ?, ?,?, CURRENT_TIMESTAMP,?)
             `;
-        db.query(insertRideQuery, [userId, origin, destination, departureDate, available_seats, car_details, preferences, departureTime], async (insertError, result) => {
+        db.query(insertRideQuery, [userId, origin, destination, departureDate, available_seats, car_details, preferences, departureTime,prix], async (insertError, result) => {
             if (insertError) {
                 console.error('Error adding ride:', insertError);
                 return res.status(500).json({ message: 'Error adding ride' });

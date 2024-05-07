@@ -7,6 +7,7 @@ const PartagerPage = () => {
     const [departureDate, setDepartureDate] = useState('');
     const [departureTime, setDepartureTime] = useState('');
     const [availableSeats, setAvailableSeats] = useState('');
+    const [prix, setPrix] = useState(2000);
     const [carDetails, setCarDetails] = useState('Aucun');
     const [preferences, setPreferences] = useState('Aucun');
     const [sessionId, setSessionId] = useState('');
@@ -85,7 +86,8 @@ const PartagerPage = () => {
                 departureTime,
                 available_seats: availableSeats,
                 car_details: carDetails,
-                preferences
+                preferences,
+                prix
             }, {
                 headers: {
                     'Content-Type': 'application/json',
@@ -102,6 +104,7 @@ const PartagerPage = () => {
             setAvailableSeats('');
             setCarDetails('');
             setPreferences('');
+            setPrix('');
         } catch (error) {
             console.error('Error adding ride:', error);
         }
@@ -140,8 +143,11 @@ const PartagerPage = () => {
                     <label>Détails du véhicule:</label>
                     <input type="text" value={carDetails} onChange={(e) => setCarDetails(e.target.value)} />
 
+                    <label>Prix du place:</label>
+                    <input type="number" value={prix}  min='2000'  onChange={(e) => setPrix(e.target.value)} />
+
                     <label>Préférences:</label>
-                    <textarea value={preferences} onChange={(e) => setPreferences(e.target.value)} />
+                    <textarea value={preferences}  onChange={(e) => setPreferences(e.target.value)} />
 
                     <button type="submit">Ajouter trajet</button>
                 </form>

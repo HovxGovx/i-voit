@@ -100,12 +100,12 @@ section{
 .products{
     display: grid;
 }
-/* .products-container{
+.products-container{
     display: grid ;
     grid-template-columns: repeat(auto-fit,minmax(280px,auto));
     gap: 1.5rem;
     margin-top: 2rem;
-  } */
+  }
   .products-container .box{
     max-width: 350px;
     padding: 10px;
@@ -113,11 +113,11 @@ section{
     flex-direction: column;
     justify-content: center;
     border-radius: 0.5rem;
+    box-shadow: var(--box-shadow);
   }
   .products-container .box:hover{
     /* transform: translateY(-20px); */
     transform: scale(1.04) ;
-    box-shadow: var(--box-shadow);
   }
   .products-container .box:hover .usersss{
     opacity: 1;
