@@ -114,7 +114,7 @@ const RideOfferDetails = ({ onOptionChange }) => {
                     <h2>Trajets</h2>
                 </div>
                 <div className="products-container">
-                    {rideOffer && rideOffer.filter(filterRides).map((offer) => (
+                    {rideOffer && rideOffer.filter(filterRides).slice(0, 8).map((offer) => (
                         <div key={offer.offer_id} className='box'>
                             <img alt=' decoratif' src={special2} />
                             <h3>
@@ -131,6 +131,7 @@ const RideOfferDetails = ({ onOptionChange }) => {
                                 <span> {offer.destination} </span>
                             </h3>
                             <h3>
+                             {offer.available_seats}
                                 <i className="fas fa-user-alt"></i><span> </span>
                                 <i className="fas fa-user-alt"></i><span> </span>
                                 <i className="fas fa-user-alt"></i><span> </span>
