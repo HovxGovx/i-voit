@@ -67,3 +67,34 @@
    border: 2px solid var(--main-color);
    transition:0.5s all linear;
   }
+
+
+  /* Style du tooltip */
+  .tooltip {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+/* Style de la boîte du tooltip */
+.tooltiptext {
+    visibility: hidden ;
+    width: 120px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px;
+    position: absolute;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -60px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+/* Afficher le tooltip lorsqu'il est survolé */
+ .tooltip:hover .tooltiptext {
+    visibility: visible ;
+    opacity: 1 ;
+}

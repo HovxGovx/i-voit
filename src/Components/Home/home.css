@@ -122,6 +122,9 @@ section{
   .products-container .box:hover .usersss{
     opacity: 1;
   }
+  .products-container .box:hover h3 .tooltip .tooltiptext {
+    opacity: 1 !important;
+}
   .products-container img{
     width: 100%;
     height: 150px;

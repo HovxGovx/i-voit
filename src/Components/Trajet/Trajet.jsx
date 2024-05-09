@@ -131,11 +131,10 @@ const RideOfferDetails = ({ onOptionChange }) => {
                                 <span> {offer.destination} </span>
                             </h3>
                             <h3>
-                             {offer.available_seats}
-                                <i className="fas fa-user-alt"></i><span> </span>
-                                <i className="fas fa-user-alt"></i><span> </span>
-                                <i className="fas fa-user-alt"></i><span> </span>
-                                <i className="fas fa-user-alt"></i><span> </span>
+                                {[...Array(offer.available_seats)].map((_, index) => (
+                                    <i className="fas fa-user-alt tooltip" key={index} data-tip='place disponible'></i>
+                                ))}
+                                <span className="tooltiptext">Je suis un tooltip</span>
                             </h3>
                             <div className="usersss" >
                                 <img src={special} alt="" id="images" />
