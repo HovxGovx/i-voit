@@ -42,6 +42,12 @@ const Home = () => {
                 </div>
                 <Cards/>
             </section>
+            <section className="products">
+                <div className="heading">
+                    <h2>Personnes</h2>
+                </div>
+                <Cards/>
+            </section>
             
         </>
     );

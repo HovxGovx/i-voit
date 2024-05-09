@@ -146,7 +146,6 @@ const RideOfferDetails = ({ onOptionChange }) => {
                             <div className="content">
                                 <span>{offer.prix} Ar</span>
                                 {userInfo && <button className="btn" onClick={() => handleAddBooking(offer.offer_id, userInfo.user_id)}>Reserver</button>}
-
                             </div>
                         </div>
 
