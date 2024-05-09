@@ -11,10 +11,11 @@ const Home = () => {
                         Covoiturez, libérez les voies,  <br />  <span>i-Voit !</span>
                     </h1>
                     <p> Votre plateforme de covoiturage simple, rapide et conviviale pour des trajets quotidiens ou des escapades. </p>
-
+                    
                 </div>
                 <div className="home-img">
                     <img a src={logo} alt="Logo i-voit" />
+                   
                 </div>
             </section>
 

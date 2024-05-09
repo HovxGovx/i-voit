@@ -29,6 +29,7 @@ section{
     text-transform: uppercase;
     letter-spacing: 1px;
 }
+
 .home h1 span{
     font-size: 3.4rem;
     color: var(--main-color);
@@ -37,6 +38,7 @@ section{
     letter-spacing: 1px;
 }
 .home-text p{
+    font-weight: 700;
     font-size: 1.38rem;
     color: white;
     margin: 0.5rem 0 1.4rem;
