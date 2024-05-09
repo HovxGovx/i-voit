@@ -157,6 +157,12 @@ const Navbar = ({ onOptionChange, isLoggedIn, onLogout }) => {
                             )}
                             <div className="esthe">
                                 <button
+                                    className={activeButton === 'home' ? "active" : ""}
+                                    onClick={() => handleClick1('home')}
+                                >
+                                    Home
+                                </button>
+                                <button
                                     className={activeButton === 'trajet' ? "active" : ""}
                                     onClick={() => handleClick('trajet')}
                                 >

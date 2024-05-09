@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import special from '../Assets/Icons/utilisateur-du-cercle.png'
-import special2 from '../Assets/Icons/partage-de-voiture(1).png'
+import special from '../Assets/Icons/covoiturage(3).png'
+import special2 from '../Assets/Icons/voiture(1).png'
+import special3 from '../Assets/Icons/volant.png'
 import './TrajetStyles.css'
 import CustomNum from '../Home/nombre';
 const RideOfferDetails = ({ onOptionChange }) => {
@@ -116,7 +117,7 @@ const RideOfferDetails = ({ onOptionChange }) => {
                 <div className="products-container">
                     {rideOffer && rideOffer.filter(filterRides).slice(0, 8).map((offer) => (
                         <div key={offer.offer_id} className='box'>
-                            <img alt=' decoratif' src={special2} />
+                            <img alt=' decoratif' src={special} />
                             <h3>
                                 <i className="fas fa-calendar-alt"></i>
                                 <span> {formatDate(offer.departure_datetime)}  </span>
@@ -137,7 +138,7 @@ const RideOfferDetails = ({ onOptionChange }) => {
                                 <span className="tooltiptext">Je suis un tooltip</span>
                             </h3>
                             <div className="usersss" >
-                                <img src={special} alt="" id="images" />
+                                <img src={special3} alt="" id="images" />
                                 <div>
                                     <h3> {offer.user_username}</h3>
                                     <h3> {offer.user_phone_number}</h3>
