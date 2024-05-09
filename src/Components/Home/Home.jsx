@@ -2,6 +2,7 @@ import './home.css'
 import logo from '../Assets/Icons/covoiturage.png';
 import "react-multi-carousel/lib/styles.css";
 import Cards from '../Trajet/cards';
+import CardsPersonne from '../Trajet/cardsPersonne';
 const Home = () => {
     return (
         <>
@@ -46,9 +47,8 @@ const Home = () => {
                 <div className="heading">
                     <h2>Personnes</h2>
                 </div>
-                <Cards/>
-            </section>
-            
+                <CardsPersonne/>
+            </section>    
         </>
     );
 }
