@@ -1,6 +1,6 @@
-import special from '../Assets/Icons/utilisateur-du-cercle.png'
-import special2 from '../Assets/Icons/partage-de-voiture(1).png'
-import special3 from '../Assets/Icons/partage-de-voiture.png'
+import special from '../Assets/Icons/covoiturage(3).png'
+import special2 from '../Assets/Icons/voiture(1).png'
+import special3 from '../Assets/Icons/volant.png'
 import './TrajetStyles.css'
 import axios from 'axios';
 import { useEffect } from 'react'
@@ -50,9 +50,9 @@ const Cards = () => {
     return (
         <>
             <div className="products-container">
-                {rideOffer && rideOffer.slice(0, 5).map((offer) => (
+                {rideOffer && rideOffer.slice(0,4).map((offer) => (
                     <div key={offer.offer_id} className='box'>
-                        <img alt=' decoratif' src={special2} />
+                        <img alt=' decoratif' src={special} />
                         <h3>
                             <i className="fas fa-calendar-alt"></i>
                             <span> {formatDate(offer.departure_datetime)}  </span>
@@ -72,7 +72,7 @@ const Cards = () => {
                             ))}
                         </h3>
                         <div className="usersss" >
-                            <img src={special} alt="" id="images" />
+                            <img src={special3} alt="" id="images" />
                             <div>
                                 <h3> {offer.user_username}</h3>
                                 <h3> {offer.user_phone_number}</h3>

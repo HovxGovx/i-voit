@@ -1,6 +1,6 @@
-import special from '../Assets/Icons/utilisateur-du-cercle.png'
-import special2 from '../Assets/Icons/partage-de-voiture(1).png'
-import special3 from '../Assets/Icons/partage-de-voiture.png'
+import special from '../Assets/Icons/voiture(1).png'
+import special2 from '../Assets/Icons/covoiturage(3).png'
+import special3 from '../Assets/Icons/9044442_flagging_taxi_icon.png'
 import './TrajetStyles.css'
 import axios from 'axios';
 import { useEffect } from 'react'
@@ -34,7 +34,7 @@ const CardsPersonne = () => {
                         
                     </h3>
                     <div className="usersss" >
-                        <img src={special} alt="" id="images" />
+                        <img src={special3} alt="" id="images" />
                         <div>
                             <h3> Username </h3>
                             <h3> 0348958354 </h3>

@@ -41,12 +41,14 @@ const Home = () => {
                 <div className="heading">
                     <h2>Les trajets disponibles</h2>
                 </div>
+                {/*  cards chauffeure */}
                 <Cards/>
             </section>
             <section className="products">
                 <div className="heading">
                     <h2>Personnes</h2>
                 </div>
+                {/* cards personne */}
                 <CardsPersonne/>
             </section>    
         </>
