@@ -13,7 +13,7 @@ section{
 .home{
     width: 100%;
     min-height: 100vh;
-    background: url(../Assets/Icons/vintage-car-852239.jpg);
+    background: url(../Assets/Icons/vintage-car-852239.png);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -192,6 +192,7 @@ section{
     height: 35px;
     border-radius: 50%;
     object-fit: cover;
+    background-color: #21d99b;
 }
 .customers-container  .box:hover{
     background: var(--secondary-color);
