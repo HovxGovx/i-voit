@@ -11,14 +11,15 @@ section{
     width: 100%;
 }
 .home{
+    margin-top: 100px;
     width: 100%;
-    min-height: 100vh;
-    background: url(../Assets/Icons/vintage-car-852239.png);
+    min-height: 55vh;
+    background: url(../Assets/Icons/vintage-car-852239.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
     display: grid;
-    grid-template-columns: repeat(auto-fit,minmax(17rem,auto));
+    grid-template-columns: repeat(auto-fit,minmax(10rem,auto));
     align-items: center;
     gap: 1.5rem;
 }
@@ -40,7 +41,7 @@ section{
 .home-text p{
     font-weight: 700;
     font-size: 1.38rem;
-    color: #7fffd4;
+    color: #1b1b1b;
     margin: 0.5rem 0 1.4rem;
 }
 

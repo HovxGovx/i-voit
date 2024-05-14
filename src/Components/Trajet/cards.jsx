@@ -50,7 +50,7 @@ const Cards = () => {
     return (
         <>
             <div className="products-container">
-                {rideOffer && rideOffer.slice(0,4).map((offer) => (
+                {rideOffer && rideOffer.slice(0, 4).map((offer) => (
                     <div key={offer.offer_id} className='box'>
                         <img alt=' decoratif' src={special} />
                         <h3>
@@ -66,11 +66,15 @@ const Cards = () => {
                             <i className="fas fa-flag-checkered"></i>
                             <span> {offer.destination} </span>
                         </h3>
-                        <h3>
-                            {[...Array(offer.available_seats)].map((_, index) => (
-                                <i className="fas fa-user-alt" key={index}></i>
-                            ))}
-                        </h3>
+                        <div className='tooltip-container'>
+                            <span className="tooltip">{offer.available_seats} libre</span>
+                            <span className='text'>
+                                {[...Array(offer.available_seats)].map((_, index) => (
+                                    <i className="fas fa-user-alt" key={index}></i>
+                                ))}
+                            </span>
+                            <span></span>
+                        </div>
                         <div className="usersss" >
                             <img src={special3} alt="" id="images" />
                             <div>

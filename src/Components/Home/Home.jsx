@@ -11,7 +11,6 @@ const Home = () => {
                     <h1>
                         Covoiturez, libérez les voies,  <br />  <span>i-Voit !</span>
                     </h1>
-                    <p> Votre plateforme de covoiturage simple, rapide et conviviale pour des trajets quotidiens ou des escapades. </p>
                     
                 </div>
                 <div className="home-img">
@@ -42,15 +41,17 @@ const Home = () => {
                     <h2>Les trajets disponibles</h2>
                 </div>
                 {/*  cards chauffeure */}
-                <Cards/>
+                <Cards />
             </section>
+            
             <section className="products">
                 <div className="heading">
                     <h2>Personnes</h2>
                 </div>
                 {/* cards personne */}
-                <CardsPersonne/>
-            </section>    
+                <CardsPersonne />
+            </section>
+
         </>
     );
 }

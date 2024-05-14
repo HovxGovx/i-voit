@@ -131,12 +131,15 @@ const RideOfferDetails = ({ onOptionChange }) => {
                                 <i className="fas fa-flag-checkered"></i>
                                 <span> {offer.destination} </span>
                             </h3>
-                            <h3>
-                                {[...Array(offer.available_seats)].map((_, index) => (
-                                    <i className="fas fa-user-alt tooltip" key={index} data-tip='place disponible'></i>
-                                ))}
-                                <span className="tooltiptext">Je suis un tooltip</span>
-                            </h3>
+                            <div className='tooltip-container'>
+                                <span className="tooltip">{offer.available_seats} libre</span>
+                                <span className='text'>
+                                    {[...Array(offer.available_seats)].map((_, index) => (
+                                        <i className="fas fa-user-alt" key={index}></i>
+                                    ))}
+                                </span>
+                                <span></span>
+                            </div>
                             <div className="usersss" >
                                 <img src={special3} alt="" id="images" />
                                 <div>
@@ -154,7 +157,6 @@ const RideOfferDetails = ({ onOptionChange }) => {
                 </div>
             </section>
             {/* 
-                    <p>Available Seats: {offer.available_seats}</p>
                     <p>Car Details: {offer.car_details}</p>
                     <p>Preferences: {offer.preferences}</p>
                     <p>Creation Date: {offer.creation_date}</p>
