@@ -22,6 +22,7 @@ section{
     grid-template-columns: repeat(auto-fit,minmax(10rem,auto));
     align-items: center;
     gap: 1.5rem;
+
 }
 .home h1{
     font-size: 3.4rem;
@@ -37,13 +38,22 @@ section{
     /* color: #1b1b1b; */
     text-transform: uppercase;
     letter-spacing: 1px;
+    background: linear-gradient(135deg,rgba(255,255,255,0.1),rgba(255,255,255,0));
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
 }
 .home-text p{
+    
     font-weight: 700;
     font-size: 1.38rem;
     color: #1b1b1b;
     margin: 0.5rem 0 1.4rem;
 }
+/* .home-text{
+    background: linear-gradient(135deg,rgba(255,255,255,0.1),rgba(255,255,255,0));
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+} */
 
 .btn{
     background: none;

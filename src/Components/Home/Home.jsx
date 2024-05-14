@@ -15,7 +15,6 @@ const Home = () => {
                 </div>
                 <div className="home-img">
                     <img a src={logo} alt="Logo i-voit" />
-                   
                 </div>
             </section>
 
@@ -44,6 +43,7 @@ const Home = () => {
                 <Cards />
             </section>
             
+
             <section className="products">
                 <div className="heading">
                     <h2>Personnes</h2>
