@@ -42,6 +42,11 @@ section{
     text-transform: uppercase;
     letter-spacing: 1px;
 }
+#nomm,#nomms{
+
+    font-size: 2.4rem;
+    color: var(--main-color);
+}
 .home-text p{
     
     font-weight: 700;
@@ -215,13 +220,12 @@ section{
     margin: 1em;
     color: #1b1b1b;
     display: flex;
-    width: 3rem;
-    height: 7rem;
-    border: 1px solid #1b1b1b ;
+    width: 7rem;
+    height: 3rem;
     border-radius: 3em;
     justify-content: space-between;
     align-items: center;
-    flex-direction: column;
+    flex-direction: row;
     transition: 0.3s;
 }
 /* CSS pour masquer les boutons de contrôle */

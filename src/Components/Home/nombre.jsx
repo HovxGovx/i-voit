@@ -13,7 +13,7 @@ const CustomNum = ({ value, onValueChange }) => {
   };
 
   const checkMaxMin = () => {
-    if (value === 10) {
+    if (value === 4) {
       return {
         paddingTop: '0.8rem',
         height: '5em',
@@ -48,7 +48,7 @@ const CustomNum = ({ value, onValueChange }) => {
         type="number"
         className="num-input"
         min={1}
-        max={10}
+        max={4}
         value={value}
         onChange={e => onValueChange(parseInt(e.target.value))}
         data-color="#21d99b"

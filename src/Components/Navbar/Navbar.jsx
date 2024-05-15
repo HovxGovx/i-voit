@@ -121,8 +121,8 @@ const Navbar = ({ onOptionChange, isLoggedIn, onLogout }) => {
                     </ul>
                 </div>
 
-                <div className="navbar">
-                    <div className="dropdown">
+                <div className="navbars">
+                    <div className="dropdowns">
                         <button
                             className={activeButton === 'connexion' ? "dropbtn active" : "dropbtn"}
 

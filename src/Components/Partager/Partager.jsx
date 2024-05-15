@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import './PartagerStyles.css'
 import axios from 'axios';
 const PartagerPage = () => {
     const [origin, setOrigin] = useState('');
@@ -111,8 +110,7 @@ const PartagerPage = () => {
     };
 
     return (
-        <section className='home'>
-            <h2>Ajouter un nouveau trajet</h2>
+        <section className=''>
             {!sessionId && <p style={{ color: 'red' }}>Veuillez vous connecter pour ajouter un trajet</p>}
             {sessionId && (
                 <form onSubmit={handleSubmit}>

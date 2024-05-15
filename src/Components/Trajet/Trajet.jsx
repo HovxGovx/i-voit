@@ -1,12 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import special from '../Assets/Icons/covoiturage(3).png'
-import special2 from '../Assets/Icons/voiture(1).png'
+// import special2 from '../Assets/Icons/voiture(1).png'
 import special3 from '../Assets/Icons/volant.png'
 import './TrajetStyles.css'
 import CustomNum from '../Home/nombre';
+import PartagerPage from '../Partager/Partager';
 const RideOfferDetails = ({ onOptionChange }) => {
-
+    const [showFive, setShowFive] = useState(true);
+    const handleNombreChange = () => {
+        setShowFive(!showFive);
+    };
     const [value, setValue1] = useState(1);
     const handleValueChange = (newValue) => {
         setValue1(newValue);
@@ -63,15 +67,24 @@ const RideOfferDetails = ({ onOptionChange }) => {
     };
     // Fonction de filtrage des trajets
     const filterRides = (offer) => {
-        const currentDate = new Date().toISOString().split('T')[0];
+        //const currentDate = new Date().toISOString().split('T')[0];
         return (
             offer.origin.toLowerCase().includes(originFilter.toLowerCase()) &&
             offer.destination.toLowerCase().includes(destinationFilter.toLowerCase()) &&
             offer.departure_datetime.includes(dateFilter) &&
             offer.heure.includes(heureFilter) &&
+            offer.available_seats >= value &&
             // offer.departure_datetime >= currentDate &&  Ne pas afficher les trajets passés
             offer.rideoffer_user_id !== userInfo.user_id // Ne pas afficher les trajets de l'utilisateur connecté
         );
+    };
+    // Fonction pour mélanger aléatoirement un tableau
+    const shuffleArray = (array) => {
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
+        return array;
     };
     function formatDate(dateString) {
         const date = new Date(dateString);
@@ -81,41 +94,64 @@ const RideOfferDetails = ({ onOptionChange }) => {
     return (
         <section className="container-trajet">
             <div className="filtrage">
-                <h1>Ride Offer Details</h1>
+                <h1>Filtrer les trajets</h1>
                 {/* Champs d'entrée pour les filtres */}
-                <input
-                    type="text"
-                    placeholder="Filter by origin"
-                    value={originFilter}
-                    onChange={(e) => setOriginFilter(e.target.value)}
-                />
-                <input
-                    type="text"
-                    placeholder="Filter by destination"
-                    value={destinationFilter}
-                    onChange={(e) => setDestinationFilter(e.target.value)}
-                />
-                <input
-                    type="text"
-                    placeholder="Filter by date"
-                    value={dateFilter}
-                    onChange={(e) => setDateFilter(e.target.value)}
-                />
-                <input
-                    type="text"
-                    placeholder="Filter by heure"
-                    value={heureFilter}
-                    onChange={(e) => setHeureFilter(e.target.value)}
-                />
+                <div>
+                    <label htmlFor="origin">Origine</label><br />
+                    <input
+                        class="search-bar"
+                        type="text"
+                        placeholder="Origin"
+                        value={originFilter}
+                        onChange={(e) => setOriginFilter(e.target.value)}
+                    />
+                </div>
+                <div>
+                    <label htmlFor="destination">Destination</label><br />
+                    <input
+                        class="search-bar"
+                        type="text"
+                        placeholder="Destination"
+                        value={destinationFilter}
+                        onChange={(e) => setDestinationFilter(e.target.value)}
+                    />
+                </div>
+
+                <div>
+                    <label htmlFor="date">Date</label><br />
+                    <input
+                        class="search-bar"
+                        type="date"
+                        placeholder="Date"
+                        value={dateFilter}
+                        onChange={(e) => setDateFilter(e.target.value)}
+                    />
+                </div>
+                <div>
+                    <label htmlFor="date">heure</label><br />
+                    <input
+                        class="search-bar"
+                        type="time"
+                        placeholder=""
+                        value={heureFilter}
+                        onChange={(e) => setHeureFilter(e.target.value)}
+                    />
+                </div>
+
+            
+            </div>
+            <div>
+            <label htmlFor="date">Nombre de place</label><br />
                 <CustomNum value={value} onValueChange={handleValueChange} />
             </div>
+            
 
             <section className='products' id='products'>
                 <div className="heading">
                     <h2>Trajets</h2>
                 </div>
                 <div className="products-container">
-                    {rideOffer && rideOffer.filter(filterRides).slice(0, 8).map((offer) => (
+                    {rideOffer && shuffleArray(rideOffer.filter(filterRides)).slice(0, showFive ? 5 : 20).map((offer) => (
                         <div key={offer.offer_id} className='box'>
                             <img alt=' decoratif' src={special} />
                             <h3>
@@ -147,20 +183,51 @@ const RideOfferDetails = ({ onOptionChange }) => {
                                     <h3> {offer.user_phone_number}</h3>
                                 </div>
                             </div>
-                            <div className="content">
-                                <span>{offer.prix} Ar</span>
-                                {userInfo && <button className="btn" onClick={() => handleAddBooking(offer.offer_id, userInfo.user_id)}>Reserver</button>}
-                            </div>
+
+                            {userInfo && <div className="content">
+                                <span >{offer.prix * value} Ar</span>
+                                <button className="btn" onClick={() => handleAddBooking(offer.offer_id, userInfo.user_id)}>Reserver</button>
+                            </div>}
                         </div>
 
                     ))}
                 </div>
+
             </section>
             {/* 
                     <p>Car Details: {offer.car_details}</p>
                     <p>Preferences: {offer.preferences}</p>
                     <p>Creation Date: {offer.creation_date}</p>
                     <p>Heure: ,{offer.rideoffer_user_id }  </p> */}
+            <button className="button" onClick={handleNombreChange}>
+                <span className="button__texts">{showFive ? "Voir plus" : "Voir moins"}</span>
+            </button>
+
+            {userInfo && <button type="button" className="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                <span className="button__text">Add Item</span>
+                <span className="button__icon"><svg xmlns="http://www.w3.org/2000/svg" width={24} viewBox="0 0 24 24" strokeWidth={2} strokeLinejoin="round" strokeLinecap="round" stroke="currentColor" height={24} fill="none" className="svg"><line y2={19} y1={5} x2={12} x1={12} /><line y2={12} y1={12} x2={19} x1={5} /></svg></span>
+            </button>}
+
+            <div>
+                {/* Modal */}
+                <div className="modal fade" id="exampleModal" tabIndex={-1} aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div className="modal-dialog">
+                        <div className="modal-content">
+                            <div className="modal-header">
+                                <h1 className="modal-title fs-5" id="exampleModalLabel">Patage de trajet</h1>
+                                <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" />
+                            </div>
+                            <div className="modal-body">
+                                <PartagerPage />
+                            </div>
+                            <div className="modal-footer">
+                                <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="button" className="btn btn-primary">Save changes</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
         </section>
     );
