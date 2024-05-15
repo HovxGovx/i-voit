@@ -6,13 +6,13 @@ import axios from 'axios';
 import { useEffect } from 'react'
 import { useState } from 'react'
 
-const Cards = ({onOptionChange}) => {
+const Cards = ({ onOptionChange }) => {
     const [userInfo, setUserInfo] = useState('');
     const [sessionInfo, setSessionInfo] = useState(null);
     const [rideOffer, setRideOffer] = useState(null);
     const handlClick = () => {
         onOptionChange('trajet');
-      };
+    };
     useEffect(() => {
         const fetchSessionInfo = async () => {
             try {
@@ -85,9 +85,10 @@ const Cards = ({onOptionChange}) => {
                                 <h3> {offer.user_phone_number}</h3>
                             </div>
                         </div>
+                        {/*
                         <div className="content">
                             <span>{offer.prix} Ar</span>
-                        </div>
+                        </div> */}
                     </div>
 
                 ))}

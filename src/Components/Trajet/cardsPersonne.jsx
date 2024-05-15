@@ -85,9 +85,9 @@ const CardsPersonne = ({onOptionChange}) => {
                                 <h3> {pers.user_phone_number} </h3>
                             </div>
                         </div>
-                        <div className="content">
+                        {/* <div className="content">
                             <span>{pers.prix * pers.seats}Ar</span>
-                        </div>
+                        </div> */}
                     </div>
                 ))}
 
