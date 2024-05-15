@@ -9,7 +9,7 @@ import PartagerPage from './Components/Partager/Partager';
 import Home from './Components/Home/Home';
 import Footer from './Components/Footer/Footer';
 const App = () => {
-    const [option, setOption] = useState('trajet');
+    const [option, setOption] = useState('home');
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const handleLogin = () => {
         setIsLoggedIn(true);
@@ -48,7 +48,7 @@ const App = () => {
 
     return (
         <div >
-            <Navbar onOptionChange={handleOptionChange} isLoggedIn={isLoggedIn} onLogout={handleLogout} />
+            <Navbar onOptionChange={handleOptionChange} isLoggedIn={isLoggedIn} onLogout={handleLogout} option={option}/>
             <div className='Page'>               
                 {pageToDisplay}
                 

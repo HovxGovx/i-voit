@@ -6,10 +6,13 @@ import axios from 'axios';
 import { useEffect } from 'react'
 import { useState } from 'react'
 
-const Cards = () => {
+const Cards = ({onOptionChange}) => {
     const [userInfo, setUserInfo] = useState('');
     const [sessionInfo, setSessionInfo] = useState(null);
     const [rideOffer, setRideOffer] = useState(null);
+    const handlClick = () => {
+        onOptionChange('trajet');
+      };
     useEffect(() => {
         const fetchSessionInfo = async () => {
             try {
@@ -51,7 +54,7 @@ const Cards = () => {
         <>
             <div className="products-container">
                 {rideOffer && rideOffer.slice(0, 4).map((offer) => (
-                    <div key={offer.offer_id} className='box'>
+                    <div key={offer.offer_id} className='box' onClick={handlClick}>
                         <img alt=' decoratif' src={special} />
                         <h3>
                             <i className="fas fa-calendar-alt"></i>

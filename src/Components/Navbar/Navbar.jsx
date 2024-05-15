@@ -4,14 +4,14 @@ import logo from '../Assets/Icons/covoiturage.png';
 import ajout from '../Assets/Icons/utilisateur-du-cercle.png';
 import axios from 'axios';
 
-const Navbar = ({ onOptionChange, isLoggedIn, onLogout }) => {
-    const [activeButton, setActiveButton] = useState('trajet');
+const Navbar = ({ onOptionChange,option, isLoggedIn, onLogout }) => {
+    const [activeButton, setActiveButton] = useState(option);
     const [sessionInfo, setSessionInfo] = useState(null);
-    const handleClick1 = (option) => {
+    const handleClick1 = (options) => {
         if (onOptionChange) {
-            onOptionChange(option);
+            onOptionChange(options);
         }
-        setActiveButton(option);
+        setActiveButton(options);
     };
     const handleClick = (option) => {
         if (onOptionChange) {
@@ -87,31 +87,28 @@ const Navbar = ({ onOptionChange, isLoggedIn, onLogout }) => {
                     <ul id='central'>
                         <li>
                             <button
-                                className={activeButton === 'home' ? "active" : ""}
-                                onClick={() => handleClick1('home')}
+                                className={option === 'home' ? 'active' : ''} onClick={() => handleClick1('home')}
                             >
                                 Home
                             </button>
                         </li>
                         <li>
                             <button
-                                className={activeButton === 'trajet' ? "active" : ""}
-                                onClick={() => handleClick1('trajet')}
+                                className={option === 'trajet' ? 'active' : ''} onClick={() => handleClick1('trajet')}
                             >
                                 Trajet
                             </button>
                         </li>
                         <li>
                             <button
-                                className={activeButton === 'partager' ? "active" : ""}
-                                onClick={() => handleClick1('partager')}
+                                className={option === 'partager' ? "active" : ""} onClick={() => handleClick1('partager')}
                             >
                                 Partager
                             </button>
                         </li>
                         <li>
                             <button
-                                className={activeButton === 'compte' ? "active" : ""}
+                                className={option === 'compte' ? "active" : ""}
                                 onClick={() => handleClick1('compte')}
                             >
                                 Compte
@@ -124,8 +121,7 @@ const Navbar = ({ onOptionChange, isLoggedIn, onLogout }) => {
                 <div className="navbars">
                     <div className="dropdowns">
                         <button
-                            className={activeButton === 'connexion' ? "dropbtn active" : "dropbtn"}
-
+                            className={option === 'connexion' ? "dropbtn active" : "dropbtn"}
                         >
                             <img
                                 src={ajout}
@@ -143,7 +139,6 @@ const Navbar = ({ onOptionChange, isLoggedIn, onLogout }) => {
                                 <button onClick={() => handleClickLogOut('connexion')}>
                                     Se déconnecter <i className="fa fa-caret-right test2" />
                                 </button>
-
                             ) : (
                                 <>
                                     <button onClick={() => handleClick('connexion')}   >
@@ -153,7 +148,6 @@ const Navbar = ({ onOptionChange, isLoggedIn, onLogout }) => {
                                         Inscription <i className="fa fa-caret-right test2" />
                                     </button>
                                 </>
-
                             )}
                             <div className="esthe">
                                 <button

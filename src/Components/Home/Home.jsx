@@ -3,7 +3,12 @@ import logo from '../Assets/Icons/covoiturage.png';
 import "react-multi-carousel/lib/styles.css";
 import Cards from '../Trajet/cards';
 import CardsPersonne from '../Trajet/cardsPersonne';
-const Home = () => {
+const Home = ({onOptionChange}) => {
+    const handleClick1 = (option) => {
+        if (onOptionChange) {
+            onOptionChange(option);
+        }
+    };
     return (
         <>
             <section className="home" id="home">
@@ -39,7 +44,7 @@ const Home = () => {
                     <h2> trajets </h2>
                 </div>
                 {/*  cards chauffeure */}
-                <Cards />
+                <Cards onOptionChange={handleClick1}/>
             </section>
             
 
@@ -48,7 +53,7 @@ const Home = () => {
                     <h2> demandes </h2>
                 </div>
                 {/* cards personne */}
-                <CardsPersonne />
+                <CardsPersonne onOptionChange={handleClick1}/>
             </section>
 
         </>

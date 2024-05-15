@@ -6,10 +6,13 @@ import axios from 'axios';
 import { useEffect } from 'react'
 import { useState } from 'react'
 
-const CardsPersonne = () => {
+const CardsPersonne = ({onOptionChange}) => {
     const [userInfo, setUserInfo] = useState('');
     const [sessionInfo, setSessionInfo] = useState(null);
     const [personne, setPersonne] = useState(null);
+    const handlClick = () => {
+        onOptionChange('partager');
+      };
     useEffect(() => {
         const fetchSessionInfo = async () => {
             try {
@@ -51,7 +54,7 @@ const CardsPersonne = () => {
         <>
             <div className="products-container">
                 {personne && personne.slice(0, 4).map((pers) => (
-                    <div className="box" key={pers.personneId}>
+                    <div className="box" key={pers.personneId} onClick={handlClick}>
                         <img src={special} alt="description" />
                         <h3>
                             <i className="fas fa-calendar-alt"></i>
