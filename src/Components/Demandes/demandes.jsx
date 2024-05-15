@@ -36,7 +36,6 @@ const Demandes = ({ onOptionChange }) => {
         );
     };
 
-
     const [userInfo, setUserInfo] = useState('');
     const [sessionInfo, setSessionInfo] = useState(null);
     const [personne, setPersonne] = useState(null);
@@ -87,14 +86,14 @@ const Demandes = ({ onOptionChange }) => {
         const options = { day: 'numeric', month: 'long' };
         return date.toLocaleDateString('fr-FR', options);
     }
-    function handleTakeAsk(truc,trucs){
-        console.log(truc,trucs);
+    function handleTakeAsk(truc, trucs) {
+        console.log(truc, trucs);
     }
     return (
         <>
             <section className="container-trajet">
                 <div className="filtrage">
-                    <h1>Filtrer les trajets</h1>
+                    <h1>Filtrer les demandes</h1>
                     {/* Champs d'entrée pour les filtres */}
 
                     <div>
@@ -145,45 +144,51 @@ const Demandes = ({ onOptionChange }) => {
                     <label htmlFor="date">Nombre de place</label><br />
                     <CustomNum value={value} onValueChange={handleValueChange} />
                 </div>
-                <section className="products-container">
-                    {personne && shuffleArray(personne.filter(filterPersonne)).slice(0, showFive ? 5 : 20).map((pers) => (
-                        <div className="box" key={pers.personneId} onClick={handlClick}>
-                            <img src={special} alt="description" />
-                            <h3>
-                                <i className="fas fa-calendar-alt"></i>
-                                <span> {formatDate(pers.departure_datetime)} </span>
-                                <span id='prices'>{pers.prix} Ar</span>
-                            </h3>
-                            <h3>
-                                <i className="fas fa-map-marker-alt"></i>
-                                <span> {pers.origin} à {pers.heure}</span>
-                            </h3>
-                            <h3>
-                                <i className="fas fa-flag-checkered"></i>
-                                <span> {pers.destination} </span>
-                            </h3>
-                            <div className='tooltip-container'>
-                                <span className="tooltip">{pers.seats} place</span>
-                                <span className='text'>
-                                    {[...Array(pers.seats)].map((_, index) => (
-                                        <i className="fas fa-user-alt" key={index}></i>
-                                    ))}
-                                </span>
-                                <span></span>
-                            </div>
-                            <div className="usersss" >
-                                <img src={special3} alt="images pourles clients" id="images" />
-                                <div>
-                                    <h3> {pers.user_username} </h3>
-                                    <h3> {pers.user_phone_number} </h3>
+                <section className="products" id="products">
+                    <div className="heading">
+                        <h2>Demandes</h2>
+                    </div>
+                    <div className="products-container">
+                        {personne && shuffleArray(personne.filter(filterPersonne)).slice(0, showFive ? 5 : 20).map((pers) => (
+                            <div className="box" key={pers.personneId} onClick={handlClick}>
+                                <img src={special} alt="description" />
+                                <h3>
+                                    <i className="fas fa-calendar-alt"></i>
+                                    <span> {formatDate(pers.departure_datetime)} </span>
+                                    <span id='prices'>{pers.prix} Ar</span>
+                                </h3>
+                                <h3>
+                                    <i className="fas fa-map-marker-alt"></i>
+                                    <span> {pers.origin} à {pers.heure}</span>
+                                </h3>
+                                <h3>
+                                    <i className="fas fa-flag-checkered"></i>
+                                    <span> {pers.destination} </span>
+                                </h3>
+                                <div className='tooltip-container'>
+                                    <span className="tooltip">{pers.seats} place</span>
+                                    <span className='text'>
+                                        {[...Array(pers.seats)].map((_, index) => (
+                                            <i className="fas fa-user-alt" key={index}></i>
+                                        ))}
+                                    </span>
+                                    <span></span>
                                 </div>
+                                <div className="usersss" >
+                                    <img src={special3} alt="images pourles clients" id="images" />
+                                    <div>
+                                        <h3> {pers.user_username} </h3>
+                                        <h3> {pers.user_phone_number} </h3>
+                                    </div>
+                                </div>
+                                {userInfo && <div className="content">
+                                    <span >{pers.prix * value} Ar</span>
+                                    <button className="btn" onClick={() => handleTakeAsk(pers.personneId, userInfo.user_id)}>Reserver</button>
+                                </div>}
                             </div>
-                            {userInfo && <div className="content">
-                                <span >{pers.prix * value} Ar</span>
-                                <button className="btn" onClick={() => handleTakeAsk(pers.personneId, userInfo.user_id)}>Reserver</button>
-                            </div>}
-                        </div>
-                    ))}
+                        ))}
+                    </div>
+
                 </section>
                 <button className="button" onClick={handleNombreChange}>
                     <span className="button__texts">{showFive ? "Voir plus" : "Voir moins"}</span>
