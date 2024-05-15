@@ -5,9 +5,10 @@ import Navbar from './Components/Navbar/Navbar';
 import InscriptionPage from './Components/Inscription/Inscription';
 import ComptePage from './Components/Compte/Compte';
 import TrajetPage from './Components/Trajet/Trajet';
-import PartagerPage from './Components/Partager/Partager';
+// import PartagerPage from './Components/Partager/Partager';
 import Home from './Components/Home/Home';
 import Footer from './Components/Footer/Footer';
+import Demandes from './Components/Demandes/demandes';
 const App = () => {
     const [option, setOption] = useState('home');
     const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -39,8 +40,8 @@ const App = () => {
         case 'trajet':
             pageToDisplay = <TrajetPage onOptionChange={handleOptionChange} isLoggedIn={isLoggedIn} onLogin={handleLogin}/>;
             break;
-        case 'partager':
-            pageToDisplay = <PartagerPage />;
+        case 'demande':
+            pageToDisplay = <Demandes onOptionChange={handleOptionChange} isLoggedIn={isLoggedIn} onLogin={handleLogin}/>;
             break;
         default:
             pageToDisplay = null;

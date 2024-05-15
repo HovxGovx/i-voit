@@ -89,7 +89,7 @@ const Navbar = ({ onOptionChange,option, isLoggedIn, onLogout }) => {
                             <button
                                 className={option === 'home' ? 'active' : ''} onClick={() => handleClick1('home')}
                             >
-                                Home
+                                Acceuille
                             </button>
                         </li>
                         <li>
@@ -101,9 +101,9 @@ const Navbar = ({ onOptionChange,option, isLoggedIn, onLogout }) => {
                         </li>
                         <li>
                             <button
-                                className={option === 'partager' ? "active" : ""} onClick={() => handleClick1('partager')}
+                                className={option === 'demande' ? "active" : ""} onClick={() => handleClick1('demande')}
                             >
-                                Partager
+                                Demande
                             </button>
                         </li>
                         <li>

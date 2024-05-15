@@ -16,7 +16,7 @@ const Home = ({ onOptionChange }) => {
     };
     const handleClick2 = () => {
         if (onOptionChange) {
-            onOptionChange('partager');
+            onOptionChange('demande');
         }
     };
     return (

@@ -11,7 +11,7 @@ const CardsPersonne = ({onOptionChange}) => {
     const [sessionInfo, setSessionInfo] = useState(null);
     const [personne, setPersonne] = useState(null);
     const handlClick = () => {
-        onOptionChange('partager');
+        onOptionChange('demande');
       };
     useEffect(() => {
         const fetchSessionInfo = async () => {

@@ -96,6 +96,7 @@ const RideOfferDetails = ({ onOptionChange }) => {
             <div className="filtrage">
                 <h1>Filtrer les trajets</h1>
                 {/* Champs d'entrée pour les filtres */}
+                
                 <div>
                     <label htmlFor="origin">Origine</label><br />
                     <input
@@ -106,6 +107,7 @@ const RideOfferDetails = ({ onOptionChange }) => {
                         onChange={(e) => setOriginFilter(e.target.value)}
                     />
                 </div>
+
                 <div>
                     <label htmlFor="destination">Destination</label><br />
                     <input
@@ -127,6 +129,7 @@ const RideOfferDetails = ({ onOptionChange }) => {
                         onChange={(e) => setDateFilter(e.target.value)}
                     />
                 </div>
+
                 <div>
                     <label htmlFor="date">heure</label><br />
                     <input
@@ -137,8 +140,6 @@ const RideOfferDetails = ({ onOptionChange }) => {
                         onChange={(e) => setHeureFilter(e.target.value)}
                     />
                 </div>
-
-            
             </div>
             <div>
             <label htmlFor="date">Nombre de place</label><br />
