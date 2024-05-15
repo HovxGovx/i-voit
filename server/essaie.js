@@ -277,6 +277,41 @@ app.get('/ride-offers', async (req, res) => {
         return res.status(500).json({ message: 'Error fetching ride offers' });
     }
 });
+// ! Endpoint pour récupérer les offres de trajets avec les informations sur l'utilisateur
+app.get('/personne', async (req, res) => {
+    try {
+        // Sélectionner toutes les offres de trajets avec les informations sur l'utilisateur
+        const personneQuery = `
+        SELECT 
+            personne.personneId, 
+            personne.origin,
+            personne.user_id AS personne_user_id,
+            personne.destination, 
+            personne.departure_datetime, 
+            personne.seats, 
+            personne.creationDate,
+            personne.heure,
+            personne.prix, 
+            usercocovoiturage.username AS user_username,
+            usercocovoiturage.phone_number AS user_phone_number
+        FROM personne
+        INNER JOIN usercocovoiturage ON personne.user_id = usercocovoiturage.user_id
+    
+        `;
+
+        db.query(personneQuery, (error, results) => {
+            if (error) {
+                console.error('Error fetching ride offers:', error);
+                return res.status(500).json({ message: 'Error fetching ride offers' });
+            }
+            // Retourner les offres de trajets avec les informations sur l'utilisateur
+            return res.status(200).json({ personne: results });
+        });
+    } catch (error) {
+        console.error('Error fetching ride offers:', error);
+        return res.status(500).json({ message: 'Error fetching ride offers' });
+    }
+});
 
 // ! Endpoint pour ajouter un ride offer parmi les bookings
 app.post('/add-booking', async (req, res) => {
