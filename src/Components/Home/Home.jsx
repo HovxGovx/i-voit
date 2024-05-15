@@ -30,7 +30,7 @@ const Home = () => {
                     <p><span id='nomm'>I-voit</span>, un plateforme de covoiturage qui facilite la mise en relation entre conducteurs et passagers en leur permettant de publier et de rechercher des trajets correspondant à leurs besoins et à leurs préférences.
                         Ces plateformes offrent souvent des fonctionnalités telles que la réservation en ligne,
                         le partage des frais de manière équitable et la vérification des profils des utilisateurs pour garantir la sécurité et la confiance.</p>
-                    <button className="btn">Learn more</button>
+                    
                 </div>
             </section>
 

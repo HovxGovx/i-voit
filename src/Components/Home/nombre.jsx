@@ -43,7 +43,7 @@ const CustomNum = ({ value, onValueChange }) => {
 
   return (
     <div className="custom-num" style={{ paddingTop, height, paddingBottom }}>
-      <i className="fas fa-plus-circle" style={{ display: arrUpDisplay }} onClick={handleIncrement}></i>
+      <i  className="fas fa-minus-circle" style={{ display: arrDownDisplay }} onClick={handleDecrement} ></i>
       <input
         type="number"
         className="num-input"
@@ -52,8 +52,8 @@ const CustomNum = ({ value, onValueChange }) => {
         value={value}
         onChange={e => onValueChange(parseInt(e.target.value))}
         data-color="#21d99b"
-      />
-      <i  className="fas fa-minus-circle" style={{ display: arrDownDisplay }} onClick={handleDecrement} ></i>
+      /> 
+      <i className="fas fa-plus-circle" style={{ display: arrUpDisplay }} onClick={handleIncrement}></i>
     </div>
   );
 };
