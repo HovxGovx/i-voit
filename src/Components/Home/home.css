@@ -30,6 +30,9 @@ section{
     color: #1b1b1b;
     text-transform: uppercase;
     letter-spacing: 1px;
+    background: linear-gradient(135deg,rgba(255,255,255,0.1),rgba(255,255,255,0));
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
 }
 
 .home h1 span{
@@ -38,9 +41,6 @@ section{
     /* color: #1b1b1b; */
     text-transform: uppercase;
     letter-spacing: 1px;
-    background: linear-gradient(135deg,rgba(255,255,255,0.1),rgba(255,255,255,0));
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
 }
 .home-text p{
     

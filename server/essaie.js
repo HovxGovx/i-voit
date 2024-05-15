@@ -220,6 +220,35 @@ app.post('/add-ride', async (req, res) => {
         return res.status(500).json({ message: 'Error adding ride' });
     }
 });
+// ! Endpoint pour l'ajout d'un personne
+// app.post('/add-ride', async (req, res) => {
+//     try {
+//         const { origin, destination, departureDate, available_seats, car_details, preferences, departureTime, prix} = req.body;
+//         const userId = req.headers.session_id;
+
+//         // Vérifier si l'utilisateur est connecté
+//         if (!userId) {
+//             return res.status(401).json({ message: 'Unauthorized - Please login to add a ride' });
+//         }
+//         // Insérer le nouveau trajet dans la base de données
+//         const insertRideQuery = `
+//                 INSERT INTO rideoffer (user_id, origin, destination, departure_datetime, available_seats, car_details, preferences,heure, creation_date,prix)
+//                 VALUES (?, ?, ?, ?, ?, ?, ?,?, CURRENT_TIMESTAMP,?)
+//             `;
+//         db.query(insertRideQuery, [userId, origin, destination, departureDate, available_seats, car_details, preferences, departureTime,prix], async (insertError, result) => {
+//             if (insertError) {
+//                 console.error('Error adding ride:', insertError);
+//                 return res.status(500).json({ message: 'Error adding ride' });
+//             }
+
+//             return res.status(201).json({ message: 'Ride added successfully', ride_id: result.insertId });
+//         });
+
+//     } catch (error) {
+//         console.error('Error adding ride:', error);
+//         return res.status(500).json({ message: 'Error adding ride' });
+//     }
+// });
 // ! Endpoint pour récupérer toutes les origines
 app.get('/origins', async (req, res) => {
     try {
@@ -301,7 +330,7 @@ app.get('/personne', async (req, res) => {
 
         db.query(personneQuery, (error, results) => {
             if (error) {
-                console.error('Error fetching ride offers:', error);
+                console.error('Error fetching Personnes:', error);
                 return res.status(500).json({ message: 'Error fetching ride offers' });
             }
             // Retourner les offres de trajets avec les informations sur l'utilisateur
