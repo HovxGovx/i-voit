@@ -277,7 +277,7 @@ app.get('/ride-offers', async (req, res) => {
         return res.status(500).json({ message: 'Error fetching ride offers' });
     }
 });
-// ! Endpoint pour récupérer les offres de trajets avec les informations sur l'utilisateur
+// ! Endpoint pour récupérer les personnes avec les informations sur l'utilisateur
 app.get('/personne', async (req, res) => {
     try {
         // Sélectionner toutes les offres de trajets avec les informations sur l'utilisateur
