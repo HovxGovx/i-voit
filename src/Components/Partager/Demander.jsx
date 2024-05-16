@@ -147,7 +147,7 @@ const Demander = () => {
                     <label>Préférences:</label>
                     <textarea value={preferences} onChange={(e) => setPreferences(e.target.value)} />
 
-                    <button type="submit">Ajouter trajet</button>
+                    <button type="submit">Demander</button>
                 </form>
             )}
     </> );

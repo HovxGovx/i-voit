@@ -4,7 +4,7 @@ import special2 from '../Assets/Icons/covoiturage(3).png'
 import special3 from '../Assets/Icons/9044442_flagging_taxi_icon.png'
 import axios from 'axios';
 import CustomNum from "../Home/nombre";
-import PartagerPage from "../Partager/Partager";
+import Demander from "../Partager/Demander";
 const Demandes = ({ onOptionChange }) => {
 
     const [showFive, setShowFive] = useState(true);
@@ -140,10 +140,12 @@ const Demandes = ({ onOptionChange }) => {
                         />
                     </div>
                 </div>
+
                 <div>
                     <label htmlFor="date">Nombre de place</label><br />
                     <CustomNum value={value} onValueChange={handleValueChange} />
                 </div>
+
                 <section className="products" id="products">
                     <div className="heading">
                         <h2>Demandes</h2>
@@ -190,9 +192,11 @@ const Demandes = ({ onOptionChange }) => {
                     </div>
 
                 </section>
+
                 <button className="button" onClick={handleNombreChange}>
                     <span className="button__texts">{showFive ? "Voir plus" : "Voir moins"}</span>
                 </button>
+            
                 {userInfo && <button type="button" className="button" data-bs-toggle="modal" data-bs-target="#personModal">
                     <span className="button__text">Add Item</span>
                     <span className="button__icon"><svg xmlns="http://www.w3.org/2000/svg" width={24} viewBox="0 0 24 24" strokeWidth={2} strokeLinejoin="round" strokeLinecap="round" stroke="currentColor" height={24} fill="none" className="svg"><line y2={19} y1={5} x2={12} x1={12} /><line y2={12} y1={12} x2={19} x1={5} /></svg></span>
@@ -206,7 +210,7 @@ const Demandes = ({ onOptionChange }) => {
                                     <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" />
                                 </div>
                                 <div className="modal-body">
-                                    <PartagerPage />
+                                    <Demander />
                                 </div>
                                 <div className="modal-footer">
                                     <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
