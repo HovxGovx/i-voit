@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import special from '../Assets/Icons/voiture(1).png'
-import special2 from '../Assets/Icons/covoiturage(3).png'
+// import special2 from '../Assets/Icons/covoiturage(3).png'
 import special3 from '../Assets/Icons/9044442_flagging_taxi_icon.png'
 import axios from 'axios';
 import CustomNum from "../Home/nombre";

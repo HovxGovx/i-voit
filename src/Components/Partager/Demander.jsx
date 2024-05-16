@@ -8,8 +8,6 @@ const Demander = () => {
     const [departureTime, setDepartureTime] = useState('');
     const [availableSeats, setAvailableSeats] = useState('');
     const [prix, setPrix] = useState(2000);
-    const [carDetails, setCarDetails] = useState('Aucun');
-    const [preferences, setPreferences] = useState('Aucun');
     const [sessionId, setSessionId] = useState('');
     const [origins, setOrigins] = useState([]);
     const [filteredOrigins, setFilteredOrigins] = useState([]);
@@ -79,14 +77,12 @@ const Demander = () => {
         e.preventDefault();
 
         try {
-            const response = await axios.post('http://localhost:8081/add-ride', {
+            const response = await axios.post('http://localhost:8081/add-personne', {
                 origin,
                 destination,
                 departureDate,
                 departureTime,
                 available_seats: availableSeats,
-                car_details: carDetails,
-                preferences,
                 prix
             }, {
                 headers: {
@@ -102,8 +98,6 @@ const Demander = () => {
             setDepartureDate('');
             setDepartureTime('');
             setAvailableSeats('');
-            setCarDetails('');
-            setPreferences('');
             setPrix('');
         } catch (error) {
             console.error('Error adding ride:', error);
@@ -135,18 +129,13 @@ const Demander = () => {
                     <label>Heure de départ:</label>
                     <input type="time" value={departureTime} onChange={(e) => setDepartureTime(e.target.value)} required />
 
-                    <label>Places disponibles:</label>
-                    <input type="number" value={availableSeats} onChange={(e) => setAvailableSeats(e.target.value)} required />
-
-                    <label>Détails du véhicule:</label>
-                    <input type="text" value={carDetails} onChange={(e) => setCarDetails(e.target.value)} />
+                    <label>Nombre de personne:</label>
+                    <input type="number" min={1} max={4} value={availableSeats} onChange={(e) => setAvailableSeats(e.target.value)} required />
 
                     <label>Prix du place:</label>
                     <input type="number" value={prix} min='2000' onChange={(e) => setPrix(e.target.value)} />
 
-                    <label>Préférences:</label>
-                    <textarea value={preferences} onChange={(e) => setPreferences(e.target.value)} />
-
+      
                     <button type="submit">Demander</button>
                 </form>
             )}
