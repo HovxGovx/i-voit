@@ -1,6 +1,7 @@
-import { useEffect, useState } from 'react';
-import axios from 'axios';
-const PartagerPage = () => {
+import axios from "axios";
+import { useEffect, useState } from "react";
+
+const Demander = () => {
     const [origin, setOrigin] = useState('');
     const [destination, setDestination] = useState('');
     const [departureDate, setDepartureDate] = useState('');
@@ -109,11 +110,9 @@ const PartagerPage = () => {
         }
     };
 
-    return (
-        <>
-            {/* {!sessionId && <p style={{ color: 'red' }}>Veuillez vous connecter pour ajouter un trajet</p>}
-             */}
-            {sessionId && (
+    return ( 
+    <>
+         {sessionId && (
                 <form onSubmit={handleSubmit}>
                     <p>{sessionId}</p>
                     <label>Origine:</label>
@@ -151,9 +150,7 @@ const PartagerPage = () => {
                     <button type="submit">Ajouter trajet</button>
                 </form>
             )}
-        </>
-
-    );
-};
-
-export default PartagerPage;
+    </> );
+}
+ 
+export default Demander;
