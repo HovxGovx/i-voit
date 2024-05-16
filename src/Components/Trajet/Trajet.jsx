@@ -96,11 +96,10 @@ const RideOfferDetails = ({ onOptionChange }) => {
             <div className="filtrage">
                 <h1>Filtrer les trajets</h1>
                 {/* Champs d'entrée pour les filtres */}
-                
+
                 <div>
-                    <label htmlFor="origin">Origine</label><br />
                     <input
-                        class="search-bar"
+                        className="search-bar"
                         type="text"
                         placeholder="Origin"
                         value={originFilter}
@@ -109,9 +108,8 @@ const RideOfferDetails = ({ onOptionChange }) => {
                 </div>
 
                 <div>
-                    <label htmlFor="destination">Destination</label><br />
                     <input
-                        class="search-bar"
+                        className="search-bar"
                         type="text"
                         placeholder="Destination"
                         value={destinationFilter}
@@ -120,9 +118,8 @@ const RideOfferDetails = ({ onOptionChange }) => {
                 </div>
 
                 <div>
-                    <label htmlFor="date">Date</label><br />
                     <input
-                        class="search-bar"
+                        className="search-bar"
                         type="date"
                         placeholder="Date"
                         value={dateFilter}
@@ -131,9 +128,8 @@ const RideOfferDetails = ({ onOptionChange }) => {
                 </div>
 
                 <div>
-                    <label htmlFor="date">heure</label><br />
                     <input
-                        class="search-bar"
+                        className="search-bar"
                         type="time"
                         placeholder=""
                         value={heureFilter}
@@ -142,10 +138,10 @@ const RideOfferDetails = ({ onOptionChange }) => {
                 </div>
             </div>
             <div>
-            <label htmlFor="date">Nombre de place</label><br />
+                <label htmlFor="date">Nombre de place</label><br />
                 <CustomNum value={value} onValueChange={handleValueChange} />
             </div>
-            
+
 
             <section className='products' id='products'>
                 <div className="heading">
@@ -195,17 +191,15 @@ const RideOfferDetails = ({ onOptionChange }) => {
                 </div>
 
             </section>
-            {/* 
-                    <p>Car Details: {offer.car_details}</p>
-                    <p>Preferences: {offer.preferences}</p>
-                    <p>Creation Date: {offer.creation_date}</p>
-                    <p>Heure: ,{offer.rideoffer_user_id }  </p> */}
-            <button className="button" onClick={handleNombreChange}>
-                <span className="button__texts">{showFive ? "Voir plus" : "Voir moins"}</span>
-            </button>
+
+            <label className="containere" >
+                <input defaultChecked="checked" type="checkbox" onClick={handleNombreChange}/>
+                <svg viewBox="0 0 512 512" height="1em" xmlns="http://www.w3.org/2000/svg" className="chevron-down"><path d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z" /></svg>
+            </label>
+
 
             {userInfo && <button type="button" className="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                <span className="button__text">Add Item</span>
+                <span className="button__text">Nouveau trajet</span>
                 <span className="button__icon"><svg xmlns="http://www.w3.org/2000/svg" width={24} viewBox="0 0 24 24" strokeWidth={2} strokeLinejoin="round" strokeLinecap="round" stroke="currentColor" height={24} fill="none" className="svg"><line y2={19} y1={5} x2={12} x1={12} /><line y2={12} y1={12} x2={19} x1={5} /></svg></span>
             </button>}
 
@@ -220,10 +214,6 @@ const RideOfferDetails = ({ onOptionChange }) => {
                             </div>
                             <div className="modal-body">
                                 <PartagerPage />
-                            </div>
-                            <div className="modal-footer">
-                                <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button type="button" className="btn btn-primary">Save changes</button>
                             </div>
                         </div>
                     </div>

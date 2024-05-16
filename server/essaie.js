@@ -327,7 +327,6 @@ app.get('/personne', async (req, res) => {
         INNER JOIN usercocovoiturage ON personne.user_id = usercocovoiturage.user_id
     
         `;
-
         db.query(personneQuery, (error, results) => {
             if (error) {
                 console.error('Error fetching Personnes:', error);

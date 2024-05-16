@@ -139,3 +139,83 @@
     rotate: 0;
   }
 }
+
+#test2 .container .containers input,
+#test .container-fluid  .containers input,
+#test2 .container .containers select,
+#test .container-fluid  .containers select{
+  float: right;
+}
+#test2 .container{
+  display: flex;
+  align-self: center;
+  justify-content: space-between;
+  margin-bottom: 5%;
+}
+#test2 .container label,
+#test2 .container-fluid label{
+  margin-top: 2px;
+}
+
+#test .container-fluid{
+  display: flex;
+  align-self: center;
+  justify-content: space-between;
+  margin-bottom: 5%;
+}
+/*------ Settings ------*/
+.containere {
+  --color: #a5a5b0;
+  --size: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  cursor: pointer;
+  font-size: var(--size);
+  user-select: none;
+  fill: var(--color);
+}
+
+.containere .chevron-down {
+  position: absolute;
+  animation: keyframes-return .5s;
+}
+
+/* ------ On check event ------ */
+.containere input:checked ~ .chevron-down {
+  animation: keyframes-rotate .5s;
+  transform: rotate(180deg);
+}
+
+/* ------ Hide the default checkbox ------ */
+.containere input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* ------ Animation ------ */
+@keyframes keyframes-rotate {
+  0% {
+    transform: rotate(0deg);
+    opacity: 0;
+  }
+
+  100% {
+    transform: rotate(-180deg);
+  }
+}
+
+@keyframes keyframes-return {
+  0% {
+    transform: rotate(-180deg);
+    opacity: 0;
+  }
+
+  100% {
+    transform: rotate(0deg);
+  }
+}

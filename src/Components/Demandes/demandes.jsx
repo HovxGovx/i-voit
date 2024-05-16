@@ -193,10 +193,11 @@ const Demandes = ({ onOptionChange }) => {
 
                 </section>
 
-                <button className="button" onClick={handleNombreChange}>
-                    <span className="button__texts">{showFive ? "Voir plus" : "Voir moins"}</span>
-                </button>
-            
+                <label className="containere" >
+                    <input defaultChecked="checked" type="checkbox" onClick={handleNombreChange} />
+                    <svg viewBox="0 0 512 512" height="1em" xmlns="http://www.w3.org/2000/svg" className="chevron-down"><path d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z" /></svg>
+                </label>
+
                 {userInfo && <button type="button" className="button" data-bs-toggle="modal" data-bs-target="#personModal">
                     <span className="button__text">Add Item</span>
                     <span className="button__icon"><svg xmlns="http://www.w3.org/2000/svg" width={24} viewBox="0 0 24 24" strokeWidth={2} strokeLinejoin="round" strokeLinecap="round" stroke="currentColor" height={24} fill="none" className="svg"><line y2={19} y1={5} x2={12} x1={12} /><line y2={12} y1={12} x2={19} x1={5} /></svg></span>
@@ -211,10 +212,6 @@ const Demandes = ({ onOptionChange }) => {
                                 </div>
                                 <div className="modal-body">
                                     <Demander />
-                                </div>
-                                <div className="modal-footer">
-                                    <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                    <button type="button" className="btn btn-primary">Save changes</button>
                                 </div>
                             </div>
                         </div>

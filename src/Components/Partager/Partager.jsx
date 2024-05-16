@@ -114,39 +114,53 @@ const PartagerPage = () => {
             {/* {!sessionId && <p style={{ color: 'red' }}>Veuillez vous connecter pour ajouter un trajet</p>}
              */}
             {sessionId && (
-                <form onSubmit={handleSubmit}>
-                    <p>{sessionId}</p>
-                    <label>Origine:</label>
-                    <input type="text" id='filterOrigins' value={origin} onChange={handleOriginChange} />
-                    <select value={origin} onChange={handleOriginChange}>
-                        {filteredOrigins.map((origin, index) => (
-                            <option key={index} value={origin}>{origin}</option>
-                        ))}
-                    </select>
-                    <label>Destination:</label>
-                    <input type="text" id='filterDestinations' value={destination} onChange={handleDestinationChange} />
-                    <select value={destination} onChange={handleDestinationChange}>
-                        {filteredDestinations.map((destination, index) => (
-                            <option key={index} value={destination}>{destination}</option>
-                        ))}
-                    </select>
-                    <label>Date de départ:</label>
-                    <input type="date" value={departureDate} min={minDepartureDatetime} onChange={(e) => setDepartureDate(e.target.value)} required />
-
-                    <label>Heure de départ:</label>
-                    <input type="time" value={departureTime} onChange={(e) => setDepartureTime(e.target.value)} required />
-
-                    <label>Places disponibles:</label>
-                    <input type="number" value={availableSeats} onChange={(e) => setAvailableSeats(e.target.value)} required />
-
-                    <label>Détails du véhicule:</label>
-                    <input type="text" value={carDetails} onChange={(e) => setCarDetails(e.target.value)} />
-
-                    <label>Prix du place:</label>
-                    <input type="number" value={prix} min='2000' onChange={(e) => setPrix(e.target.value)} />
-
-                    <label>Préférences:</label>
-                    <textarea value={preferences} onChange={(e) => setPreferences(e.target.value)} />
+                <form onSubmit={handleSubmit} id='test'>
+                    <div className="container-fluid">
+                        <label>Origine</label>
+                        <div className="containers">
+                            <input className="search-bar" type="text" id='filterOrigins' value={origin} onChange={handleOriginChange} />
+                            <select className="search-bar" value={origin} onChange={handleOriginChange}>
+                                {filteredOrigins.map((origin, index) => (
+                                    <option key={index} value={origin}>{origin}</option>
+                                ))}
+                            </select>
+                        </div>
+                    </div>
+                    <div className="container-fluid">
+                        <label>Destination</label>
+                        <div className="containers">
+                            <input className="search-bar" type="text" id='filterDestinations' value={destination} onChange={handleDestinationChange} />
+                            <select className="search-bar" value={destination} onChange={handleDestinationChange}>
+                                {filteredDestinations.map((destination, index) => (
+                                    <option key={index} value={destination}>{destination}</option>
+                                ))}
+                            </select>
+                        </div>
+                    </div>
+                    <div className="container-fluid">
+                        <label>Date de départ</label>
+                        <input className="search-bar" type="date" value={departureDate} min={minDepartureDatetime} onChange={(e) => setDepartureDate(e.target.value)} required />
+                    </div>
+                    <div className="container-fluid">
+                        <label>Heure de départ</label>
+                        <input className="search-bar" type="time" value={departureTime} onChange={(e) => setDepartureTime(e.target.value)} required />
+                    </div>
+                    <div className="container-fluid">
+                        <label>Places disponibles</label>
+                        <input className="search-bar" type="number" value={availableSeats} onChange={(e) => setAvailableSeats(e.target.value)} required />
+                    </div>
+                    <div className="container-fluid">
+                        <label>Détails du véhicule</label>
+                        <input className="search-bar" type="text" value={carDetails} onChange={(e) => setCarDetails(e.target.value)} />
+                    </div>
+                    <div className="container-fluid">
+                        <label>Prix du place</label>
+                        <input className="search-bar" type="number" value={prix} min='2000' onChange={(e) => setPrix(e.target.value)} />
+                    </div>
+                    <div className="container-fluid">
+                        <label>Préférences</label>
+                        <textarea className="search-bar" value={preferences} onChange={(e) => setPreferences(e.target.value)} />
+                    </div>
 
                     <button type="submit">Ajouter trajet</button>
                 </form>

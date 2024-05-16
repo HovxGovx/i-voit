@@ -104,42 +104,60 @@ const Demander = () => {
         }
     };
 
-    return ( 
-    <>
-         {sessionId && (
-                <form onSubmit={handleSubmit}>
-                    <p>{sessionId}</p>
-                    <label>Origine:</label>
-                    <input type="text" id='filterOrigins' value={origin} onChange={handleOriginChange} />
-                    <select value={origin} onChange={handleOriginChange}>
-                        {filteredOrigins.map((origin, index) => (
-                            <option key={index} value={origin}>{origin}</option>
-                        ))}
-                    </select>
-                    <label>Destination:</label>
-                    <input type="text" id='filterDestinations' value={destination} onChange={handleDestinationChange} />
-                    <select value={destination} onChange={handleDestinationChange}>
-                        {filteredDestinations.map((destination, index) => (
-                            <option key={index} value={destination}>{destination}</option>
-                        ))}
-                    </select>
-                    <label>Date de départ:</label>
-                    <input type="date" value={departureDate} min={minDepartureDatetime} onChange={(e) => setDepartureDate(e.target.value)} required />
+    return (
+        <>
+            {sessionId && (
+                <form onSubmit={handleSubmit} id="test2">
+                    <div className="container">
+                        <label>Origine</label>
+                        <div className="containers">
+                            <input className="search-bar" type="text" id='filterOrigins' value={origin} onChange={handleOriginChange} />
+                            <select className="search-bar" value={origin} onChange={handleOriginChange}>
+                                {filteredOrigins.map((origin, index) => (
+                                    <option key={index} value={origin}>{origin}</option>
+                                ))}
+                            </select>
+                        </div>
+                    </div>
 
-                    <label>Heure de départ:</label>
-                    <input type="time" value={departureTime} onChange={(e) => setDepartureTime(e.target.value)} required />
+                    <div className="container">
+                        <label>Destination</label>
+                        <div className="containers">
+                            <input className="search-bar" type="text" id='filterDestinations' value={destination} onChange={handleDestinationChange} />
+                            <select className="search-bar" value={destination} onChange={handleDestinationChange}>
+                                {filteredDestinations.map((destination, index) => (
+                                    <option key={index} value={destination}>{destination}</option>
+                                ))}
+                            </select>
+                        </div>
 
-                    <label>Nombre de personne:</label>
-                    <input type="number" min={1} max={4} value={availableSeats} onChange={(e) => setAvailableSeats(e.target.value)} required />
+                    </div>
 
-                    <label>Prix du place:</label>
-                    <input type="number" value={prix} min='2000' onChange={(e) => setPrix(e.target.value)} />
+                    <div className="container">
+                        <label>Date de départ</label>
+                        <input className="search-bar" type="date" value={departureDate} min={minDepartureDatetime} onChange={(e) => setDepartureDate(e.target.value)} required />
+                    </div>
 
-      
+                    <div className="container">
+                        <label>Heure de départ</label>
+                        <input className="search-bar" type="time" value={departureTime} onChange={(e) => setDepartureTime(e.target.value)} required />
+                    </div>
+
+                    <div className="container">
+                        <label>Nombre de personne</label>
+                        <input className="search-bar" type="number" min={1} max={4} value={availableSeats} onChange={(e) => setAvailableSeats(e.target.value)} required />
+                    </div>
+
+                    <div className="container">
+                        <label>Prix du place</label>
+                        <input className="search-bar" type="number" value={prix} min='2000' onChange={(e) => setPrix(e.target.value)} />
+                    </div>
+
+
                     <button type="submit">Demander</button>
                 </form>
             )}
-    </> );
+        </>);
 }
- 
+
 export default Demander;
