@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: May 15, 2024 at 08:07 AM
+-- Generation Time: May 17, 2024 at 09:28 PM
 -- Server version: 8.0.36-0ubuntu0.23.10.1
 -- PHP Version: 8.2.10-2ubuntu2.1
 
@@ -79,13 +79,26 @@ INSERT INTO `city_locations` (`location_id`, `location_name`) VALUES
 CREATE TABLE `personne` (
   `personneId` int NOT NULL,
   `origin` varchar(255) NOT NULL,
-  `destinaion` varchar(255) NOT NULL,
+  `destination` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `seats` int NOT NULL,
   `heure` time NOT NULL,
   `prix` int NOT NULL,
   `creationDate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `user_id` int NOT NULL
+  `user_id` int NOT NULL,
+  `departure_datetime` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `personne`
+--
+
+INSERT INTO `personne` (`personneId`, `origin`, `destination`, `seats`, `heure`, `prix`, `creationDate`, `user_id`, `departure_datetime`) VALUES
+(11, 'Paris', 'Lyon', 3, '09:00:00', 5000, '2024-05-15 12:01:21', 9, '2024-06-25'),
+(12, 'Lyon', 'Marseille', 2, '11:30:00', 4500, '2024-05-15 12:01:21', 12, '2024-06-05'),
+(13, 'Marseille', 'Nice', 4, '13:45:00', 3500, '2024-05-15 12:01:21', 9, '2024-05-17'),
+(14, 'Nice', 'Toulouse', 3, '16:20:00', 6000, '2024-05-15 12:01:21', 10, '2024-05-18'),
+(15, 'Toulouse', 'Bordeaux', 2, '19:00:00', 40500, '2024-05-15 12:01:21', 11, '2024-05-19'),
+(16, 'Point de départ 3', 'Point de départ 2', 3, '06:55:00', 25000, '2024-05-17 00:41:55', 12, '2024-05-28');
 
 -- --------------------------------------------------------
 
@@ -135,7 +148,10 @@ INSERT INTO `rideoffer` (`offer_id`, `user_id`, `origin`, `destination`, `depart
 (6, 2, 'Point de départ 3', 'Point de départ 2', '2024-04-21', 2, 'aucun', 'aucun', '2024-04-21 12:15:37', '04:56:00', 50000),
 (7, 8, 'Point de départ 2', 'Point de départ 3', '2024-04-22', 3, 'aucun', 'aucun', '2024-04-21 12:17:43', '16:55:00', 60000),
 (8, 2, 'Point d\'arrivée 1', 'Point d\'arrivée 2', '2024-04-25', 4, 'Aucun', 'Aucun', '2024-04-24 14:20:07', '19:15:00', 7000),
-(9, 12, 'Point de départ 2', 'Point d\'arrivée 2', '2024-05-07', 4, 'Aucun', 'Aucun', '2024-05-06 18:35:31', '08:45:00', 5000);
+(9, 12, 'Point de départ 2', 'Point d\'arrivée 2', '2024-05-07', 4, 'Aucun', 'Aucun', '2024-05-06 18:35:31', '08:45:00', 5000),
+(10, 12, 'Point de départ 2', 'Point de départ 3', '2024-05-16', 4, 'Aucun', 'Aucun', '2024-05-15 15:07:50', '00:00:00', 25000),
+(11, 2, 'Point de départ 2', 'Point d\'arrivée 2', '2024-05-20', 4, 'Aucun', 'Aucun', '2024-05-16 20:14:04', '16:55:00', 25000),
+(12, 2, 'Point d\'arrivée 2', 'Point de départ 2', '2024-05-23', 4, 'Aucun', 'Aucun', '2024-05-16 21:25:10', '07:07:00', 2000);
 
 -- --------------------------------------------------------
 
@@ -169,27 +185,13 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`session_id`, `user_id`, `data`, `expires`) VALUES
-(341, 9, '{\"username\":\"az\"}', '2024-04-25 16:30:35'),
-(410, 2, '{\"username\":\"qw\"}', '2024-04-25 13:42:49'),
-(1312, 9, '{\"username\":\"az\"}', '2024-04-25 14:36:10'),
-(3098, 2, '{\"username\":\"qw\"}', '2024-05-10 12:21:59'),
-(3359, 2, '{\"username\":\"qw\"}', '2024-05-07 18:35:49'),
-(3394, 12, '{\"username\":\"projetIHM\"}', '2024-05-07 18:17:34'),
-(3752, 2, '{\"username\":\"qw\"}', '2024-05-05 10:27:01'),
-(4567, 9, '{\"username\":\"az\"}', '2024-05-05 11:43:59'),
-(5365, 2, '{\"username\":\"qw\"}', '2024-05-09 19:39:31'),
-(5660, 2, '{\"username\":\"qw\"}', '2024-04-25 13:11:49'),
-(5735, 2, '{\"username\":\"qw\"}', '2024-04-26 07:12:49'),
-(6513, 2, '{\"username\":\"qw\"}', '2024-04-27 16:51:58'),
-(6983, 2, '{\"username\":\"qw\"}', '2024-05-10 23:07:27'),
-(7433, 2, '{\"username\":\"qw\"}', '2024-05-09 23:07:17'),
-(8324, 2, '{\"username\":\"qw\"}', '2024-05-06 18:16:57'),
-(8575, 11, '{\"username\":\"a\"}', '2024-04-23 09:35:51'),
-(8657, 2, '{\"username\":\"qw\"}', '2024-05-07 16:14:24'),
-(8732, 2, '{\"username\":\"qw\"}', '2024-05-04 16:04:02'),
-(8951, 2, '{\"username\":\"qw\"}', '2024-04-28 11:27:14'),
-(9474, 2, '{\"username\":\"qw\"}', '2024-05-04 18:58:59'),
-(9893, 11, '{\"username\":\"a\"}', '2024-04-22 09:35:44');
+(8, 12, '{\"username\":\"projetIHM\"}', '2024-05-16 23:10:58'),
+(2830, 2, '{\"username\":\"qw\"}', '2024-05-17 21:37:21'),
+(4216, 2, '{\"username\":\"qw\"}', '2024-05-18 19:44:32'),
+(4686, 2, '{\"username\":\"qw\"}', '2024-05-17 21:42:09'),
+(5629, 2, '{\"username\":\"qw\"}', '2024-05-16 23:24:32'),
+(9867, 2, '{\"username\":\"qw\"}', '2024-05-16 21:52:10'),
+(9942, 12, '{\"username\":\"projetIHM\"}', '2024-05-16 21:42:01');
 
 -- --------------------------------------------------------
 
@@ -213,10 +215,10 @@ CREATE TABLE `usercocovoiturage` (
 INSERT INTO `usercocovoiturage` (`user_id`, `username`, `password`, `phone_number`, `is_admin`, `registration_date`) VALUES
 (2, 'qw', '12', '12', 0, '2024-04-15 16:14:37'),
 (8, 'as', 'zx', '12', 0, '2024-04-15 23:06:35'),
-(9, 'az', 'az', NULL, 0, '2024-04-18 13:06:08'),
-(10, 'Azerty', 'az', NULL, 0, '2024-04-18 13:47:28'),
-(11, 'a', 'q', NULL, 0, '2024-04-22 09:27:46'),
-(12, 'projetIHM', '12', NULL, 0, '2024-05-06 18:17:34');
+(9, 'az', 'az', '034568910', 0, '2024-04-18 13:06:08'),
+(10, 'Azerty', 'az', '0334567890', 0, '2024-04-18 13:47:28'),
+(11, 'a', 'q', '032145689', 0, '2024-04-22 09:27:46'),
+(12, 'projetIHM', '12', '0389012345', 0, '2024-05-06 18:17:34');
 
 --
 -- Indexes for dumped tables
@@ -299,7 +301,7 @@ ALTER TABLE `city_locations`
 -- AUTO_INCREMENT for table `personne`
 --
 ALTER TABLE `personne`
-  MODIFY `personneId` int NOT NULL AUTO_INCREMENT;
+  MODIFY `personneId` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `ridefeedback`
@@ -311,7 +313,7 @@ ALTER TABLE `ridefeedback`
 -- AUTO_INCREMENT for table `rideoffer`
 --
 ALTER TABLE `rideoffer`
-  MODIFY `offer_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `offer_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `riderequest`
