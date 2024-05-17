@@ -365,7 +365,34 @@ app.post('/add-booking', async (req, res) => {
     }
 });
 
+//  ! recuperation de rideoffers d'une persone 
+app.get('/user/rideoffers', async (req, res) => {
+    const userId = req.headers.userId;
 
+    const rideOffersQuery = `
+        SELECT 
+            rideoffer.offer_id, 
+            rideoffer.origin,
+            rideoffer.destination, 
+            rideoffer.departure_datetime, 
+            rideoffer.available_seats, 
+            rideoffer.car_details, 
+            rideoffer.preferences, 
+            rideoffer.creation_date,
+            rideoffer.heure,
+            rideoffer.prix
+        FROM rideoffer
+        WHERE rideoffer.user_id = ?
+    `;
+
+    db.query(rideOffersQuery, [userId], (error, results) => {
+        if (error) {
+            console.error('Error fetching ride offers for user:', error);
+            return res.status(500).json({ message: 'Error fetching ride offers for user' });
+        }
+        return res.status(200).json({ traG: results });
+    });
+});
 
 //! Port d'ecoute
 app.listen(8081, () => {

@@ -35,7 +35,7 @@ const App = () => {
             pageToDisplay = <InscriptionPage onOptionChange={handleOptionChange} isLoggedIn={isLoggedIn} onLogin={handleLogin} />;
             break;
         case 'compte':
-            pageToDisplay = <ComptePage onOptionChange={handleOptionChange}/>;
+            pageToDisplay = <ComptePage onOptionChange={handleOptionChange} isLoggedIn={isLoggedIn} onLogin={handleLogin}/>;
             break;
         case 'trajet':
             pageToDisplay = <TrajetPage onOptionChange={handleOptionChange} isLoggedIn={isLoggedIn} onLogin={handleLogin}/>;

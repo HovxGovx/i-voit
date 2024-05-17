@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import Home from '../Home/Home';
+import LoginSignUp from '../Inscription/Inscription';
 
-const ComptePage = () => {
+const ComptePage = ({onOptionChange}) => {
     const [userInfo, setUserInfo] = useState(null);
     const [sessionInfo, setSessionInfo] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -28,20 +30,9 @@ const ComptePage = () => {
       fetchSessionInfo();
     }, []);
   
-    if (loading) {
-      return <div>Loading...</div>;
-    }
-  
-    if (error) {
-      return <div>Error: {error}</div>;
-    }
-  
-    if (!userInfo) {
-      return <div>No user info available</div>;
-    }
-  
     return (
-      <div className='home'>
+      <>
+      {userInfo && <div className='home'>
         <h2>User Information</h2>
         <div>
           <strong>Name:</strong> {userInfo.user_id}
@@ -49,7 +40,11 @@ const ComptePage = () => {
         <div>
           <strong>Session:</strong> {sessionInfo.username}
         </div>
-      </div>
+      </div>}
+      {!userInfo && <LoginSignUp/>}
+      </>
+      
+      
     );
   }
 
