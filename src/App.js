@@ -48,7 +48,7 @@ const App = () => {
     }
 
     return (
-        <div >
+        <div>
             <Navbar onOptionChange={handleOptionChange} isLoggedIn={isLoggedIn} onLogout={handleLogout} option={option}/>
             <div className='Page'>               
                 {pageToDisplay}
