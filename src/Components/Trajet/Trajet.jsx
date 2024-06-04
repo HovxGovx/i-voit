@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import special from '../Assets/Icons/covoiturage(3).png'
-// import special2 from '../Assets/Icons/voiture(1).png'
+import special2 from '../Assets/Icons/voiture(1).png'
 import special3 from '../Assets/Icons/volant.png'
 import './TrajetStyles.css'
 import CustomNum from '../Home/nombre';
@@ -150,7 +150,7 @@ const RideOfferDetails = ({ onOptionChange }) => {
                 <div className="products-container">
                     {rideOffer && shuffleArray(rideOffer.filter(filterRides)).slice(0, showFive ? 5 : 20).map((offer) => (
                         <div key={offer.offer_id} className='box'>
-                            <img alt=' decoratif' src={special} />
+                            <img alt='trajet' src={special2} />
                             <h3>
                                 <i className="fas fa-calendar-alt"></i>
                                 <span> {formatDate(offer.departure_datetime)}  </span>

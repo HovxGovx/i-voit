@@ -55,7 +55,7 @@ const Cards = ({ onOptionChange }) => {
             <div className="products-container">
                 {rideOffer && rideOffer.slice(0, 4).map((offer) => (
                     <div key={offer.offer_id} className='box' onClick={handlClick}>
-                        <img alt=' decoratif' src={special} />
+                        <img alt=' decoratif' src={special2} />
                         <h3>
                             <i className="fas fa-calendar-alt"></i>
                             <span> {formatDate(offer.departure_datetime)}  </span>

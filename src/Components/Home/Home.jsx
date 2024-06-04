@@ -49,7 +49,7 @@ const Home = ({ onOptionChange }) => {
                         , dans cette section, vous trouverez les trajets proposés par des conducteurs prêts à partager leur voiture avec d'autres personnes.</p>
                     <p>
                         <span className="nomm" onClick={handleClick2}>Demande</span>
-                        , dans cette section, vous verrez les demandes de personnes recherchant des voitures pour partager un trajet. Vous pouvez utiliser les filtres pour trouver des passagers avec qui partager votre voyage.</p>
+                        , dans cette section, vous verrez les demandes des personnes recherchant un conducteur pour partager un trajet. Vous pouvez utiliser les filtres pour trouver des passagers avec qui partager votre voyage.</p>
                 </div>
             </section>
 

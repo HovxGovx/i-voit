@@ -55,7 +55,7 @@ const CardsPersonne = ({onOptionChange}) => {
             <div className="products-container">
                 {personne && personne.slice(0, 4).map((pers) => (
                     <div className="box" key={pers.personneId} onClick={handlClick}>
-                        <img src={special} alt="description" />
+                        <img src={special2} alt="description" />
                         <h3>
                             <i className="fas fa-calendar-alt"></i>
                             <span> {formatDate(pers.departure_datetime)} </span>

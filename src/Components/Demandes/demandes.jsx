@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import special from '../Assets/Icons/voiture(1).png'
-// import special2 from '../Assets/Icons/covoiturage(3).png'
+//import special from '../Assets/Icons/voiture(1).png'
+ import special2 from '../Assets/Icons/covoiturage(3).png'
 import special3 from '../Assets/Icons/9044442_flagging_taxi_icon.png'
 import axios from 'axios';
 import CustomNum from "../Home/nombre";
@@ -153,7 +153,7 @@ const Demandes = ({ onOptionChange }) => {
                     <div className="products-container">
                         {personne && shuffleArray(personne.filter(filterPersonne)).slice(0, showFive ? 5 : 20).map((pers) => (
                             <div className="box" key={pers.personneId} onClick={handlClick}>
-                                <img src={special} alt="description" />
+                                <img src={special2} alt="description" />
                                 <h3>
                                     <i className="fas fa-calendar-alt"></i>
                                     <span> {formatDate(pers.departure_datetime)} </span>
@@ -185,7 +185,7 @@ const Demandes = ({ onOptionChange }) => {
                                 </div>
                                 {userInfo && <div className="content">
                                     <span >{pers.prix * value} Ar</span>
-                                    <button className="btn" onClick={() => handleTakeAsk(pers.personneId, userInfo.user_id)}>Reserver</button>
+                                    <button className="btn" onClick={() => handleTakeAsk(pers.personneId, userInfo.user_id)}>Prendre</button>
                                 </div>}
                             </div>
                         ))}

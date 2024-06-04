@@ -223,3 +223,10 @@
     transform: rotate(0deg);
   }
 }
+aside{
+  width: 25%;
+
+}
+input{
+  border: 0.1rem solid grey;
+}
