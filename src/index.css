@@ -230,3 +230,10 @@ aside{
 input{
   border: 0.1rem solid grey;
 }
+.compte{
+  margin-top: 100px;
+  display: flex;
+  justify-content: space-between;
+  float: left;
+  width:100%;
+}

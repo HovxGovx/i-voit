@@ -1,7 +1,7 @@
 const PersoTrajet = () => {
     return ( 
     <>
-     <div className="">
+     <div className="home">
 
      </div>
      TRAJET PERSO

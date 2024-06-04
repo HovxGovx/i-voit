@@ -63,12 +63,6 @@ const Navbar = ({ onOptionChange,option, isLoggedIn, onLogout }) => {
             console.error('Erreur lors de la déconnexion:', error.message);
         }
     };
-
-
-
-
-
-
     return (
         <div>
             <nav className='nav' id='navbar'>

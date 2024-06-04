@@ -25,10 +25,19 @@ const ComptePage = ({ onOptionChange }) => {
   let pageToDisplay;
   switch (option) {
     case 'persotrajet':
-      pageToDisplay = <PersoTrajet onOptionChange={handleOptionChange} isLoggedIn={isLoggedIn} onLogin={handleLogin} />;
+      pageToDisplay = <PersoTrajet onOptionChange={handleOptionChange}  />;
       break;
     case 'persodemande':
-      pageToDisplay = <PersoDemande onOptionChange={handleOptionChange} isLoggedIn={isLoggedIn} onLogin={handleLogin} />;
+      pageToDisplay = <PersoDemande onOptionChange={handleOptionChange}   />;
+      break;
+      case 'reservation':
+      pageToDisplay = <PersoDemande onOptionChange={handleOptionChange}   />;
+      break;
+      case 'prise':
+      pageToDisplay = <PersoDemande onOptionChange={handleOptionChange}   />;
+      break;
+      case 'reservation':
+      pageToDisplay = <PersoDemande onOptionChange={handleOptionChange}   />;
       break;
 
     default:
@@ -57,10 +66,9 @@ const ComptePage = ({ onOptionChange }) => {
   return (
     <>
 
-      {userInfo && <div className='home'>
-        <Choix/>
+      {userInfo && <div className='compte'>
+          <Choix onOptionChange={handleOptionChange}  option={option}/>
           {pageToDisplay}
-        
       </div>}
 
       {!userInfo && <LoginSignUp />}
