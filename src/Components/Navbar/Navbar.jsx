@@ -71,7 +71,7 @@ const Navbar = ({ onOptionChange,option, isLoggedIn, onLogout }) => {
 
     return (
         <div>
-            <nav id='navbar'>
+            <nav className='nav' id='navbar'>
                 <img
                     src={logo}
                     id='logo-15'
