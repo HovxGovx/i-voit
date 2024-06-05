@@ -55,10 +55,10 @@ const RideOfferDetails = ({ onOptionChange }) => {
 
         fetchRideOfferDetails();
     }, []);
-    const handleAddBooking = async (rideId, passengerId) => {
+    const handleAddBooking = async (rideId, passengerId,cout,nbrplace) => {
         try {
             // Envoi de la requête POST pour ajouter le ride offer parmi les bookings
-            await axios.post('http://localhost:8081/add-booking', { ride_id: rideId, passenger_id: passengerId });
+            await axios.post('http://localhost:8081/add-booking', { ride_id: rideId, passenger_id: passengerId , cout:cout,place:nbrplace});
             alert('Ride offer added to bookings successfully!');
         } catch (error) {
             console.error('Error adding ride offer to bookings:', error);
@@ -119,7 +119,7 @@ const RideOfferDetails = ({ onOptionChange }) => {
 
                 <div>
                     <input
-                        className="search-bar"
+                        className="search-bar "
                         type="date"
                         placeholder="Date"
                         value={dateFilter}
@@ -129,7 +129,7 @@ const RideOfferDetails = ({ onOptionChange }) => {
 
                 <div>
                     <input
-                        className="search-bar"
+                        className="search-bar hidden"
                         type="time"
                         placeholder=""
                         value={heureFilter}
@@ -183,7 +183,7 @@ const RideOfferDetails = ({ onOptionChange }) => {
 
                             {userInfo && <div className="content">
                                 <span >{offer.prix * value} Ar</span>
-                                <button className="btn" onClick={() => handleAddBooking(offer.offer_id, userInfo.user_id)}>Reserver</button>
+                                <button className="btn " onClick={() => handleAddBooking(offer.offer_id, userInfo.user_id,offer.prix*value,value)}>Reserver</button>
                             </div>}
                         </div>
 
@@ -198,7 +198,7 @@ const RideOfferDetails = ({ onOptionChange }) => {
             </label>
 
 
-            {userInfo && <button type="button" className="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            {userInfo && <button type="button" className="button " data-bs-toggle="modal" data-bs-target="#exampleModal">
                 <span className="button__text">Nouveau trajet</span>
                 <span className="button__icon"><svg xmlns="http://www.w3.org/2000/svg" width={24} viewBox="0 0 24 24" strokeWidth={2} strokeLinejoin="round" strokeLinecap="round" stroke="currentColor" height={24} fill="none" className="svg"><line y2={19} y1={5} x2={12} x1={12} /><line y2={12} y1={12} x2={19} x1={5} /></svg></span>
             </button>}
@@ -209,7 +209,7 @@ const RideOfferDetails = ({ onOptionChange }) => {
                     <div className="modal-dialog">
                         <div className="modal-content">
                             <div className="modal-header">
-                                <h1 className="modal-title fs-5" id="exampleModalLabel">Patage de trajet</h1>
+                                <h1 className="modal-title fs-5" id="exampleModalLabel">Patager votre trajet</h1>
                                 <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" />
                             </div>
                             <div className="modal-body">

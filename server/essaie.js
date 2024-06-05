@@ -194,7 +194,7 @@ app.get('/session-info', async (req, res) => {
 // ! Endpoint pour l'ajout d'un nouveau trajet
 app.post('/add-ride', async (req, res) => {
     try {
-        const { origin, destination, departureDate, available_seats, car_details, preferences, departureTime, prix} = req.body;
+        const { origin, destination, departureDate, available_seats, car_details, preferences, departureTime, prix } = req.body;
         const userId = req.headers.session_id;
 
         // Vérifier si l'utilisateur est connecté
@@ -206,7 +206,7 @@ app.post('/add-ride', async (req, res) => {
                 INSERT INTO rideoffer (user_id, origin, destination, departure_datetime, available_seats, car_details, preferences,heure, creation_date,prix)
                 VALUES (?, ?, ?, ?, ?, ?, ?,?, CURRENT_TIMESTAMP,?)
             `;
-        db.query(insertRideQuery, [userId, origin, destination, departureDate, available_seats, car_details, preferences, departureTime,prix], async (insertError, result) => {
+        db.query(insertRideQuery, [userId, origin, destination, departureDate, available_seats, car_details, preferences, departureTime, prix], async (insertError, result) => {
             if (insertError) {
                 console.error('Error adding ride:', insertError);
                 return res.status(500).json({ message: 'Error adding ride' });
@@ -223,7 +223,7 @@ app.post('/add-ride', async (req, res) => {
 // ! Endpoint pour l'ajout d'un personne
 app.post('/add-personne', async (req, res) => {
     try {
-        const { origin, destination, departureDate, available_seats, departureTime, prix} = req.body;
+        const { origin, destination, departureDate, available_seats, departureTime, prix } = req.body;
         const userIds = req.headers.session_id;
 
         // Vérifier si l'utilisateur est connecté
@@ -232,10 +232,10 @@ app.post('/add-personne', async (req, res) => {
         }
         // Insérer le nouveau trajet dans la base de données
         const insertRideQuery = `
-                INSERT INTO personne (user_id, origin, destination, departure_datetime, seats, heure, prix)
-                VALUES (?, ?, ?, ?, ?, ?, ?)
+                INSERT INTO personne (user_id, origin, destination, departure_datetime, seats, heure, prix,state)
+                VALUES (?, ?, ?, ?, ?, ?, ?,'nonprise')
             `;
-        db.query(insertRideQuery, [userIds, origin, destination, departureDate, available_seats, departureTime,prix], async (insertError, result) => {
+        db.query(insertRideQuery, [userIds, origin, destination, departureDate, available_seats, departureTime, prix], async (insertError, result) => {
             if (insertError) {
                 console.error('Error adding personne:', insertError);
                 return res.status(500).json({ message: 'Error adding ride' });
@@ -344,26 +344,41 @@ app.get('/personne', async (req, res) => {
 // ! Endpoint pour ajouter un ride offer parmi les bookings
 app.post('/add-booking', async (req, res) => {
     try {
-        const { ride_id, passenger_id } = req.body;
+        const { ride_id, passenger_id, cout, place } = req.body;
 
         // Insérer le ride offer parmi les bookings dans la base de données
         const insertBookingQuery = `
-            INSERT INTO booking (ride_id, passenger_id, booking_status, booking_date)
-            VALUES (?, ?, 'pending', CURRENT_TIMESTAMP)
+            INSERT INTO booking (ride_id, passenger_id, booking_status, booking_date, prix, place)
+            VALUES (?, ?, 'pending', CURRENT_TIMESTAMP, ?, ?)
         `;
-        db.query(insertBookingQuery, [ride_id, passenger_id], (error, result) => {
+        db.query(insertBookingQuery, [ride_id, passenger_id, cout, place], (error, result) => {
             if (error) {
                 console.error('Error adding ride offer to bookings:', error);
                 return res.status(500).json({ message: 'Error adding ride offer to bookings' });
             }
-            return res.status(201).json({ message: 'Ride offer added to bookings successfully' });
+
+            // Mettre à jour le nombre de places disponibles dans le rideoffer
+            const updateRideOfferQuery = `
+                UPDATE rideoffer
+                SET available_seats = available_seats - ?
+                WHERE offer_id = ?
+            `;
+            db.query(updateRideOfferQuery, [place, ride_id], (error, result) => {
+                if (error) {
+                    console.error('Error updating available seats in ride offer:', error);
+                    return res.status(500).json({ message: 'Error updating available seats in ride offer' });
+                }
+                return res.status(201).json({ message: 'Ride offer added to bookings successfully' });
+            });
         });
+        
     } catch (error) {
         console.error('Error adding ride offer to bookings:', error);
         return res.status(500).json({ message: 'Error adding ride offer to bookings' });
 
     }
 });
+
 
 //  ! recuperation de rideoffers d'une persone 
 app.get('/user/rideoffers', async (req, res) => {
@@ -393,6 +408,89 @@ app.get('/user/rideoffers', async (req, res) => {
         return res.status(200).json({ traG: results });
     });
 });
+// Définition de la route GET pour récupérer les offres de trajet d'un utilisateur
+app.get('/rides/:user_id', (req, res) => {
+    const userId = req.params.user_id;
+
+    // Requête SQL pour récupérer les offres de trajet d'un utilisateur spécifique
+    const sql = `SELECT * FROM rideoffer WHERE user_id = ?`;
+
+    // Exécution de la requête SQL avec le user_id fourni
+    db.query(sql, [userId], (error, results) => {
+        if (error) {
+            console.error('Erreur lors de l\'exécution de la requête : ' + error.stack);
+            res.status(500).send('Erreur lors de la récupération des offres de trajet');
+            return;
+        }
+
+        // Répond avec les données récupérées
+        res.json(results);
+    });
+});
+// Définition de la route GET pour récupérer les offres de trajet d'un utilisateur
+app.get('/personnes/:user_id', (req, res) => {
+    const userId = req.params.user_id;
+
+    // Requête SQL pour récupérer les offres de trajet d'un utilisateur spécifique
+    const sql = `SELECT * FROM personne WHERE user_id = ?`;
+
+    // Exécution de la requête SQL avec le user_id fourni
+    db.query(sql, [userId], (error, results) => {
+        if (error) {
+            console.error('Erreur lors de l\'exécution de la requête : ' + error.stack);
+            res.status(500).send('Erreur lors de la récupération des offres de trajet');
+            return;
+        }
+
+        // Répond avec les données récupérées
+        res.json(results);
+    });
+});
+// Endpoint pour récupérer les utilisateurs ayant réservé le même rideoffer
+app.get('/rideoffer/bookings/:offerId/users', (req, res) => {
+    const offerId = req.params.offerId;
+
+    // Requête SQL pour récupérer les utilisateurs ayant réservé le même rideoffer avec les détails de réservation
+    const sql = `
+      SELECT u.*, b.place, b.prix
+      FROM usercocovoiturage u
+      INNER JOIN booking b ON u.user_id = b.passenger_id
+      WHERE b.ride_id = ?
+    `;
+
+    db.query(sql, [offerId], (err, results) => {
+        if (err) {
+            console.error('Erreur lors de l\'exécution de la requête SQL : ', err);
+            res.status(500).json({ error: 'Erreur lors de la récupération des utilisateurs ayant réservé le même rideoffer' });
+            return;
+        }
+
+        // Renvoyer les résultats au format JSON
+        res.json(results);
+    });
+});
+app.get('/user/bookings/:userId', (req, res) => {
+    const userId = req.params.userId;
+
+    // Requête SQL pour récupérer les réservations d'une personne avec les détails du rideoffer associé
+    const sql = `
+      SELECT b.*, r.*
+      FROM booking b
+      INNER JOIN rideoffer r ON b.ride_id = r.offer_id
+      WHERE b.passenger_id = ?
+    `;
+
+    db.query(sql, [userId], (err, results) => {
+        if (err) {
+            console.error('Erreur lors de l\'exécution de la requête SQL : ', err);
+            res.status(500).json({ error: 'Erreur lors de la récupération des réservations de l\'utilisateur' });
+            return;
+        }
+        // Renvoyer les résultats au format JSON
+        res.json(results);
+    });
+});
+
 
 //! Port d'ecoute
 app.listen(8081, () => {

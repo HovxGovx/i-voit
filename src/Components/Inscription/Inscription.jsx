@@ -38,39 +38,41 @@ const LoginSignUp = ({onOptionChange,isLoggedIn, onLogin}) => {
     };
 
     return (
-        <div className='home'>
-            <form className="form" onSubmit={handleSubmit}>
-                <p className="title">Inscriptions </p>
-                <p className="message">S'inscrire pour profiter des offres. </p>
+        <div className='home flex justify-center items-center h-screen w-1/2'>
+    <form className="form bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" onSubmit={handleSubmit}>
+        <p className="title text-2xl mb-4">Inscriptions</p>
+        <p className="message text-gray-700 text-base mb-8">S'inscrire pour profiter des offres.</p>
 
-                <label>
-                    <input required placeholder type="text" className="input" value={username} onChange={(e) => setUsername(e.target.value)} />
-                    <span>Pseudo</span>
-                    <span className="error-text">Erreur de saisie</span> {/* Texte d'erreur */}
-                </label>
+        <label className="block mb-4">
+            <label htmlFor="text"> Pseudo</label><span className="error-text text-red-500">*</span>
+            <input required placeholder type="text" className="input appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" value={username} onChange={(e) => setUsername(e.target.value)} />
+            
+        </label>
 
-                <label>
-                    <input required placeholder type="text" className="input" value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)} />
-                    <span>Téléphone</span>
-                    <span className="error-text">Erreur de saisie</span> {/* Texte d'erreur */}
-                </label>
+        <label className="block mb-4">
+            <label htmlFor="text"> Numero</label><span className="error-text text-red-500">*</span>
+            <input required placeholder type="text" className="input appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)} />
+            
+        </label>
 
-                <label>
-                    <input required placeholder type="password" className="input" value={password} onChange={(e) => setPassword(e.target.value)} />
-                    <span>Mot(s) de passe</span>
-                    <span className="error-text">Erreur de saisie</span> {/* Texte d'erreur */}
-                </label>
+        <label className="block mb-4">
 
-                <label>
-                    <input required placeholder type="password" className="input" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} />
-                    <span>Confirmer le mot de passe</span>
-                    <span className="error-text">Erreur de saisie</span> {/* Texte d'erreur */}
-                </label>
+        <label htmlFor="text"> Mot de passe</label><span className="error-text text-red-500">*</span>
+            <input required placeholder type="password" className="input appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" value={password} onChange={(e) => setPassword(e.target.value)} />
+            
+        </label>
 
-                <button type="submit" className="submit">S'inscrire</button>
-                <p className="signin">Déjà membre ?  </p>
-            </form>
-        </div>
+        <label className="block mb-6">
+        <label htmlFor="text"> Confirmation du mot de passe</label><span className="error-text text-red-500">*</span>
+            <input required placeholder type="password" className="input appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} />
+            
+        </label>
+
+        <button type="submit" className="submit bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">S'inscrire</button>
+        
+    </form>
+</div>
+
     );
 };
 

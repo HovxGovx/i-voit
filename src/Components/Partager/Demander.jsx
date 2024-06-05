@@ -153,8 +153,7 @@ const Demander = () => {
                         <input className="search-bar" type="number" value={prix} min='2000' onChange={(e) => setPrix(e.target.value)} />
                     </div>
 
-
-                    <button type="submit">Demander</button>
+                    <button className='border border-grey-200 bg-green-300 hover:bg-aquamarine-dark  font-bold py-2 px-4 rounded' type="submit">Demander</button>
                 </form>
             )}
         </>);

@@ -8,7 +8,7 @@ const Login = ({ onOptionChange, isLoggedIn, onLogin }) => {
     axios.defaults.withCredentials = true;
     const handleSubmit = async (e) => {
         e.preventDefault();
-        alert("votsindry");
+        
         try {
             const response = await fetch('http://localhost:8081/login', {
                 method: 'POST',
@@ -32,34 +32,34 @@ const Login = ({ onOptionChange, isLoggedIn, onLogin }) => {
 
     return (
       
-            <section className="inscription">
-                <div className="right">
-                    <form className="form" onSubmit={handleSubmit}>
-                        <p className="title">Connexion</p>
-                        <p className="message">S'inscrire pour profiter des offres. </p>
-
-                        <label>
-                            <input required placeholder type="text" className="input" value={username} onChange={(e) => setUsername(e.target.value)} />
-                            <span>Pseudo</span>
-                            <span className="error-text">Erreur de saisie</span> {/* Texte d'erreur */}
-                        </label>
-
-                        <label>
-                            <input required placeholder type="password" className="input" value={password} onChange={(e) => setPassword(e.target.value)} />
-                            <span>Mot(s) de passe</span>
-                            <span className="error-text">Erreur de saisie</span> {/* Texte d'erreur */}
-                        </label>
-
-                        <button type="submit" className="submit">Se connecter</button>
-                        <p></p>
-                    </form>
-                </div>
-                <div className="left">
-                    <h1>Bon retour !</h1>
-                    <p>Connectez-vous avec votre compte<br />pour nous rejoindre !</p>
-                </div>
-
-            </section>
+        <section className="inscription flex justify-center items-center h-screen">
+        <div className="right">
+            <form className="form bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" onSubmit={handleSubmit}>
+                <p className="title text-2xl mb-4">Connexion</p>
+                <p className="message text-gray-700 text-base mb-8">S'inscrire pour profiter des offres.</p>
+    
+                <label className="block mb-4">
+                <label htmlFor="text"> Pseudo</label><span className="error-text text-red-500">*</span>
+                    <input required placeholder type="text" className="input appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" value={username} onChange={(e) => setUsername(e.target.value)} />
+                    
+                </label>
+    
+                <label className="block mb-6">
+                <label htmlFor="text"> Mot de passe</label><span className="error-text text-red-500">*</span>
+                    <input required placeholder type="password" className="input appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" value={password} onChange={(e) => setPassword(e.target.value)} />
+                    
+                </label>
+    
+                <button type="submit" className="submit bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Se connecter</button>
+                <p className="text-gray-700 text-base mt-4"></p>
+            </form>
+        </div>
+        <div className="left">
+            <h1 className="text-3xl font-bold mb-2">Bon retour !</h1>
+            <p className="text-gray-700 text-base mb-4">Connectez-vous avec votre compte pour nous rejoindre !</p>
+        </div>
+    </section>
+    
        
     );
 };

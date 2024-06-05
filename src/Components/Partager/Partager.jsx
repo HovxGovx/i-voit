@@ -149,20 +149,20 @@ const PartagerPage = () => {
                         <label>Places disponibles</label>
                         <input className="search-bar" type="number" value={availableSeats} onChange={(e) => setAvailableSeats(e.target.value)} required />
                     </div>
-                    <div className="container-fluid">
-                        <label>Détails du véhicule</label>
-                        <input className="search-bar" type="text" value={carDetails} onChange={(e) => setCarDetails(e.target.value)} />
+                    <div className="container-fluid hidden">
+                        <label className='hidden'>Détails du véhicule</label>
+                        <input className="search-bar hidden" type="text" value={carDetails} onChange={(e) => setCarDetails(e.target.value)} />
                     </div>
                     <div className="container-fluid">
                         <label>Prix du place</label>
-                        <input className="search-bar" type="number" value={prix} min='2000' onChange={(e) => setPrix(e.target.value)} />
+                        <input className="search-bar " type="number" value={prix} min='2000' onChange={(e) => setPrix(e.target.value)} />
                     </div>
-                    <div className="container-fluid">
-                        <label>Préférences</label>
-                        <textarea className="search-bar" value={preferences} onChange={(e) => setPreferences(e.target.value)} />
+                    <div className="container-fluid hidden">
+                        <label className='hidden'>Préférences</label>
+                        <textarea className="search-bar hidden" value={preferences} onChange={(e) => setPreferences(e.target.value)} />
                     </div>
 
-                    <button type="submit">Ajouter trajet</button>
+                    <button className='border border-grey-200 bg-green-300 hover:bg-aquamarine-dark  font-bold py-2 px-4 rounded' type="submit">Partager</button>
                 </form>
             )}
         </>

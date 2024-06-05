@@ -4,10 +4,12 @@ import LoginSignUp from '../Inscription/Inscription';
 import PersoTrajet from './trajetPerso';
 import PersoDemande from './demandePerso';
 import Choix from './LittleNavBar';
+import Reservation from './reservation';
 
 const ComptePage = ({ onOptionChange }) => {
   const [userInfo, setUserInfo] = useState(null);
   const [sessionInfo, setSessionInfo] = useState(null);
+
   const [error, setError] = useState(null);
   const [option, setOption] = useState('persotrajet');
  
@@ -25,7 +27,7 @@ const ComptePage = ({ onOptionChange }) => {
       pageToDisplay = <PersoDemande onOptionChange={handleOptionChange}   />;
       break;
       case 'reservation':
-      pageToDisplay = <PersoDemande onOptionChange={handleOptionChange}   />;
+      pageToDisplay = <Reservation onOptionChange={handleOptionChange}   />;
       break;
       case 'voyageur':
       pageToDisplay = <PersoDemande onOptionChange={handleOptionChange}   />;
@@ -33,8 +35,7 @@ const ComptePage = ({ onOptionChange }) => {
     default:
       pageToDisplay = null;
   }
-
-  useEffect(() => {
+useEffect(() => {
     const fetchSessionInfo = async () => {
       try {
         const response = await fetch('http://localhost:8081/session-info');
@@ -52,6 +53,7 @@ const ComptePage = ({ onOptionChange }) => {
 
     fetchSessionInfo();
   }, []);
+  
 
   return (
     <>

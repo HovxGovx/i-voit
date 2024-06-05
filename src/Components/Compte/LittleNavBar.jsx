@@ -44,7 +44,7 @@ const Choix = ({ onOptionChange,option }) => {
                                 className={option === 'persotrajet' ? 'active' : ''} 
                                 onClick={() => handleClick1('persotrajet')}
                             >
-                                Trajet
+                                 Mes Trajets
                             </button>
                         </li>
                         <li>
@@ -52,26 +52,18 @@ const Choix = ({ onOptionChange,option }) => {
                                 className={option === 'voyageur' ? 'active' : ''} 
                                 onClick={() => handleClick1('voyageur')}
                             >
-                                Voyageur
+                                Mes demandes
                             </button>
                         </li>
+                        
                         <li>
                             <button
-                                className={option === 'reservation' ? "active" : ""} 
+                                className={option === 'reservation' ? 'active' : ''} 
                                 onClick={() => handleClick1('reservation')}
                             >
-                                Reservation
+                                Reservations
                             </button>
                         </li>
-                        <li>
-                            <button
-                                className={option === 'voiture' ? "active" : ""}
-                                onClick={() => handleClick1('voiture')}
-                            >
-                                Voiture
-                            </button>
-                        </li>
-
                     </ul>
                 </div>
 
