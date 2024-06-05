@@ -490,6 +490,34 @@ app.get('/user/bookings/:userId', (req, res) => {
         res.json(results);
     });
 });
+app.get('/rideofferid/:rideId/user', (req, res) => {
+    const rideId = req.params.rideId;
+
+    // Requête SQL pour récupérer toutes les données de l'utilisateur ayant enregistré l'offre de covoiturage
+    const sql = `
+      SELECT u.*
+      FROM usercocovoiturage u
+      INNER JOIN rideoffer r ON u.user_id = r.user_id
+      WHERE r.offer_id = ?
+    `;
+
+    db.query(sql, [rideId], (err, results) => {
+        if (err) {
+            console.error('Erreur lors de l\'exécution de la requête SQL : ', err);
+            res.status(500).json({ error: 'Erreur lors de la récupération des données de l\'utilisateur ayant enregistré l\'offre de covoiturage' });
+            return;
+        }
+
+        if (results.length === 0) {
+            res.status(404).json({ error: 'Offre de covoiturage non trouvée' });
+            return;
+        }
+
+        // Renvoyer les données de l'utilisateur au format JSON
+        res.json(results[0]);
+    });
+});
+
 
 
 //! Port d'ecoute
