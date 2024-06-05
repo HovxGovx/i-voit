@@ -61,7 +61,7 @@ const Choix = ({ onOptionChange,option }) => {
                                 className={option === 'reservation' ? 'active' : ''} 
                                 onClick={() => handleClick1('reservation')}
                             >
-                                Reservations
+                                Mes reservations
                             </button>
                         </li>
                     </ul>

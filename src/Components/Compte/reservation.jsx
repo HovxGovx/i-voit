@@ -24,7 +24,7 @@ const Reservation = () => {
         fetchSessionInfo();
     }, []);
     // États pour stocker les données des offres de trajet et les filtres
-    const [bookings, setbookings] = useState([]);
+    const [offer, setbookings] = useState([]);
     const [filter, setFilter] = useState('future'); // Peut être 'all', 'future', ou 'incomplete'
 
     // Fonction pour récupérer les offres de trajet depuis l'API en utilisant les informations de session
@@ -50,11 +50,11 @@ const Reservation = () => {
     const filterbookings = () => {
         switch (filter) {
             case 'future':
-                return bookings.filter(offer => new Date(offer.departure_datetime) > new Date());
+                return offer.filter(offer => new Date(offer.departure_datetime) > new Date());
             case 'incomplete':
-                return bookings.filter(offer => offer.available_seats > 0);
+                return offer.filter(offer => offer.available_seats > 0);
             default:
-                return bookings;
+                return offer;
         }
     };
     const [users, setUsers] = useState([]);
@@ -91,7 +91,7 @@ const Reservation = () => {
                     <th className="px-4 py-2 text-center  border border-gray-200" >Destination</th>
                     <th className="px-4 py-2 text-center  border border-gray-200" >Date de départ</th>
                     <th className="px-4 py-2 text-center  border border-gray-200" >Places prises</th>
-                    <th className="px-4 py-2 text-center  border border-gray-200" >Chauffeure</th>
+                    <th className="px-4 py-2 text-center  border border-gray-200" >Chauffeur</th>
 
                 </tr>
             </thead>
@@ -100,7 +100,7 @@ const Reservation = () => {
                     <tr key={offer.offer_id}>
                         <td className="px-4 py-2 text-center border border-gray-200">{offer.origin}</td>
                         <td className="px-4 py-2 text-center border border-gray-200">{offer.destination}</td>
-                        <td className="px-4 py-2 text-center border border-gray-200">{formatDate(offer.departure_datetime)}</td>
+                        <td className="px-4 py-2 text-center border border-gray-200">{formatDate(offer.departure_datetime)} à  {offer.heure}</td>
                         <td className="px-4 py-2 text-center border border-gray-200">{offer.available_seats === 0 ? "Complet" : offer.available_seats}</td>
                         <td className="px-4 py-2 text-center border border-gray-200">
                             <button onClick={() => {

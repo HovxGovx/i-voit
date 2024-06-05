@@ -94,7 +94,7 @@ const PersoDemande = () => {
                         <tr key={personne.user_id}>
                             <td className="px-4 py-2 text-center  border border-gray-200">{personne.origin}</td>
                             <td className="px-4 py-2 text-center  border border-gray-200">{personne.destination}</td>
-                            <td className="px-4 py-2 text-center  border border-gray-200">{formatDate(personne.departure_datetime)}</td>
+                            <td className="px-4 py-2 text-center  border border-gray-200">{formatDate(personne.departure_datetime)} à {personne.heure}</td>
                             <td className="px-4 py-2 text-center  border border-gray-200">{personne.seats}</td>
                             <td className="px-4 py-2 text-center  border border-gray-200">{personne.prix}</td>
                             <td className="px-4 py-2 text-center  border border-gray-200">

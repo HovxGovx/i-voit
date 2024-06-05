@@ -103,7 +103,7 @@ function RideOffers() {
                         <tr key={offer.offer_id}>
                             <td className="px-4 py-2 text-center border border-gray-200">{offer.origin}</td>
                             <td className="px-4 py-2 text-center border border-gray-200">{offer.destination}</td>
-                            <td className="px-4 py-2 text-center border border-gray-200">{formatDate(offer.departure_datetime)}</td>
+                            <td className="px-4 py-2 text-center border border-gray-200">{formatDate(offer.departure_datetime)} à {offer.heure}</td>
                             <td className="px-4 py-2 text-center border border-gray-200">{offer.available_seats === 0 ? "Complet" : offer.available_seats}</td>
                             <td className="px-4 py-2 text-center border border-gray-200">
                                 <button onClick={() => {
