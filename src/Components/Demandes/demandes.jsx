@@ -168,7 +168,7 @@ const Demandes = ({ onOptionChange }) => {
                                     <span> {pers.destination} </span>
                                 </h3>
                                 <div className='tooltip-container'>
-                                    <span className="tooltip">{pers.seats} place</span>
+                                    <span className="tooltip">{pers.seats}places</span>
                                     <span className='text'>
                                         {[...Array(pers.seats)].map((_, index) => (
                                             <i className="fas fa-user-alt" key={index}></i>

@@ -4,10 +4,13 @@ import logo from '../Assets/Icons/covoiturage.png';
 import ajout from '../Assets/Icons/utilisateur-du-cercle.png';
 import axios from 'axios';
 
-const Navbar = ({ onOptionChange,option, isLoggedIn, onLogout }) => {
+const Navbar = ({ onOptionChange, option, isLoggedIn, onLogout }) => {
     const [activeButton, setActiveButton] = useState(option);
     const [sessionInfo, setSessionInfo] = useState(null);
+    const [isOpen, setIsOpen] = useState(false);
     const handleClick1 = (options) => {
+
+        setIsOpen(!isOpen);
         if (onOptionChange) {
             onOptionChange(options);
         }
@@ -83,7 +86,7 @@ const Navbar = ({ onOptionChange,option, isLoggedIn, onLogout }) => {
                             <button
                                 className={option === 'home' ? 'active' : ''} onClick={() => handleClick1('home')}
                             >
-                                Acceuille
+                                Accueil
                             </button>
                         </li>
                         <li>
@@ -102,11 +105,18 @@ const Navbar = ({ onOptionChange,option, isLoggedIn, onLogout }) => {
                         </li>
                         <li>
                             <button
-                                className={option === 'compte' ? "active" : ""}
+                                className={option === 'compte' ? "active dropdown-button" : "dropdown-button"}
                                 onClick={() => handleClick1('compte')}
                             >
                                 Compte
                             </button>
+                            {isOpen && (
+                                <div className="dropdown-menu">
+                                    <a href="#">Option 1</a>
+                                    <a href="#">Option 2</a>
+                                    <a href="#">Option 3</a>
+                                </div>
+                            )}
                         </li>
 
                     </ul>

@@ -10,13 +10,7 @@ const ComptePage = ({ onOptionChange }) => {
   const [sessionInfo, setSessionInfo] = useState(null);
   const [error, setError] = useState(null);
   const [option, setOption] = useState('persotrajet');
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const handleLogin = () => {
-    setIsLoggedIn(true);
-  };
-  const handleLogout = () => {
-    setIsLoggedIn(false);
-  };
+ 
   const handleOptionChange = (newOption) => {
     // Faire quelque chose avec la nouvelle option, par exemple :
     console.log("Nouvelle option sélectionnée :", newOption);
@@ -27,19 +21,15 @@ const ComptePage = ({ onOptionChange }) => {
     case 'persotrajet':
       pageToDisplay = <PersoTrajet onOptionChange={handleOptionChange}  />;
       break;
-    case 'persodemande':
+    case 'voiture':
       pageToDisplay = <PersoDemande onOptionChange={handleOptionChange}   />;
       break;
       case 'reservation':
       pageToDisplay = <PersoDemande onOptionChange={handleOptionChange}   />;
       break;
-      case 'prise':
+      case 'voyageur':
       pageToDisplay = <PersoDemande onOptionChange={handleOptionChange}   />;
       break;
-      case 'reservation':
-      pageToDisplay = <PersoDemande onOptionChange={handleOptionChange}   />;
-      break;
-
     default:
       pageToDisplay = null;
   }
@@ -65,12 +55,11 @@ const ComptePage = ({ onOptionChange }) => {
 
   return (
     <>
-
+    
       {userInfo && <div className='compte'>
-          <Choix onOptionChange={handleOptionChange}  option={option}/>
+      <Choix onOptionChange={handleOptionChange}  option={option}/>
           {pageToDisplay}
       </div>}
-
       {!userInfo && <LoginSignUp />}
     </>
 

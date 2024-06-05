@@ -3,7 +3,7 @@ import special from '../Assets/Icons/covoiturage(3).png'
 import special2 from '../Assets/Icons/voiture(1).png'
 import special3 from '../Assets/Icons/voiture(2).png'
 import { useEffect, useState } from 'react';
-const Choix = ({ onOptionChange,option, isLoggedIn, onLogout }) => {
+const Choix = ({ onOptionChange,option }) => {
     const [activeButton, setActiveButton] = useState(option);
     const [sessionInfo, setSessionInfo] = useState(null);
     const handleClick1 = (options) => {
@@ -11,17 +11,6 @@ const Choix = ({ onOptionChange,option, isLoggedIn, onLogout }) => {
             onOptionChange(options);
         }
         setActiveButton(options);
-    };
-    const handleClick = (option) => {
-        if (onOptionChange) {
-            onOptionChange(option);
-        }
-        if (option === 'connexion' || option === 'inscription') {
-            setActiveButton('compte');
-        }
-        setActiveButton(option);
-        setSessionInfo(false);
-        console.log(sessionInfo);
     };
     useEffect(() => {
         const fetchSessionInfo = async () => {
@@ -46,40 +35,40 @@ const Choix = ({ onOptionChange,option, isLoggedIn, onLogout }) => {
 
 
     return (
-        <aside className="h-screen">
-            <nav className="h-full flex flex-col bg-white border-r shadow-sm">
+        <aside className="w-full ">
+            <nav className="w-full  bg-white border-r shadow-sm">
             <div id="milieu" className=''>
-                    <ul id='central'className='flex flex-col'>
+                    <ul id='central'className='flex flex-row'>
                         <li>
                             <button
-                                className={option === 'home' ? 'active' : ''} 
-                                onClick={() => handleClick1('home')}
-                            >
-                                Acceuille
-                            </button>
-                        </li>
-                        <li>
-                            <button
-                                className={option === 'trajet' ? 'active' : ''} 
-                                onClick={() => handleClick1('trajet')}
+                                className={option === 'persotrajet' ? 'active' : ''} 
+                                onClick={() => handleClick1('persotrajet')}
                             >
                                 Trajet
                             </button>
                         </li>
                         <li>
                             <button
-                                className={option === 'demande' ? "active" : ""} 
-                                onClick={() => handleClick1('demande')}
+                                className={option === 'voyageur' ? 'active' : ''} 
+                                onClick={() => handleClick1('voyageur')}
                             >
-                                Demande
+                                Voyageur
                             </button>
                         </li>
                         <li>
                             <button
-                                className={option === 'compte' ? "active" : ""}
-                                onClick={() => handleClick1('compte')}
+                                className={option === 'reservation' ? "active" : ""} 
+                                onClick={() => handleClick1('reservation')}
                             >
-                                Compte
+                                Reservation
+                            </button>
+                        </li>
+                        <li>
+                            <button
+                                className={option === 'voiture' ? "active" : ""}
+                                onClick={() => handleClick1('voiture')}
+                            >
+                                Voiture
                             </button>
                         </li>
 
@@ -87,8 +76,6 @@ const Choix = ({ onOptionChange,option, isLoggedIn, onLogout }) => {
                 </div>
 
             </nav>
-
-
         </aside>
     );
 }

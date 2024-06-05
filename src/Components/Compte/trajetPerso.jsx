@@ -1,11 +1,11 @@
 const PersoTrajet = () => {
-    return ( 
-    <>
-     <div className="home">
+    return (
+        <>
+            <div className="">
+                TRAJET PERSO
+            </div>
 
-     </div>
-     TRAJET PERSO
-    </> );
+        </>);
 }
- 
+
 export default PersoTrajet;
