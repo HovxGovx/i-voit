@@ -110,13 +110,6 @@ const Navbar = ({ onOptionChange, option, isLoggedIn, onLogout }) => {
                             >
                                 Compte
                             </button>
-                            {isOpen && (
-                                <div className="dropdown-menu">
-                                    <a href="#">Option 1</a>
-                                    <a href="#">Option 2</a>
-                                    <a href="#">Option 3</a>
-                                </div>
-                            )}
                         </li>
 
                     </ul>
@@ -141,15 +134,15 @@ const Navbar = ({ onOptionChange, option, isLoggedIn, onLogout }) => {
                         <div className="dropdown-content">
                             {isLoggedIn ? (
                                 <button onClick={() => handleClickLogOut('connexion')}>
-                                    Se déconnecter <i className="fa fa-caret-right test2" />
+                                    Se déconnecter 
                                 </button>
                             ) : (
                                 <>
                                     <button onClick={() => handleClick('connexion')}   >
-                                        Connexion <i className="fa fa-caret-right test2" />
+                                        Connexion 
                                     </button>
                                     <button onClick={() => handleClick('inscription')}>
-                                        Inscription <i className="fa fa-caret-right test2" />
+                                        Inscription 
                                     </button>
                                 </>
                             )}
@@ -164,19 +157,19 @@ const Navbar = ({ onOptionChange, option, isLoggedIn, onLogout }) => {
                                     className={activeButton === 'trajet' ? "active" : ""}
                                     onClick={() => handleClick('trajet')}
                                 >
-                                    Trajet <i className="fa fa-caret-right test3" />
+                                    Trajet 
                                 </button>
                                 <button
                                     className={activeButton === 'compte' ? "active" : ""}
                                     onClick={() => handleClick('compte')}
                                 >
-                                    Compte <i className="fa fa-caret-right test4" />
+                                    Compte 
                                 </button>
                                 <button
                                     className={activeButton === 'partager' ? "active" : ""}
                                     onClick={() => handleClick('partager')}
                                 >
-                                    Partager <i className="fa fa-caret-right test5" />
+                                    Partager 
                                 </button>
                             </div>
                         </div>

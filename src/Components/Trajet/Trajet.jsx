@@ -59,7 +59,7 @@ const RideOfferDetails = ({ onOptionChange }) => {
         try {
             // Envoi de la requête POST pour ajouter le ride offer parmi les bookings
             await axios.post('http://localhost:8081/add-booking', { ride_id: rideId, passenger_id: passengerId , cout:cout,place:nbrplace});
-            alert('Ride offer added to bookings successfully!');
+            alert('Enregistrement effectuer.');
         } catch (error) {
             console.error('Error adding ride offer to bookings:', error);
             alert('Error adding ride offer to bookings. Please try again later.');

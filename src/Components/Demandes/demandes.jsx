@@ -185,7 +185,7 @@ const Demandes = ({ onOptionChange }) => {
                                 </div>
                                 {userInfo && <div className="content">
                                     <span >{pers.prix * value} Ar</span>
-                                    <button className="btn" onClick={() => handleTakeAsk(pers.personneId, userInfo.user_id)}>Prendre</button>
+                                    {/* <button className="btn" onClick={() => handleTakeAsk(pers.personneId, userInfo.user_id)}>Prendre</button> */}
                                 </div>}
                             </div>
                         ))}

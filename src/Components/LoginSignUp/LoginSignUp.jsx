@@ -23,7 +23,7 @@ const Login = ({ onOptionChange, isLoggedIn, onLogin }) => {
                 onOptionChange('trajet');
                 onLogin();
             } else {
-                alert("Aucun donnees");
+                alert("Veuillez réessayer.");
             }
         } catch (error) {
             console.error(error);

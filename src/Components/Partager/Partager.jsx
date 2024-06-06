@@ -93,7 +93,7 @@ const PartagerPage = () => {
                     'session_id': sessionId
                 }
             });
-
+                alert("Vous venez de partager un trajet.")
             console.log(response.data);
             // Réinitialiser le formulaire après la soumission réussie
             setOrigin('');

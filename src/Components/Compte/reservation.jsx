@@ -106,7 +106,7 @@ const Reservation = () => {
                             <button onClick={() => {
                                 fetchUsers(offer.offer_id);
                             }} data-bs-toggle="modal" data-bs-target="#personModalreservationperso">
-                                Details
+                                Details...
                             </button>
                         </td>
                     </tr>
