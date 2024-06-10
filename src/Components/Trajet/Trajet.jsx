@@ -67,14 +67,14 @@ const RideOfferDetails = ({ onOptionChange }) => {
     };
     // Fonction de filtrage des trajets
     const filterRides = (offer) => {
-        //const currentDate = new Date().toISOString().split('T')[0];
+        const currentDate = new Date().toISOString().split('T')[0];
         return (
             offer.origin.toLowerCase().includes(originFilter.toLowerCase()) &&
             offer.destination.toLowerCase().includes(destinationFilter.toLowerCase()) &&
             offer.departure_datetime.includes(dateFilter) &&
             offer.heure.includes(heureFilter) &&
             offer.available_seats >= value &&
-            // offer.departure_datetime >= currentDate &&  Ne pas afficher les trajets passés
+            offer.departure_datetime >= currentDate &&  // Ne pas afficher les trajets passés
             offer.rideoffer_user_id !== userInfo.user_id // Ne pas afficher les trajets de l'utilisateur connecté
         );
     };
@@ -119,7 +119,7 @@ const RideOfferDetails = ({ onOptionChange }) => {
 
                 <div>
                     <input
-                        className="search-bar "
+                        className="search-bar hidden"
                         type="date"
                         placeholder="Date"
                         value={dateFilter}

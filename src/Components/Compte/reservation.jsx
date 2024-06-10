@@ -31,7 +31,7 @@ const Reservation = () => {
     const fetchbookings = async (userId) => {
         try {
             console.log(userId);
-            const response = await axios.get(`http://localhost:8081/user/bookings/${userId}`); 
+            const response = await axios.get(`http://localhost:8081/user/bookings/${userId}`);
             setbookings(response.data);
         } catch (error) {
             console.error('Erreur lors de la récupération des offres de trajet : ', error);
@@ -75,7 +75,7 @@ const Reservation = () => {
         const options = { day: 'numeric', month: 'long' };
         return date.toLocaleDateString('fr-FR', options);
     }
-    return ( <div>
+    return (<div>
         {/* Sélecteur de filtre */}
         <select value={filter} onChange={handleFilterChange}>
             <option value="all">Toutes les offres de trajet</option>
@@ -87,10 +87,12 @@ const Reservation = () => {
         <table className="min-w-full bg-white border rounded-md">
             <thead>
                 <tr>
-                    <th className="px-4 py-2 text-center  border border-gray-200" >Origineeeee</th>
+                    <th className="px-4 py-2 text-center  border border-gray-200" >Origine</th>
                     <th className="px-4 py-2 text-center  border border-gray-200" >Destination</th>
                     <th className="px-4 py-2 text-center  border border-gray-200" >Date de départ</th>
                     <th className="px-4 py-2 text-center  border border-gray-200" >Places prises</th>
+                    <th className="px-4 py-2 text-center  border border-gray-200" >Prix total</th>
+
                     <th className="px-4 py-2 text-center  border border-gray-200" >Chauffeur</th>
 
                 </tr>
@@ -101,12 +103,15 @@ const Reservation = () => {
                         <td className="px-4 py-2 text-center border border-gray-200">{offer.origin}</td>
                         <td className="px-4 py-2 text-center border border-gray-200">{offer.destination}</td>
                         <td className="px-4 py-2 text-center border border-gray-200">{formatDate(offer.departure_datetime)} à  {offer.heure}</td>
-                        <td className="px-4 py-2 text-center border border-gray-200">{offer.available_seats === 0 ? "Complet" : offer.available_seats}</td>
+                        <td className="px-4 py-2 text-center border border-gray-200">{offer.place === 4 ? "Toutes" : offer.place}</td>
+                        <td className="px-4 py-2 text-center border border-gray-200">{offer.place * offer.prix} Ar</td>
+
                         <td className="px-4 py-2 text-center border border-gray-200">
                             <button onClick={() => {
                                 fetchUsers(offer.offer_id);
-                            }} data-bs-toggle="modal" data-bs-target="#personModalreservationperso">
-                                Details...
+                            }} data-bs-toggle="modal" data-bs-target="#personModalreservationperso"
+                            className="px-3 py-1 text-sm font-semibold text-white bg-blue-500 rounded hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300">
+                                Detail
                             </button>
                         </td>
                     </tr>
@@ -123,19 +128,21 @@ const Reservation = () => {
                             <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div className="modal-body">
-                            <ul>
-                                
-                                    <li >
-                                        <strong>Nom :</strong> {users.username}<br />
-                                        <strong>Contact :</strong> {users.phone_number}<br />
-                                    </li>
+                            <ul><li className="p-4 mb-4 border-b border-gray-200">
+                                <p className="font-normal text-gray-600">
+                                    Nom : <span className="text-lg font-bold text-gray-800">{users.username}</span>
+                                </p>
+                                <p className="font-normal text-gray-600">
+                                    Contact : <span className="text-lg font-bold text-gray-800">{users.phone_number}</span>
+                                </p>
+                            </li>
                             </ul>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div> );
+    </div>);
 }
- 
+
 export default Reservation;

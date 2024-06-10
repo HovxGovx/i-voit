@@ -84,7 +84,7 @@ const PersoDemande = () => {
                         <th  className="px-4 py-2 text-center border border-gray-200" >Destination</th>
                         <th  className="px-4 py-2 text-center border border-gray-200" >Date de départ</th>
                         <th  className="px-4 py-2 text-center border border-gray-200" >Places disponibles</th>
-                        <th  className="px-4 py-2 text-center border border-gray-200" >Prix</th>
+                        <th  className="px-4 py-2 text-center border border-gray-200" >Prix par place</th>
                         <th  className="px-4 py-2 text-center border border-gray-200" >Chauffeur</th>
 
                     </tr>
@@ -98,7 +98,8 @@ const PersoDemande = () => {
                             <td className="px-4 py-2 text-center  border border-gray-200">{personne.seats}</td>
                             <td className="px-4 py-2 text-center  border border-gray-200">{personne.prix}Ar</td>
                             <td className="px-4 py-2 text-center  border border-gray-200">
-                                <button>
+                                <button className="px-3 py-1 text-sm font-semibold text-white bg-blue-500 rounded hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300">
+                            
                                     Contact
                                 </button>
                             </td>

@@ -147,7 +147,7 @@ const PartagerPage = () => {
                     </div>
                     <div className="container-fluid">
                         <label>Places disponibles</label>
-                        <input className="search-bar" type="number" value={availableSeats} onChange={(e) => setAvailableSeats(e.target.value)} required />
+                        <input className="search-bar" type="number" min={1} max={4} value={availableSeats} onChange={(e) => setAvailableSeats(e.target.value)} required />
                     </div>
                     <div className="container-fluid hidden">
                         <label className='hidden'>Détails du véhicule</label>

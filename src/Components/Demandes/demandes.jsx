@@ -24,14 +24,14 @@ const Demandes = ({ onOptionChange }) => {
     const [heureFilter, setHeureFilter] = useState('');
     // Fonction de filtrage des trajets
     const filterPersonne = (pers) => {
-        //const currentDate = new Date().toISOString().split('T')[0];
+        const currentDate = new Date().toISOString().split('T')[0];
         return (
             pers.origin.toLowerCase().includes(originFilter.toLowerCase()) &&
             pers.destination.toLowerCase().includes(destinationFilter.toLowerCase()) &&
             pers.departure_datetime.includes(dateFilter) &&
             pers.heure.includes(heureFilter) &&
             pers.seats >= value &&
-            // offer.departure_datetime >= currentDate &&  Ne pas afficher les trajets passés
+            pers.departure_datetime >= currentDate && // Ne pas afficher les trajets passés
             pers.rideoffer_user_id !== userInfo.user_id // Ne pas afficher les trajets de l'utilisateur connecté
         );
     };
@@ -185,7 +185,7 @@ const Demandes = ({ onOptionChange }) => {
                                 </div>
                                 {userInfo && <div className="content">
                                     <span >{pers.prix * value} Ar</span>
-                                    {/* <button className="btn" onClick={() => handleTakeAsk(pers.personneId, userInfo.user_id)}>Prendre</button> */}
+                                    <button className="btn" onClick={() => handleTakeAsk(pers.personneId, userInfo.user_id)}>Prendre</button>
                                 </div>}
                             </div>
                         ))}

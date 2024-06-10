@@ -94,6 +94,7 @@ function RideOffers() {
                         <th className="px-4 py-2 text-center  border border-gray-200" >Destination</th>
                         <th className="px-4 py-2 text-center  border border-gray-200" >Date de départ</th>
                         <th className="px-4 py-2 text-center  border border-gray-200" >Places disponibles</th>
+                        <th className="px-4 py-2 text-center  border border-gray-200" >Prix par place</th>
                         <th className="px-4 py-2 text-center  border border-gray-200" >Voyageur</th>
 
                     </tr>
@@ -105,10 +106,13 @@ function RideOffers() {
                             <td className="px-4 py-2 text-center border border-gray-200">{offer.destination}</td>
                             <td className="px-4 py-2 text-center border border-gray-200">{formatDate(offer.departure_datetime)} à {offer.heure}</td>
                             <td className="px-4 py-2 text-center border border-gray-200">{offer.available_seats === 0 ? "Complet" : offer.available_seats}</td>
+                            <td className="px-4 py-2 text-center border border-gray-200">{offer.prix} Ar</td>
                             <td className="px-4 py-2 text-center border border-gray-200">
                                 <button onClick={() => {
                                     fetchUsers(offer.offer_id);
-                                }} data-bs-toggle="modal" data-bs-target="#personModaltrajetperso">
+                                }} data-bs-toggle="modal" data-bs-target="#personModaltrajetperso"
+                                className="px-3 py-1 text-sm font-semibold text-white bg-blue-500 rounded hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300">
+                            
                                     Details
                                 </button>
                             </td>
