@@ -134,7 +134,7 @@ const Navbar = ({ onOptionChange, option, isLoggedIn, onLogout }) => {
                         <div className="dropdown-content">
                             {isLoggedIn ? (
                                 <button onClick={() => handleClickLogOut('connexion')}>
-                                    Se déconnecter 
+                                    Deconnexion
                                 </button>
                             ) : (
                                 <>

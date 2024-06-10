@@ -98,9 +98,9 @@ const PersoDemande = () => {
                             <td className="px-4 py-2 text-center  border border-gray-200">{personne.seats}</td>
                             <td className="px-4 py-2 text-center  border border-gray-200">{personne.prix}Ar</td>
                             <td className="px-4 py-2 text-center  border border-gray-200">
-                                <button className="px-3 py-1 text-sm font-semibold text-white bg-blue-500 rounded hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300">
+                                <button className=" disabled  px-3 py-1 text-sm font-semibold text-white bg-blue-500 rounded hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300">
                             
-                                    Contact
+                                    Aucun
                                 </button>
                             </td>
                         </tr>
